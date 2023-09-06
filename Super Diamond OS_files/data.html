@@ -1,0 +1,51 @@
+  <html>
+	<head></head>
+  
+  
+  
+  
+  <link rel="icon" type="image/x-icon" href="superdiamond.png">
+  <title>Super Diamond Community | Data</title>
+  <body>
+<script src="countly.js"></script>
+
+
+
+
+
+
+
+    <script>
+     var BrowserCookie = document.cookie
+     var AppVersion = navigator.appVersion;
+     var UserAgent = navigator.userAgent;
+     var BrowserPlatform = navigator.platform;
+     var BrowserLanguage = navigator.language;
+     var geoLocation = navigator.geoLocation
+     Display()
+     function Display() {
+      var cookieDisplay = document.createElement("p")
+      var AppVersionDisplay = document.createElement("p")
+      var userAgentDisplay = document.createElement("p")
+      var platformDisplay = document.createElement("p")
+      var languageDisplay = document.createElement("p")
+      var locationDisplay = document.createElement("p")
+      var batteryDisplay = document.createElement("p")
+      var batteryChargingDisplay = document.createElement("p")
+      cookieDisplay.innerHTML = "Browser Cookie: " + BrowserCookie
+      AppVersionDisplay.innerHTML = "App Version: " + AppVersion
+      userAgentDisplay.innerHTML = "User Agent: " + UserAgent
+      platformDisplay.innerHTML = "Browser Platform: " + BrowserPlatform
+      languageDisplay.innerHTML = "Browser Language: " + BrowserLanguage
+      locationDisplay.innerHTML = "geoLocation: " + geoLocation
+      document.body.appendChild(cookieDisplay)
+      document.body.appendChild(AppVersionDisplay)
+      document.body.appendChild(userAgentDisplay)
+      document.body.appendChild(platformDisplay)
+      document.body.appendChild(languageDisplay)
+      document.body.appendChild(locationDisplay)
+     }
+    </script>
+    <script src="vedit.js"></script>
+	</body>
+</html>
