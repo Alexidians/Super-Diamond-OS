@@ -1,0 +1,68 @@
+	<head></head>
+  
+  
+  
+  
+  <link rel="icon" type="image/x-icon" href="=SuperDiamond.png">
+  <title>Super Diamond Community | Countdown</title>
+  <body>
+<script src="countly.js"></script>
+
+
+
+
+
+
+
+    <p><center>Countdown</center></p>
+    <center><button onclick="Start()" id="CountdownStartButton">Start</button></p><center/>
+    <p>Timer:<input type="number" id="timer"> <button onclick="Restart()" id="timerButton">Set</button></p>
+    <center><button onclick="Stop()" id="CountdownStopButton">Stop</button></p><center/>
+    <h1 id="CountdownDisplay"><center>0</center></h1>
+    <script>
+      var countdown = 0;
+      var interval;
+      function Start() {
+              if (!interval) {      
+              interval = setInterval(Countdown, 1000);
+            }
+            
+             else {
+             alert("countdwon already Started")
+            }
+      }
+      
+      function Stop(noAlert) {
+            if (interval) {
+                    clearInterval(interval)
+                    interval = null;
+            }
+             else if (!noAlert) {
+             alert("countdown already Stopped")
+            }
+      }
+      
+      function Restart() {
+              Stop(true)
+              countdown = document.getElementById("timer").value;
+              document.getElementById("CountdownDisplay").innerHTML = countdown;
+      }
+      
+      function Countdown() {
+              
+            if (countdown == 0) {
+            alert("COUNTDOWN ENDED!")
+            document.getElementById("CountdownDisplay").innerHTML = "CountDown Ended";
+            Stop(true)
+           }
+            
+            else {
+              countdown = countdown - 1
+              document.getElementById("CountdownDisplay").innerHTML = countdown;
+           }
+      }
+
+    </script>
+    <script src="vedit.js"></script>
+	</body>
+</html>
