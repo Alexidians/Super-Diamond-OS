@@ -1,0 +1,6 @@
+       setTimeout(SetCore, 1000)
+       console.warn("removing super_diamond_core.js will Destory The Browser")
+       
+       function SetCore() {
+        SuperSuperDiamondSuperCoreSet = true
+       }
