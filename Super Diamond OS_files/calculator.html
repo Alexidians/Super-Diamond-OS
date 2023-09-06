@@ -1,0 +1,89 @@
+<html>
+	<head></head>
+	
+  
+  
+  
+  
+  <link rel="icon" type="image/x-icon" href="superdiamond.png">
+  <title>Super Diamond Community | Calculator</title>
+  <body>
+<script src="countly.js"></script>
+
+
+
+
+
+
+    <p><center>Calculator</center></p>
+    <div id="calculator">
+    <input type="text" id="calcinput" pattern="[0-9\+\-]{3}">
+    <button onclick="numberscript(1)" id="1button">1</button>
+    <button onclick="numberscript(2)" id="2button">2</button>
+    <button onclick="numberscript(3)" id="3button">3</button>
+    <button onclick="numberscript('+')" id="+button" class="special">+</button>
+    <button onclick="numberscript(4)" id="4button">4</button>
+    <button onclick="numberscript(5)" id="5button">5</button>
+    <button onclick="numberscript(6)" id="6button">6</button>
+    <button onclick="numberscript('-')" id="-button" class="special">-</button>
+    <button onclick="numberscript(7)" id="7button">7</button>
+    <button onclick="numberscript(8)" id="8button">8</button>
+    <button onclick="numberscript(9)" id="9button">9</button>
+    <button onclick="numberscript('*')" id="xbutton" class="special">x</button>
+    <button onclick="numberscript(0)" id="0button">0</button>
+    <button onclick="calculatescript()" id="=button" class="special">=</button>
+    <button onclick="acscript()" id="ACbutton" class="special">AC</button>
+    <button onclick="numberscript('/')" id="/button" class="special">/</button>
+    </div>
+    <script>
+      function script() {
+        alert("Script Activated")
+      }
+      
+      function acscript() {
+        document.getElementById("calcinput").value = ""
+      }
+      
+      function numberscript(num) {
+        document.getElementById("calcinput").value = document.getElementById("calcinput").value + num
+      }
+      
+      function calculatescript() {
+        try {
+            document.getElementById("calcinput").value = eval(document.getElementById("calcinput").value)
+        }
+        catch (err) {
+            alert("ERROR: Invalid Calculator Characters")
+        }
+      }
+
+    </script>
+    <style>
+    button {
+        width: 50px;
+        height: 50px;
+        float: left;
+    }
+    button:nth-child(4n-2) {
+        clear:both;
+        display: block;
+    }
+    input {
+        display: block;
+        width: 200px;
+        height: 50px;
+    }
+    #calculator {
+        border: 3px solid black;
+        border-radius: 10px;
+        overflow: auto;
+        width: 200px;
+        margin: auto;
+    }
+    .special {
+        background-color: grey;
+    }
+    </style>
+    <script src="vedit.js"></script>
+	</body>
+</html>
