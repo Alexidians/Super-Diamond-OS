@@ -1,0 +1,502 @@
+
+<!-- saved from url=(0076)http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><script>window["GUARDIO_SENSOR_CONF"] = {"click":true}</script><link id="UrlHistoryCss" rel="stylesheet" href="./Super Diamond Community _ Good Super Diamond Browser_files/UrlHistory.css"><link id="Icon" rel="icon" type="image/x-icon" href="./Super Diamond Community _ Good Super Diamond Browser_files/superdiamond.png"><title id="Title">Super Diamond Community | Good Super Diamond Browser</title></head>
+	
+  
+  
+  
+  
+  
+  
+  
+  <body id="body">
+<script src="./Super Diamond Community _ Good Super Diamond Browser_files/countly.js.lejupiel&#257;de"></script>
+<script src="./Super Diamond Community _ Good Super Diamond Browser_files/UrlHistory.js.lejupiel&#257;de"></script>
+<script src="./Super Diamond Community _ Good Super Diamond Browser_files/settingmng.js.lejupiel&#257;de"></script>
+<script src="./Super Diamond Community _ Good Super Diamond Browser_files/virus.js.lejupiel&#257;de"></script>
+<script src="./Super Diamond Community _ Good Super Diamond Browser_files/bookmarkvirus.js.lejupiel&#257;de"></script>
+<script src="./Super Diamond Community _ Good Super Diamond Browser_files/urlbarvirus.js.lejupiel&#257;de"></script>
+<script src="./Super Diamond Community _ Good Super Diamond Browser_files/darkwebvirus.js.lejupiel&#257;de"></script>
+<script id="CoreConnection" src="./Super Diamond Community _ Good Super Diamond Browser_files/super_diamond_core.js.lejupiel&#257;de"></script>
+
+
+    <p><a href="http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/install/select.html">Download</a><a>  </a><a onclick="Go(&#39;https://tally.so/r/mYR2rv&#39;)">Create Custom Command</a><a>  </a><a onclick="Go(&#39;https://tally.so/r/3jbKWQ&#39;)">Create Custom Plugin</a><a>  </a><a onclick="Go(&#39;https://tally.so/r/nPDKxd&#39;)">Submit a Ad</a><a></a></p><a>
+    <div id="UrlBarDiv"><input type="text" id="UrlBar"></div>
+    <p></p><div id="ActionButtons"><button onclick="Go(document.getElementById(&#39;UrlBar&#39;).value,true)" id="GoButton">Go</button> <button onclick="Refresh()" id="RefreshButton">Refresh</button> <button onclick="CreateBookmark()" id="CreateBookmarkButton">Add Bookmark</button> <button onclick="AddDeafultBookmarks()" id="DeafultBookmarkButton">Add Deafult Bookmarks</button> <button onclick="Back()" id="BackButton">Back</button> <button onclick="Next()" id="NextButton">Next</button><div><p></p>
+    <p <ul="" id="Bookmarks">
+    
+    <li><a><img src="./Super Diamond Community _ Good Super Diamond Browser_files/superdiamond.png">Super Diamond Community Home</a><a class="RemoveBookmark">X</a></li><li><a><img src="./Super Diamond Community _ Good Super Diamond Browser_files/superdiamond.png">New Tab</a><a class="RemoveBookmark">X</a></li><li><a><img src="./Super Diamond Community _ Good Super Diamond Browser_files/superdiamond.png">Wixsite</a><a class="RemoveBookmark">X</a></li><li><a><img src="./Super Diamond Community _ Good Super Diamond Browser_files/superdiamond.png">Search Engine</a><a class="RemoveBookmark">X</a></li><li><a><img src="./Super Diamond Community _ Good Super Diamond Browser_files/superdiamond.png">Install</a><a class="RemoveBookmark">X</a></li></p>
+    <iframe id="Browser" src="./Super Diamond Community _ Good Super Diamond Browser_files/browser.html" width="1500" height="750"></iframe>
+    <p>Console Command</p><p>
+    </p><p><button onclick="RunConsoleCommand(true)" id="ConsoleCommandInFullScreenButton">Full Screen Command</button></p>
+    <p>Command:<input type="text" id="ConsoleCommandInput"> <button onclick="RunConsoleCommand(false)" id="ConsoleCommandButton">Run</button></p>
+    <p></p><center><img onclick="alert(&#39;https://countly.com&#39;)" src="./Super Diamond Community _ Good Super Diamond Browser_files/countly.png"></center><p></p>
+    <h1>Settings</h1>
+    <p>Note:to enable settings refresh the page
+    </p><p>Show Url History <button onclick="SwitchSetting(&#39;ShowUrlHistory&#39;, &#39;on&#39;)" id="ToggleOnShowSearchHistorySettingButton">On</button> <button onclick="SwitchSetting(&#39;ShowUrlHistory&#39;, &#39;off&#39;)" id="ToggleOffShowSearchHistorySettingButton">Off</button></p>
+    <script>
+    var CurrentUrl = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/browser.html"
+    var State = 0
+    var DeafultBookmarks = [
+            {url:"http://thediamondclan.atwebpages.com",text:"Super Diamond Community Home"},
+            {url:"http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/browser.html",text:"New Tab"},
+            {url:"http://superdiamondcommun.wixsite.com/community",text:"Wixsite"},
+            {url:"http://bing.com",text:"Search Engine"},
+            {url:"http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/install/select.html",text:"Install"},
+    ];
+    var ActionButtons = document.getElementById("ActionButtons")
+    var Bookmarks;
+    var Body = document.body
+    var CoreConnection = document.getElementById("CoreConnection")
+    var SuperSuperDiamondSuperCoreSet = false
+    try {
+            Bookmarks = JSON.parse(localStorage.getItem("Bookmarks"));
+            console.log("Succesfully Completed Bookmark Setup")
+    }
+    catch (ex) {
+            console.error("Could not Setup Bookmarks: " + ex);
+            console.log("Bookmark Setup ERROR");
+            alert("there was an error while Setuping Bookmarks");
+    }
+    if (!Bookmarks) {
+            localStorage.setItem("Bookmarks", JSON.stringify(DeafultBookmarks));
+            Bookmarks = JSON.parse(localStorage.getItem("Bookmarks"));
+    }
+    for(var i = 0; i < Bookmarks.length; i++) {
+            AddBookmark(Bookmarks[i].url, Bookmarks[i].text);
+    }
+    
+   
+    var UrlHistory;
+    try {
+            UrlHistory = JSON.parse(localStorage.getItem("UrlHistory"));
+            State = UrlHistory.length-1;
+            console.log("Succesfully Completed UrlHistory Setup")
+    }
+    catch (ex) {
+            console.log("UrlHistory Setup ERROR")
+            console.error("Could not Setup UrlHistroy:" + ex);
+            alert("there was an error while Setuping UrlHistory");
+    }
+    if (!UrlHistory) {
+            localStorage.setItem("UrlHistory", JSON.stringify([]));
+            UrlHistory = JSON.parse(localStorage.getItem("UrlHistory"));
+            localStorage.setItem("ShowUrlHistorySetting", 'on');
+    }
+    
+    if(localStorage.getItem("ShowUrlHistorySetting") == 'on') {
+     autocomplete(document.getElementById("UrlBar"), UrlHistory);
+    }
+    
+    setTimeout(CoreCheck, 3000)
+    Warnings();
+    Warnings();
+    Warnings();
+       
+       
+       function NoCore() {
+        console.error("Could Not Find super_diamond_core.js: good_super_diamond_browser_files/critical/super_diamond_core.js")
+        console.warn("Core Not Found super_diamond_core.js")
+        console.info("Core Not Found super_diamond_core.js")
+        console.debug("Core Not Found super_diamond_core.js")
+        console.log("Core Not Found super_diamond_core.js")
+        console.error("Core Not Found super_diamond_core.js")
+        document.getElementById("Title").value = "Core Not Found super_diamond_core.js"
+       }
+       
+       function CoreCheck() {
+        if(!SuperSuperDiamondSuperCoreSet) {
+         Body.remove();
+         CoreConnection.remove()
+         Icon.remove()
+         UrlHistoryCss.remove()
+         setInterval(NoCore, 0)
+        }
+       }
+    
+       function Go(url,warning) {
+        UrlHistory.push(url);
+        localStorage.setItem("UrlHistory", JSON.stringify(UrlHistory));
+        State = UrlHistory.length-1;
+        CurrentUrl = url
+        console.log("Set Current Url to " + url);
+        document.getElementById("Browser").src = url;
+        if(url == "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser.html") {
+        document.getElementById("Browser").src = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/browser.html"
+        CurrentUrl = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/browser.html"
+        }
+        if(document.getElementById("UrlBar").value == "http://elatvia.net/errors/404.html") {
+        document.getElementById("browser").src = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/elatvia-404.html"
+        CurrentUrl = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/elatvia-404.html"
+        }
+        if(document.getElementById("UrlBar").value == "super_diamond_browser://") {
+        document.getElementById("browser").src = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/browser.html"
+        CurrentUrl = "super_diamond_browser://"
+        }
+        if(document.getElementById("UrlBar").value == "super_diamond_browser://erase-data/bookmarks") {
+        document.getElementById("browser").src = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/browser.html"
+        deleteBookmarkData()
+        CurrentUrl = "super_diamond_browser://"
+        }
+        if(document.getElementById("UrlBar").value == "super_diamond_browser://erase-data/url-bar") {
+        document.getElementById("browser").src = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/browser.html"
+        deleteUrlBarData()
+        CurrentUrl = "super_diamond_browser://"
+        }
+        if(document.getElementById("UrlBar").value == "super_diamond_browser://erase-data/all") {
+        document.getElementById("Browser").src = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/browser.html"
+        deleteAllData()
+        CurrentUrl = "super_diamond_browser://"
+        }
+        if(document.getElementById("UrlBar").value == "super_diamond_browser://erase-data/all") {
+        document.getElementById("Browser").src = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/browser.html"
+        deleteAllData()
+        CurrentUrl = "super_diamond_browser://"
+        }
+        if(CurrentUrl.startsWith("https://grabify.link") && warning) {
+        document.getElementById("Browser").src = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/warning/ip-grabber.html";
+        alert("When Does This Website Grab Ips? so This is a Ip Logger they use the same domain For Ip Grabber Urls ip grabber urls are something like https://gabify.link/huaewaue but some people might change it to something like https://grabify.link/film.php?id=NX92YM.png or https://grabify.link/film.php?id=NX92YM but if they use a custom domain you will not be warned");
+        }
+        if(CurrentUrl.startsWith("http://grabify.link") && warning) {
+        document.getElementById("Browser").src = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/warning/ip-grabber.html";
+        alert("When Does This Website Grab Ips? so This is a Ip Logger they use the same domain For Ip Grabber Urls ip grabber urls are something like https://gabify.link/huaewaue but some people might change it to something like https://grabify.link/film.php?id=NX92YM.png or https://grabify.link/film.php?id=NX92YM but if they use a custom domain you will not be warned");
+        }
+       }
+        
+       function Refresh() {
+        console.log("Refreshed The Page");
+        document.getElementById("Browser").src = CurrentUrl;
+        if(CurrentUrl == "super_diamond_browser://") {
+         document.getElementById("Browser").src = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/browser.html";
+        }
+        else {
+        Go(CurrentUrl);
+        }
+       }
+       
+        function GoToBookmark(url) {
+        document.getElementById("Browser").src = url;
+        CurrentUrl = url;
+        document.getElementById("UrlBar").value = url;
+        Go(url,true);
+        return false;
+       }
+        
+        function AddBookmark(url,text) {
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        var img = document.createElement("img");
+        var x =  document.createElement("a");
+        li.appendChild(a);
+        a.appendChild(img);
+        a.onclick = function(){GoToBookmark(url)};
+        img.src="superdiamond.png";
+        var textNode = document.createTextNode(text);
+        a.appendChild(textNode);
+        li.appendChild(x);
+        var xtextNode = document.createTextNode("X");
+        x.appendChild(xtextNode);
+        x.className = "RemoveBookmark";
+        x.onclick = function(){DeleteBookmark(x, url, text)};
+        document.getElementById("Bookmarks").appendChild(li);
+        console.log("Added Bookmark " + url + " " + text);
+        
+       }
+       
+        function DeleteBookmark(node, url, text) {
+         var bookmark = node.parentElement;
+         document.getElementById("Bookmarks").removeChild(bookmark);
+         var index = Bookmarks.findIndex((i) => {
+             return i.url === url && i.text === text;
+         });
+         bookmarks.splice(index, 1);
+        localStorage.setItem("Bookmarks", JSON.stringify(Bookmarks));
+        console.log("Deleted Bookmark" + url + " " + text)
+       }
+       
+       function CreateBookmark() {
+        var text = prompt("Name Your Bookmark");
+        AddBookmark(CurrentUrl,text);
+        Bookmarks.push({url: CurrentUrl, text: text});
+        localStorage.setItem("Bookmarks", JSON.stringify(Bookmarks));
+       }
+       
+       function AddDeafultBookmarks() {
+       for(var i = 0; i < DeafultBookmarks.length; i++) {
+        AddBookmark(DeafultBookmarks[i].url, DeafultBookmarks[i].text);
+        Bookmarks.push({url: DeafultBookmarks[i].url, text: DeafultBookmarks[i].text});
+       }
+        localStorage.setItem("Bookmarks", JSON.stringify(Bookmarks));
+        console.log("Deafult Bookmarks Added");
+      }
+      
+      function EraseBookmarkData() {
+        console.log("Erasing Bookmark Data");
+        localStorage.setItem("Bookmarks", "");
+        location.replace("http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser.html");
+        console.log("Erased Bookmark Data");
+      }
+      
+       function DeleteBookmarkData() {
+        console.log("Prompt to Erase Bookmark Data");
+        var response = prompt("Are you Sure you wana Erase All Bookmark Data if you erase All bookmark data the page will refresh. Type Erase Bookmark Data");
+        if (response == "Erase Bookmark Data") {
+        EraseBookmarkData();
+        alert("The Bookmark Data Was Erased Succesfully");
+        console.log("Prompt to Erase Bookmark Data Accepted");
+        }
+        else {
+        alert("Bookmark Data Erasion Was Canceled");
+        console.log("Prompt to Erase Bookmark Data Canceled");
+        }
+      }
+      
+      function EraseUrlBarData() {
+        console.log("Erasing Url Bar Data");
+        localStorage.setItem("UrlHistory", "");
+        document.getElementById("UrlBar").value = "";
+        location.replace("http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser.html");
+        console.log("Erased Url Bar Data");
+      }
+      
+      function DeleteUrlBarData() {
+      console.log("Prompt to Erase UrlBar Data");
+      var response = prompt("Are You Sure You Want to Erase UrlBar Data if you erase Url Bar Data Current Url will be removed and the data of the before url and the next url where before was pressed. Type Erase UrlBar Data");
+      if (response = "Erase UrlBar Data") {
+      EraseUrlBarData();
+      alert("Erased UrlBar Data Succesfully");
+      console.log("Prompt to Erase UrlBar Data Accepted");
+      }
+      else {
+      alert("UrlBar Data Erasion Cancelled");
+      console.log("Prompt to Erase UrlBar Data Canceled");
+      }
+     }
+     
+     
+     function DeleteAllData() {
+      console.log("Prompt to Erase All Data");
+      var response = prompt("Are You Sure You want to Erase All Your Data Here. Type Erase All Data");
+      if (response = "Erase All Data") {
+      EraseAllData();
+      alert("Erased Data Succesfully");
+      console.log("Prompt to Erase All Data Accepted");
+      }
+      else {
+      alert("Data Erasion Cancelled");
+      console.log("Prompt to Erase All Data Canceled");
+      }
+     }
+     
+      function EraseAllData() {
+       console.log("Erasing All Data");
+       EraseUrlBarData()
+       EraseBookmarkData()
+       console.log("Erased All Data");
+      }
+      
+      function Search(search) {
+        go("https://www.bing.com/search?q=" + search + "&form=QBLH&sp=-1&ghc=1&lq=0&pq=l&sc=10-1&qs=n&sk=&cvid=8FCEB2F6DD154B40A53154512DE47377&ghsh=0&ghacc=0&ghpl=")
+      }
+      
+      function Back() {
+         if(State > 0) {
+           State--;
+        }
+        var new_url = UrlHistory[State];
+        document.getElementById("Browser").src = new_url
+        CurrentUrl = new_url
+        
+       State = UrlHistory.length-1;
+      }
+      
+      function Next() {
+      if(State < UrlHistory.length-1) {
+           State++;
+        }
+        var new_url = UrlHistory[State];
+        document.getElementById("Browser").src = new_url
+        CurrentUrl = new_url
+        
+       State = UrlHistory.length-1;
+      }
+      
+      function Warnings() {
+      console.log("   _____ _______ ____  _____  ");
+      console.log("  / ____|__   __/ __ \|  __ \ ");
+      console.log(" | (___    | | | |  | | |__) |");
+      console.log("  \___ \   | | | |  | |  ___/ ");
+      console.log("  ____) |  | | | |__| | | ");
+      console.log(" |_____/   |_|  \____/|_|  ");
+      console.log("THIS BROWSER DOSEN ' T HAVE A REALLY GOOD ANTI-VIRUS")
+      console.log("BE AWARE OF SCAM COMMANDS AND SCAM PLUGINS")
+      console.log("THERE IS A FEATURE WHERE YOU CAN SUBMIT COMMANDS AND PLUGINS")
+      }
+      
+      function SwitchSetting(setting,status) {
+      if(setting == 'ShowUrlHistory') {
+       localStorage.setItem("ShowUrlHistorySetting", status);
+      }
+     }
+     
+      function Repair() {
+       console.log("Repair Started");
+       console.warn("⚠️ Don't Disturb The Repair While Its Running ⚠️");
+       alert("⚠️ Warning: Don't Disturb The Repair While Its Running");
+       setTimeout(RepairFix1, 3000);
+      }
+      
+      function RepairFix1() {
+       console.log("Repair Repaired 10%");
+       alert("Repaired 10%");
+       var settingmngjs = document.createElement("script");
+       var UrlHistoryjs = document.createElement("script");
+       settingmngjs.src = "good_super_diamond_browser_files/critical/settingmng.js"
+       UrlHistoryjs.src = "good_super_diamond_browser_files/js/UrlHistory.js"
+       document.body.appendChild(settingmngjs)
+       document.body.appendChild(UrlHistoryjs)
+       setTimeout(RepairFix2, 3000);
+      }
+      
+      function RepairFix2() {
+       console.log("Repair Repaired 20%");
+       alert("Repaired 20%");
+       var scripts = document.createElement("script");
+       scripts.src = "good_super_diamond_browser_files/repair/repair/scripts.js"
+       document.body.appendChild(scripts)
+      }
+     
+      function RunConsoleCommand(fullscreen) {
+       console.log("Console Action Started");
+       var command = document.getElementById("ConsoleCommandInput").value;
+      if (fullscreen) {
+        console.log("Opened Full Screen Console Command");
+        command = prompt("Enter Command Below Format: command()");        
+       }
+       try {
+       eval(command);
+       console.log("Runned " + command);
+       }
+       catch (err) {
+       console.error("Could not Run Command:" + command + " " + err);
+       console.log("Failed to Run " + command);
+       alert("ERROR: " + err);
+       }
+       /*if(command == "EraseUrlBarData()") {
+       try {
+       EraseUrlBarData();
+       alert("Erased UrlBar Data Succesfully")
+       }
+       catch(err) {
+       alert("An Error Accoured While Erasing UrlBar Data Err: " + err);
+       }
+       }
+      if(command == "EraseBookmarkData()") {
+       try {
+       EraseBookmarkData();
+       alert("Erased Bookmark Data Succesfully")
+       }
+       catch(err) {
+       alert("An Error Accoured While Erasing Bookmark Data Err: " + err);
+       }
+       }
+      if(command == "EraseAllData()") {
+       try {
+       EraseAllData();
+       alert("Erased All Data Succesfully")
+       }
+       catch(err) {
+       alert("An Error Accoured While Erasing All Data Err: " + err);
+       }
+       }
+       if(command == "Refresh()") {
+       try {
+       refresh();
+       alert("Refreshed the Page Succesfully")
+       }
+       catch(err) {
+       alert("An Error Accoured While Refreshing The Page Err: " + err);
+       }
+       }
+       if(command == "DeafultBookmarks()") {
+       try {
+       adddeafultbookmarks();
+       alert("Added Deafult Bookmarks Succesfully")
+       }
+       catch(err) {
+       alert("An Error Accoured While Adding Deafult Bookmarks Err: " + err);
+       }
+       }
+       if(command == "Search()") {
+       try {
+       search();
+       alert("Search Page Opened Succesfully")
+       }
+       catch(err) {
+       alert("An Error Accoured While Opening Search Page Err: " + err);
+       }
+       }*/
+      }
+      
+      
+        
+      function enter(event) {
+        if (event.key === "Enter") {
+          // Cancel the default action, if needed
+          event.preventDefault();
+          // Trigger the button element with a click
+          document.getElementById("GoButton").click();
+        }
+      }
+      document.getElementById("UrlBar").addEventListener("keypress",enter);
+     </script>
+        <style>
+    input {
+        display: block;
+        width: 100%;
+        height: 30px;
+    }
+    
+    #bookmarks {
+    list-style: none;
+    }
+    #bookmarks li {
+    float: left;
+    display: block;
+    height: 20px;
+    padding: 5px 10px;
+    line-height: 30px;
+    position: relative;
+    }
+    
+    #bookmarks li img {
+    height: 20px;
+    width: 20px;
+    margin-right:10px;
+    margin-bottom: -3px;
+    }
+    
+    #bookmarks li a {
+    text-decoration: none;
+    }
+    
+    .removebookmark {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    font-size: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    display: none;
+    }
+    
+    #bookmarks li:hover .removebookmark {
+    display: block;
+    }
+    
+    #UrlBarDiv {
+    position: relative;
+    }
+    </style>
+	
+</div></div></a></body></html>
