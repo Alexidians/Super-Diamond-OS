@@ -1,0 +1,1403 @@
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://thediamondclan.atwebpages.com/htmlos.php -->
+<html id="htmloshtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script>window["GUARDIO_SENSOR_CONF"] = {"click":true}</script>
+  <title>Super Diamond OS</title>
+  <style id="oscss">
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #desktop {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .window {
+      width: 600px;
+      height: 500px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      position: absolute;
+      top: 100px;
+      left: 100px;
+      cursor: move;
+    }
+      
+    .windown {
+     width: 600px;
+     height: 500px;
+     background-color: #fff;
+     border: 1px solid #ccc;
+     position: absolute;
+     top: 100px;
+     left: 100px;
+     cursor: move;
+    }
+
+    .taskbar {
+      width: 100%;
+      height: 40px;
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      bottom: 0;
+    }
+
+    .taskbarSearch {
+     height: 55px;
+     width: 170px;
+    }
+
+    .taskbarSearchButton {
+     height: 55px;
+     width: 170px;
+    }
+    
+    .right-click-menu {
+     display: none;
+     position: absolute;
+     background-color: #fff;
+     border: 1px solid #ccc;
+     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+     padding: 4px;
+     min-width: 120px;
+     z-index: 100;
+    }
+
+    .right-click-menu-item {
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .right-click-menu-item:hover {
+      background-color: #f0f0f0;
+    }
+  </style>
+<style type="text/css">@keyframes index-module_spin__37ne-{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}@keyframes index-module_wave__28Vlw{0%{transform:rotate(0deg)}50%{transform:rotate(20deg)}to{transform:rotate(0deg)}}@keyframes index-module_heartBeat__2Hu6C{0%{transform:scale(1)}50%{transform:scale(1.08)}to{transform:scale(1)}}@keyframes index-module_flash__R4MoF{0%,50%,to{opacity:1}25%,75%{opacity:.2}}@keyframes index-module_bounce__3V938{0%,20%,53%,to{transform:translateZ(0)}40%,43%{transform:translate3d(0,-30px,0) scaleY(1.1)}70%{transform:translate3d(0,-15px,0) scaleY(1.05)}80%{transform:translateZ(0) scaleY(.95)}90%{transform:translate3d(0,-4px,0) scaleY(1.02)}}@keyframes index-module_rubberBand__1JT4E{0%{transform:scaleX(1)}30%{transform:scale3d(1.25,.75,1)}40%{transform:scale3d(.75,1.25,1)}50%{transform:scale3d(1.15,.85,1)}65%{transform:scale3d(.95,1.05,1)}75%{transform:scale3d(1.05,.95,1)}to{transform:scaleX(1)}}@keyframes index-module_headShake__5UxEd{0%{transform:translateX(0)}6.5%{transform:translateX(-6px) rotateY(-9deg)}18.5%{transform:translateX(5px) rotateY(7deg)}31.5%{transform:translateX(-3px) rotateY(-5deg)}43.5%{transform:translateX(2px) rotateY(3deg)}50%{transform:translateX(0)}}@keyframes index-module_tada__2IKJp{0%{transform:scaleX(1)}10%,20%{transform:scale3d(.9,.9,.9) rotate(-3deg)}30%,50%,70%,90%{transform:scale3d(1.1,1.1,1.1) rotate(3deg)}40%,60%,80%{transform:scale3d(1.1,1.1,1.1) rotate(-3deg)}to{transform:scaleX(1)}}.index-module_overlay__8wtEj{-ms-flex-pack:center;-ms-flex-align:center;align-items:center;background-color:hsla(0,0%,6%,.6);bottom:0;display:-ms-flexbox;display:flex;justify-content:center;left:0;position:fixed;right:0;top:0;z-index:100000005}.index-module_layoutDefault__2IbL4{bottom:20px;position:fixed;right:20px;width:auto}.index-module_layoutDefault__2IbL4,.index-module_layoutModal__DRP2G{background-color:transparent;border-radius:5px;box-shadow:0 0 0 1px hsla(0,0%,6%,.05),0 3px 6px hsla(0,0%,6%,.1),0 9px 24px hsla(0,0%,6%,.2);display:-ms-flexbox;display:flex;height:auto;max-width:95vw;opacity:0;z-index:2147483000}.index-module_layoutModal__DRP2G{position:relative;width:700px}.index-module_popupContainer__2msgQ{border-radius:5px;display:-ms-flexbox;display:flex;overflow-y:auto;width:100%}.index-module_popupContainer__2msgQ iframe{border-radius:5px;max-height:95vh}.index-module_loadingIndicator__kFdXs{-ms-flex-align:center;-ms-flex-pack:center;align-items:center;background-color:#f5f5f5;border-radius:50%;color:#444;display:-ms-inline-flexbox;display:inline-flex;height:50px;justify-content:center;position:absolute;width:50px;z-index:2147483000}.index-module_loadingIndicatorNoOverlay__3ZuSn{bottom:10px;position:fixed;right:10px}.index-module_loadingIndicator__kFdXs svg{animation:index-module_spin__37ne- 1.618s linear infinite;height:20px;width:20px}.index-module_emoji__1XBIX{display:inline-block;font-size:42px;left:-21px;line-height:1;position:absolute;top:-21px}.index-module_animate__wave__1uYZ0{animation:index-module_wave__28Vlw 1s ease-in-out 20}.index-module_animate__heart-beat__2IJ5_{animation:index-module_heartBeat__2Hu6C 1.3s ease-in-out 20}.index-module_animate__flash__1AGEr{animation:index-module_flash__R4MoF 2.5s 20}.index-module_animate__bounce__2H-Ho{animation:index-module_bounce__3V938 1.5s 20;-ms-transform-origin:center bottom;transform-origin:center bottom}.index-module_animate__rubber-band__1o6I-{animation:index-module_rubberBand__1JT4E 1.5s 20}.index-module_animate__head-shake__o7vZO{animation:index-module_headShake__5UxEd 1.5s ease-in-out 20}.index-module_animate__tada__2Gs8a{animation:index-module_tada__2IKJp 1.5s 20}.index-module_animate__spin__3oc__{animation:index-module_spin__37ne- 1.618s linear 20}@media (max-height:1000px){.index-module_popupContainer__2msgQ iframe{max-height:85vh}}@media (max-width:576px){.index-module_popupContainer__2msgQ iframe{max-height:70vh}.index-module_layoutDefault__2IbL4,.index-module_layoutModal__DRP2G{max-width:calc(100% - 40px)}}</style></head>
+<body>
+  <div id="updateScreen" style="display:none; background-color:blue">
+   <center><h1>Updating...</h1></center>
+   <div id="updateProgress">
+    <div id="updateBar"></div>
+   </div>
+   <center><h3 id="updatePrecentegeDisplay">0%</h3><center>
+   <script>
+var isUpdating = false
+var i = 0;
+var UpdateInterval
+function update() {
+    isUpdating = true
+    clearInterval(batteryInterval)
+    document.getElementById("updateScreen").style.display = "block"
+    document.body.style.backgroundColor = "blue"
+    document.getElementById("desktop").style.display = "none"
+    document.getElementById("updatePrecentegeDisplay").innerHTML = "1%"
+    i = 1;
+    var elem = document.getElementById("updateBar");
+    elem.style.backgroundColor = "#00F7FF"
+    var width = 1;
+    UpdateInterval = setInterval(frame, 300);
+    function frame() {
+      if (width >= 100) {
+        clearInterval(UpdateInterval);
+        i = 0;
+        document.getElementById("updatePrecentegeDisplay").innerHTML = "100%"
+        alert("Update Complete")
+        location.replace(location.href)
+      } else {
+        width++;
+        elem.style.width = width + "%";
+        document.getElementById("updatePrecentegeDisplay").innerHTML = width + "%"
+      }
+    }
+  }
+</script>
+<style>
+#updateProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+#updateBar {
+  width: 1%;
+  height: 30px;
+  background-color: #04AA6D;
+}
+</style>
+  </center></center></div>
+  <div id="desktop" style="background-image: url(&quot;http://alexidians.atwebpages.com/Alexidians.gif&quot;);">
+      <div id="right-click-target" style="">
+    <div class="right-click-menu" id="menu" style="left: 845px; top: 538px; display: none;">
+      <div class="right-click-menu-item" onclick="CustomApp()">Custom App (Dangerous)</div>
+      <div class="right-click-menu-item" onclick="DataViewProtected()">Data (Private)</div>
+      <div class="right-click-menu-item" onclick="protectedConsole()">Dev Console (developer only)</div>
+      <div class="right-click-menu-item" onclick="changeBackground()">Change Background</div>
+      <div class="right-click-menu-item" onclick="Open(&#39;super-diamond-kids.html&#39;)">Super Diamond Kids</div>
+      <div class="right-click-menu-item" onclick="ReinstallOSProtected()">Reinstall OS</div>
+      <div class="right-click-menu-item" onclick="update()">Update (No Update Detector)</div>
+    </div>
+  </div>
+    <div id="AppShortcuts">
+     <div>
+      <p><button onclick="Save(&quot;Super Diamond Notepad&quot;)">Save Notepad</button><button data-tally-open="woeGOM" data-tally-hide-title="1" data-tally-emoji-text="💻 App Request" data-tally-emoji-animation="tada">Request App</button></p>
+      <p><img height="50" width="50" src="./Super Diamond OS_files/SuperDiamond.png" onclick="OpenApp(&#39;Super Diamond Browser&#39;)"></p>
+      <p><a onclick="OpenApp(&#39;Super Diamond Browser&#39;)">Super Diamond Browser</a></p>
+      <p><img height="50" width="50" src="./Super Diamond OS_files/SuperDiamond.png" onclick="OpenApp(&#39;Calculator&#39;)"></p>
+      <p><a onclick="OpenApp(&#39;Calculator&#39;)">Super Diamond Calculator</a></p>
+      <p><img height="50" width="50" src="./Super Diamond OS_files/SuperDiamond.png" onclick="OpenApp(&#39;Super Diamond Anti-Virus&#39;)"></p>
+      <p><a onclick="OpenApp(&#39;Super Diamond Anti-Virus&#39;)">Super Diamond Anti-Virus</a></p>
+      <p><img height="50" width="50" src="./Super Diamond OS_files/SuperDiamond.png" onclick="OpenApp(&#39;Super Diamond Virus&#39;)"></p>
+      <p><a onclick="OpenApp(&#39;Super Diamond Virus&#39;)">Super Diamond Virus</a></p>
+      <p><img height="50" width="50" src="./Super Diamond OS_files/cat.png" onclick="OpenApp(&#39;Feed The Cat&#39;)"></p>
+      <p><a onclick="OpenApp(&#39;Feed The Cat&#39;)">Feed The Cat</a></p>
+      <p><img height="50" width="50" src="./Super Diamond OS_files/SuperDiamond.png" onclick="OpenApp(&#39;Super Diamond Community&#39;)"></p>
+      <p><a onclick="OpenApp(&#39;Super Diamond Community&#39;)">Super Diamond Community</a></p>
+      <p><img height="50" width="50" src="./Super Diamond OS_files/DarkWeb.png" onclick="OpenApp(&#39;The Dark Web&#39;)"></p>
+      <p><a onclick="OpenApp(&#39;The Dark Web&#39;)">The Dark Web</a></p>
+      <p><img height="50" width="50" src="./Super Diamond OS_files/SuperDiamond.png" onclick="OpenApp(&#39;Click Counter&#39;)"></p>
+      <p><a onclick="OpenApp(&#39;Click Counter&#39;)">Super Diamond Click Counter</a></p>
+      <p><img height="50" width="50" src="./Super Diamond OS_files/nwehaeaweuageagyeugaeuyaaweaewaew.png" onclick="OpenApp(&#39;ERROR&#39;)"></p>
+      <p><a onclick="OpenApp(&#39;ERROR&#39;)">ERROR</a></p>
+     </div>
+    </div>
+    <div id="Apps">
+     <div class="window" id="Welcome">
+       <h3>Welcome</h3>
+       <p>Welcome Back</p>
+     </div>
+
+     <div class="window" id="Contact">
+       <h3>Contact</h3>
+       <a onclick="Contact(&#39;Mail&#39;)">Mail super_diamond_community@inbox.lv</a>
+     </div>
+     
+     <div class="window" id="Games">
+       <h3>Games</h3>
+       <a onclick="OpenApp(&#39;Feed The Cat&#39;)">Feed The Cat</a>
+     </div>
+     
+      <div class="window">
+       <h3>Battery</h3>
+       <div id="batteryProgress">
+        <div id="batteryBar" style="width: 100%; background-color: green;">100%</div>
+       </div>
+       <button onclick="SetCharging(true)">Plug Charger In</button>
+       <button onclick="SetCharging(false)">Plug Charger Out</button>
+       <script>
+var i = 0;
+startBattery()
+var batteryInterval = null
+function startBattery() {
+  if (i == 0) {
+    i = 1;
+    var elem = document.getElementById("batteryBar");
+    var width = 100;
+    batteryInterval = setInterval(frame, 1000);
+    function frame() {
+        if(charging) {
+         if(width == 100 == false) {
+          width++;
+          elem.style.width = width + "%";
+          elem.innerHTML = width  + "%";
+          elem.style.backgroundColor = "green"
+         }
+        }
+        else {
+         width--;
+         elem.style.width = width + "%";
+         elem.innerHTML = width  + "%";
+         if(width == 0) {
+          ShutDown()
+          clearInterval(batteryInterval)
+         }
+         if(width == 50) {
+          elem.style.backgroundColor = "yellow"
+         }
+         if(width == 30) {
+          elem.style.backgroundColor = "red"
+          alert("Low Battery 30% Remaining")
+         }
+         if(width == 10) {
+          elem.style.backgroundColor = "red"
+          alert("Low Battery 10% Remaining")
+         }
+         if(width == 3) {
+          elem.style.backgroundColor = "red"
+          alert("Low Battery 3% Remaining")
+         }
+         if(width == 1) {
+          elem.style.backgroundColor = "red"
+          alert("Low Battery 1% Remaining")
+         }
+        }
+      }
+    }
+  }
+</script>
+<style>
+#batteryProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+#batteryBar {
+  width: 100%;
+  height: 30px;
+  background-color: green;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+}
+</style>
+     </div>
+    <div id="OS Message" style="width: 600px; height: 500px; background-color: rgb(255, 255, 255); border: 1px solid rgb(204, 204, 204); position: absolute; top: 1131px; left: 2115px; cursor: move;"><h3>OS Message</h3><p>(Super Diamond Anti-Virus) All System Apps Have All Permissions You will be Save from Detected Viruses</p></div></div>
+
+    <div class="taskbar" id="taskbar">
+      <p><button onclick="CreateAppShortcut()">Create App Shortcut</button><img height="50" width="50" src="./Super Diamond OS_files/repair-hammer.png" onclick="Repair()"><img height="50" width="50" src="./Super Diamond OS_files/lock.png" onclick="lock()"><img height="50" width="50" src="./Super Diamond OS_files/power-button.png" onclick="ShutDown()"><input type="text" class="taskbarSearch"><img height="50" width="50" src="./Super Diamond OS_files/arrow-right.png" onclick="TaskBarSearch()"><img height="50" width="50" src="./Super Diamond OS_files/Task Manager.png" onclick="OpenApp(&#39;Task Manager&#39;)"><img height="50" width="50" src="./Super Diamond OS_files/SuperDiamond.png" onclick="OpenApp(&#39;Super Diamond Notepad&#39;)"><img height="50" width="50" src="./Super Diamond OS_files/youtube.png" onclick="OpenApp(&#39;Youtube&#39;)"><button onclick="ShutDownApp(&#39;Task Manager&#39;)">Shut Down Task Mng</button><a onclick="alert(getTime())" id="timeText">13:36:33</a></p>
+    </div>
+  </div>
+  <script>
+    function Crash(crash) {
+     crashInterval = setInterval(CrashAct, 0, crash)
+     setTimeout(CrashMiddle, 5000)
+    }
+    function CrashMiddle() {
+     clearInterval(crashInterval)
+     document.getElementById("desktop").remove()
+     var png = document.createElement("img")
+     png.src = "pc-error.png"
+     png.width = "2280"
+     png.height = "1500"
+     png.id = "CrashPng"
+     document.body.appendChild(png)
+     setTimeout(CrashEnd, 10000)
+    }
+    function CrashEnd() {
+     document.getElementById("CrashPng").remove()
+     document.body.style.backgroundColor = "black";
+    }
+    function CrashAct(error) {
+     ErrorMessage(error)
+     WarningMessage(error)
+    }
+  </script>
+  <script async="" src="./Super Diamond OS_files/embed.js.lejupielāde"></script>
+   <script id="osjs">
+    startTime()
+    var charging = false
+    var BrowserCookie = document.cookie
+    var ClientIP = ""
+    var NavigatorAppVersion = navigator.appVersion;
+    var UserAgent = navigator.userAgent;
+    var BrowserPlatform = navigator.platform;
+    var BrowserLanguage = navigator.language;
+    var Password = localStorage.getItem("Password")
+    var SuperDiamondVirusInterval = null;
+    var TheDarkWebHasMngPermsPermission = false
+    var crashInterval = null;
+    var DragToolInterval = null
+    const menu = document.getElementById("menu");
+    var background = localStorage.getItem("background")
+    var backgroundIsImage = localStorage.getItem("backgroundIsImage")
+    if(backgroundIsImage == "true") {
+     document.getElementById("desktop").style.backgroundImage = "url('" + background + "')";
+    }
+    if(backgroundIsImage == "true") {
+     document.getElementById("desktop").style.backgroundColor = background
+    }
+    if(background == null) {
+     document.getElementById("desktop").style.backgroundImage = "url('SuperDiamond.png')";
+     background = "SuperDiamond.png"
+     backgroundIsImage = "true"
+    }
+    if(backgroundIsImage == null) {
+     document.getElementById("desktop").style.backgroundImage = "url('SuperDiamond.png')";
+     background = "SuperDiamond.png"
+     backgroundIsImage = "true"
+    }
+    if(Password == "null") {
+     alert("Welcome")
+     alert("if you are a child/kid ask your parents to help setup Super Diamond OS in this browser")
+     alert("Setup Note: Every Browser on Every Device has the has different Data saved/n if you are a parent setting this up for kids a account needs to be created for all of your kids/n important: if you are using a browser with restricted website access for kids it can be bypassed with our browser that uses iframes or other apps that have iframes to not allowed websites")
+     alert("Before you go Add a Password")
+     passSetup()
+    }
+    else {
+     if(Password == null) {
+      alert("Welcome")
+      alert("if you are a child/kid ask your parents to help setup Super Diamond OS in this browser")
+      alert("Setup Note: Every Browser on Every Device has the has different Data saved/n if you are a parent setting this up for kids a account needs to be created for all of your kids/n important: if you are using a browser with restricted website access for kids it can be bypassed with our browser that uses iframes or other apps that have iframes to not allowed websites")
+      alert("Before you go Add a Password")
+      passSetup()
+     }
+     else {
+      if(Password == "Recover") {
+       alert("Welcome")
+       alert("if you are a child/kid ask your parents to help setup Super Diamond OS in this browser")
+       alert("Setup Note: Every Browser on Every Device has the has different Data saved/n if you are a parent setting this up for kids a account needs to be created for all of your kids/n important: if you are using a browser with restricted website access for kids it can be bypassed with our browser that uses iframes or other apps that have iframes to not allowed websites")
+       alert("Before you go Add a Password")
+       passSetup()
+      }
+      else {
+       var LoginEnteredPass = prompt("Enter Password To Continue")
+       if(LoginEnteredPass == Password) {
+        alert("Welcome Back")
+       }
+       else {
+        if(LoginEnteredPass == "Recover") {
+         alert("The Recovery Feature might not be added but it currently is not here/n If you need to recover/reset your password Contact us at super_diamond_community@inbox.lv")
+         open("mailto:super_diamond_community@inbox.lv")
+         location.replace("http://thediamondclan.atwebpages.com/htmlos.php")
+        }
+        else {
+         alert("Incorrect Password")
+         location.replace("http://thediamondclan.atwebpages.com/htmlos.php")
+        }
+       }
+      }
+     }
+    }
+    AntiVirusPermissionRequest()
+    openFullscreen(document.body)
+    // Function to make windows draggable
+    function makeDraggable(element) {
+      let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+      if (document.getElementById(element.id + "-header")) {
+        // if present, the header is where you move the DIV from:
+        document.getElementById(element.id + "-header").onmousedown = dragMouseDown;
+      } else {
+        // otherwise, move the DIV from anywhere inside the DIV:
+        element.onmousedown = dragMouseDown;
+      }
+
+      function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // get the mouse cursor position at startup:
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        // call a function whenever the cursor moves:
+        document.onmousemove = elementDrag;
+      }
+
+      function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // calculate the new cursor position:
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        // set the element's new position:
+        element.style.top = (element.offsetTop - pos2) + "px";
+        element.style.left = (element.offsetLeft - pos1) + "px";
+      }
+
+      function closeDragElement() {
+        // stop moving when mouse button is released:
+        document.onmouseup = null;
+        document.onmousemove = null;
+      }
+    }
+    
+      function SetCharging(isCharging) {
+       charging = isCharging
+      }
+
+    function OpenApp(AppName) {
+     var App = document.createElement("div")
+     var AppTitle = document.createElement("h3")
+     App.class = "window"
+     App.style.width = "600px";
+     App.style.height = "500px";
+     App.style.backgroundColor = "#fff";
+     App.style.border = "1px solid #ccc";
+     App.style.position = "absolute";
+     App.style.top = "100px";
+     App.style.left = "100px";
+     App.style.cursor = "move";
+     var AppTitleTextNode = document.createTextNode(AppName)
+     if(AppName == "Super Diamond Browser") {
+      App.id = "Super Diamond Browser"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Super Diamond Browser"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Super Diamond Community") {
+      App.id = "Super Diamond Community"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Super Diamond Community"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "http://thediamondclan.atwebpages.com"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Corrupt A File.net") {
+      App.id = "Corrupt A File.net"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Corrupt A File.net"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "http://corrupt-a-file.net"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Easy.gg") {
+      App.id = "Easy.gg"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Easy.gg"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "http://easy.gg"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Monday") {
+      App.id = "Monday"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Easy.gg"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "http://monday.com"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Roblox") {
+      App.id = "Roblox"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Roblox"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "https://alexidians.github.io/Super-Diamond-Roblox/app/files/roblox.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+      if(complete("[Super Diamond Anti-Virus] Virus Detected Roblox has 1 Virus: OS TakeOver would you like to Stop Virus")) {
+       ShutDownApp("Roblox")
+       alert("Virus Stopped")
+      }
+     }
+     if(AppName == "Clicker Heroes") {
+      App.id = "Clicker Heroes"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Clicker Heroes"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "https://games.crazygames.com/en_US/clicker-heroes/index.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "QRcode Generator") {
+      App.id = "QRcode Generator"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "QRcode Generator"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "http://thediamondclan.atwebpages.com/qrcode-generator.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Data Matrix Generator") {
+      App.id = "Data Matrix Generator"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Data Matrix Generator"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "http://thediamondclan.atwebpages.com/data-matrix-generator.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Countdown") {
+      App.id = "Countdown"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Countdown"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "http://thediamondclan.atwebpages.com/countdown.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Counter") {
+      App.id = "Counter"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Counter"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "http://thediamondclan.atwebpages.com/counter.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Alexidians's Websites") {
+      App.id = "Alexidians's Websites"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Alexidians's Websites"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "http://alexidians.atwebpages.com"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Rickroll") {
+      App.id = "Rickroll"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Rickroll"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "https://www.youtube.com/embed/dQw4w9WgXcQ"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "ERROR") {
+      App.id = "ERROR"
+      AppTitle.InnerHTML = "ERROR"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      document.getElementById("Apps").appendChild(App)
+      Crash("An Unknown Error Accoured")
+      ShutDownApp("ERROR")
+     }
+     if(AppName == "Wix Owner PC") {
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Wix Owner PC"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "https://wix.com"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Wix Owner") {
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Wix Owner"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "https://wix.com"
+      AppFrame.width = "350"
+      AppFrame.height = "650"
+      App.style.width = "350px";
+      App.style.height = "650px";
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "ChatGPT") {
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "ChatGPT"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "https://chat.openai.com"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Wikipedia") {
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Wikipedia"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "https://wikipedia.org"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Archive") {
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Internet Archive"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "https://archive.org"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Web Tool Hub") {
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Web Tool Hub"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "webtoolhub.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Max") {
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Max"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "https://max.com"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Shutterstock") {
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Shutterstock"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "https://shutterstock.com"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Kick") {
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Kick"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "https://kick.com"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Android") {
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Android"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "https://android.com"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Youtube") {
+      App.id = "Youtube"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Youtube"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "http://thediamondclan.atwebpages.com/app_youtube.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Calculator") {
+      App.id = "Calculator"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Calculator"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "http://thediamondclan.atwebpages.com/calculator.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Feed The Cat") {
+      App.id = "Feed The Cat"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Feed The Cat"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "http://thediamondclan.atwebpages.com/games/feed-the-cat"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Click Counter") {
+      App.id = "Click Counter"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Click Counter"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "http://thediamondclan.atwebpages.com/click-counter.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Super Diamond Anti-Virus") {
+      App.id = "Super Diamond Anti-Virus"
+      AppTitle.InnerHTML = "Super Diamond Anti-Virus"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      document.getElementById("Apps").appendChild(App)
+      ErrorMessage("This App can't be opened as it notifies when a virus is detected and when you run a virus it asks to delete Virus")
+      ShutDownApp("Super Diamond Anti-Virus")
+     }
+     if(AppName == "Task Manager") {
+      App.id = "Task Manager"
+      AppTitle.InnerHTML = "Task Manager"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      var AppInput = document.createElement("input")
+      AppInput.type = "text"
+      AppInput.id = "TaskManagerShutDownInput"
+      var AppShutDownButton = document.createElement("button")
+      AppShutDownButton.onclick="ShutDownApp('AppInput')"
+      AppShutDownButton.innerHTML="Shut Down"
+      App.appendChild(AppInput)
+      App.appendChild(AppShutDownButton)
+      document.getElementById("Apps").appendChild(App)
+     }
+     if(AppName == "Drag Tools") {
+      App.id = "Drag Tools"
+      AppTitle.InnerHTML = "Drag Tools"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      var ElemInput = document.createElement("input")
+      ElemInput.type = "text"
+      ElemInput.id = "DragToolsInput"
+      App.appendChild(ElemInput)
+      document.getElementById("Apps").appendChild(App)
+      DragToolInterval = setInterval(DragToolsAction, 0)
+     }
+     if(AppName == "The Dark Web") {
+      App.id = "The Dark Web"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "The Dark Web"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "http://thedarkclan.atwebpages.com/47382647356753782354723525"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      if(TheDarkWebHasMngPermsPermission = false) {
+       WarningMessage("(Super Diamond Anti-Virus) The Dark Web App may be Dangerous It Should be saver if you don't Give manage perms to The Dark Web App")
+       var ManagePermsPermission = prompt("The Dark Web Wants The Manage Perms Permission")
+       TheDarkWebHasMngPermsPermission = ManagePermsPermission
+      }
+      makeDraggable(App)
+     }
+     if(AppName == "Super Diamond Virus") {
+      App.id = "Super Diamond Virus"
+      AppTitle.InnerHTML = "Super Diamond Virus"
+      AppTitle.appendChild(AppTitleTextNode)
+      clearInterval(SuperDiamondVirusInterval)
+      localStorage.setItem("NotepadText", "SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS")
+      localStorage.setItem("Bookmarks", "SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS")
+      localStorage.setItem("UrlHistory", "SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS")
+      localStorage.setItem("SuperDiamonds", "SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS")
+      WarningMessage("SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS")
+      ErrorMessage("SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS")
+      OSMessage("SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS")
+      makeDraggable(document.getElementById("taskbar"))
+      setTimeout(SuperDiamondVirusDragAction2, 10000)
+      HasSuperDiamondVirus = true
+      SuperDiamondVirusInterval = setInterval(VirusInterval, 0, "Super Diamond Virus")
+      App.appendChild(AppTitle)
+      document.getElementById("Apps").appendChild(App)
+      ShutDownApp("Super Diamond Virus")
+      WarningMessage("(Super Diamond Anti-Virus) We Detected a Virus On Your Device [Super Diamond Virus]")
+      var RemoveVirus = confirm("(Super Diamond Anti-Virus) Delete Super Diamond Virus?")
+      if(RemoveVirus) {
+       clearInterval(SuperDiamondVirusInterval)
+       HasSuperDiamondVirus = false
+       OSMessage("(Super Diamond Anti-Virus) The Virus was Removed Sucessfully.")
+       WarningMessage("The Virus Might of already Done Something to your device")
+       OSMessage("(Super Diamond Virus) I Have 10 seconds left to virus your device and i lost some power")
+      }
+     }
+     if(AppName == "Notepad") {
+      App.id = "Notepad"
+      AppTitle.InnerHTML = "Notepad"
+      var NotepadText = document.createElement("textarea")
+      var NotepadTextNode = document.createTextNode(localStorage.getItem("NotepadText"))
+      NotepadText.id = "NotepadText"
+      NotepadText.name = "NotepadText"
+      NotepadText.rows = "29"
+      NotepadText.cols = "79"
+      NotepadText.type = "text"
+      NotepadText.appendChild(NotepadTextNode)
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(NotepadText)
+      document.getElementById("Apps").appendChild(App)
+     }
+     if(AppName == "Data") {
+      App.id = "Data"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Data"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "data.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Inputs") {
+      App.id = "Inputs"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Inputs"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "inputs.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Countly") {
+      App.id = "Countly"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Countly"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "https://arturs.count.ly"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Fireworks") {
+      App.id = "Fireworks"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Fireworks"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "fireworks.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Corrupted File Generator") {
+      App.id = "Corrupted File Generator"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Corrupted File Generator"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "https://tally.so/r/3y2Ep0"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Vedit") {
+      App.id = "Vedit"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Vedit"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "vedit-download.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+      if(confirm("Allow Vedit to Download Files on your Real Operating System") == false) {
+       ShutDownApp("Vedit")
+       ErrorMessage("[Vedit] Allow The Download Files on Real Operating System to Launch Vedit and Download vedit.js")
+      }
+     }
+    }
+
+    function ShutDownApp(AppId) {
+     var App = document.getElementById(AppId)
+     if(AppId == "Super Diamond Notepad") {
+      localStorage.setItem("NotepadText", document.getElementById("NotepadText").value)
+      OSMessage("(Super Diamond Notepad) Notepad Saved Sucesfully")
+     }
+     if(AppId == "Task Manager" && document.getElementById("TaskManagerShutDownInput").value == "" == false) {
+      try {
+       ShutDownApp(document.getElementById("TaskManagerShutDownInput").value)
+      }
+      catch(err) {
+        ErrorMessage("(Task Manager) There was an Error while Shutting down " + document.getElementById("TaskManagerShutDownInput").value)
+      }
+     }
+     App.remove()
+    }
+
+    function Contact(Type) {
+     if(Type == "Mail") {
+      open("mailto:super_diamond_community@inbox.lv")
+     }
+    }
+    
+    function passSetup() {
+     var pass = prompt("Enter A Password")
+     localStorage.setItem("Password", pass)
+     Password = pass
+     if(pass == "null") {
+      alert("Password can't be null")
+      passSetup()
+     }
+     if(pass == null) {
+      alert("Enter a Password")
+      passSetup()
+     }
+     if(pass == "Recover") {
+      alert("Pass can't Be The Recovery Text That Might Be Added Later as a Feature")
+      passSetup()
+     }
+    }
+    
+    function console() {
+     var command = prompt("What Would you like to run? Need Other Tools? press f12")
+     try {
+      var commandOutput = eval(command)
+      alert(commandOutput)
+     }
+     catch(err) {
+      alert(err)
+     }
+    }
+    function protectedConsole() {
+     var pass = prompt("Enter Password")
+     if(pass == "Ajosios") {
+      console()
+     }
+    }
+    
+    document.addEventListener("contextmenu", function(event) {
+      event.preventDefault();
+      const x = event.clientX;
+      const y = event.clientY;
+      showMenu(x, y);
+    });
+
+    function showMenu(x, y) {
+      menu.style.left = x + "px";
+      menu.style.top = y + "px";
+      menu.style.display = "block";
+      document.addEventListener("click", hideMenu);
+    }
+
+    function hideMenu() {
+      menu.style.display = "none";
+      document.removeEventListener("click", hideMenu);
+    }
+           
+function openFullscreen(elem) {
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+  }
+}
+
+function closeFullscreen(elem) {
+  if (document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if (document.webkitExitFullscreen) { /* Safari */
+    document.webkitExitFullscreen();
+  } else if (document.msExitFullscreen) { /* IE11 */
+    document.msExitFullscreen();
+  }
+}
+           
+    function DeleteSystemFile(file) {
+     if(file == "os.js") {
+      var osjs = document.getElementById("osjs")
+      OSMessage(osjs + " was Deleted Sucesfully")
+      osjs.remove()
+      var AutomaticRepair = confirm("We Detected a Deleted System File Would you like to run Repair?")
+      if(AutomaticRepair == true) {
+       Repair()
+      }
+     }
+     if(file == "os.css") {
+      var oscss = document.getElementById("oscss")
+      OSMessage(oscss + " was Deleted Sucesfully")
+      oscss.remove()
+      var AutomaticRepair = confirm("We Detected a Deleted System File Would you like to run Repair?")
+      if(AutomaticRepair == true) {
+       Repair()
+      }
+     }
+    }
+    function GetSystemFileData(file) {
+     if(file == "os.js") {f
+      var osjs = document.getElementById("osjs")
+      OSMessage(osjs.innerHTML)
+     }
+     if(file == "os.css") {
+      var oscss = document.getElementById("oscss")
+      OSMessage(oscss.innerHTML)
+     }
+     if(file == "htmlos.html") {
+      var htmloshtml = document.getElementById("htmloshtml")
+      OSMessage(htmloshtml.innerHTML)
+     }
+    }
+    function TaskBarSearch() {
+     try {
+      var search = document.getElementById("taskbarSearch").value
+      OpenApp(search)
+     }
+     catch(err) {
+      ErrorMessage(err)
+     }
+    }
+    function ErrorMessage(message) {
+     var App = document.createElement("div")
+     var AppTitle = document.createElement("h3")
+     var ErrorMessage = document.createElement("p")
+     var ErrorMessageNode = document.createTextNode(message)
+     App.class = "window"
+     App.style.width = "600px";
+     App.style.height = "500px";
+     App.style.backgroundColor = "#fff";
+     App.style.border = "1px solid #ccc";
+     App.style.position = "absolute";
+     App.style.top = "100px";
+     App.style.left = "100px";
+     App.style.cursor = "move";
+     ErrorMessage.appendChild(ErrorMessageNode)
+     var AppTitleTextNode = document.createTextNode("ERROR")
+     AppTitle.appendChild(AppTitleTextNode)
+     App.appendChild(AppTitle)
+     App.appendChild(ErrorMessage)
+     App.id = "Error Message"
+     document.getElementById("Apps").appendChild(App)
+     makeDraggable(App)
+    }
+    
+    function AntiVirusPermissionRequest() {
+     var PermsAllowed = confirm("Super Diamond Anti-Virus wants The Manage Permissions Permission")
+     if(PermsAllowed == false) {
+      OSMessage("(Super Diamond Anti-Virus) I Require Manage Perms to Manage Perms and don't give perms to Viruses and Give All Perms to System Apps")
+      AntiVirusPermissionRequest()
+     }
+     if(PermsAllowed == true) {
+      OSMessage("(Super Diamond Anti-Virus) All System Apps Have All Permissions You will be Save from Detected Viruses")
+     }
+    }
+
+    function WarningMessage(message) {
+     var App = document.createElement("div")
+     var AppTitle = document.createElement("h3")
+     var WarningMessage = document.createElement("p")
+     var WarningMessageNode = document.createTextNode(message)
+     App.class = "window"
+     App.style.width = "600px";
+     App.style.height = "500px";
+     App.style.backgroundColor = "#fff";
+     App.style.border = "1px solid #ccc";
+     App.style.position = "absolute";
+     App.style.top = "100px";
+     App.style.left = "100px";
+     App.style.cursor = "move";
+     WarningMessage.appendChild(WarningMessageNode)
+     var AppTitleTextNode = document.createTextNode("Warning")
+     AppTitle.appendChild(AppTitleTextNode)
+     App.appendChild(AppTitle)
+     App.appendChild(WarningMessage)
+     App.id = "Warning Message"
+     document.getElementById("Apps").appendChild(App)
+     makeDraggable(App)
+    }
+
+    function OSMessage(message) {
+     var App = document.createElement("div")
+     var AppTitle = document.createElement("h3")
+     var OSMessage = document.createElement("p")
+     var OSMessageNode = document.createTextNode(message)
+     App.class = "window"
+     App.style.width = "600px";
+     App.style.height = "500px";
+     App.style.backgroundColor = "#fff";
+     App.style.border = "1px solid #ccc";
+     App.style.position = "absolute";
+     App.style.top = "100px";
+     App.style.left = "100px";
+     App.style.cursor = "move";
+     OSMessage.appendChild(OSMessageNode)
+     var AppTitleTextNode = document.createTextNode("OS Message")
+     AppTitle.appendChild(AppTitleTextNode)
+     App.appendChild(AppTitle)
+     App.appendChild(OSMessage)
+     App.id = "OS Message"
+     document.getElementById("Apps").appendChild(App)
+     makeDraggable(App)
+    }
+    
+    function VirusInterval(VirusType) {
+     if(VirusType == "Super Diamond Virus") {
+      localStorage.setItem("NotepadText", "SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS")
+      localStorage.setItem("Bookmarks", "SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS")
+      localStorage.setItem("UrlHistory", "SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS")
+      localStorage.setItem("SuperDiamonds", "SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS")
+      WarningMessage("SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS")
+      ErrorMessage("SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS")
+      OSMessage("SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS,SUPER DIAMOND VIRUS")
+      HasSuperDiamondVirus = true
+     }
+    }
+    function SuperDiamondVirusDragAction2() {
+     makeDraggable(document.getElementById("desktop"))
+    }
+    function Open(url) {
+     open(url)
+    }
+    
+    function CustomApp() {
+     var App = prompt("Enter App ID")
+     OpenApp(App)
+    }
+
+    function ReinstallOS() {
+     OSMessage("OS is being Reinstalled")
+     setTimeout(ShutDownApp, 10000, "Apps")
+     setTimeout(ShutDownApp, 20000, "AppShortcuts")
+     setTimeout(ShutDownApp, 30000, "taskbar")
+     setTimeout(ReinstallOS2, 40000)
+    }
+
+    function ReinstallOS2() {
+     localStorage.removeItem("Password")
+     localStorage.removeItem("NotepadText")
+     localStorage.removeItem("background")
+     localStorage.removeItem("backgroundIsImage")
+     ShutDown()
+     setTimeout(RepairRepaired, 20000)
+    }
+    
+    function OSReinstall() {
+     if(confirm("(Super Diamond Anti-Virus) An Executable named ReinstallOS is trying to be runned and it can Reinstall The OS would you like to run it") == true) {
+      ReinstallOS
+     }
+    }
+    
+    function ReinstallOSProtected() {
+     if(prompt("Enter Password") == Password) {
+      OSReinstall()
+     }
+     else {
+      alert("Incorrect Password")
+     }
+    }
+          
+    function DragToolsAction() {
+     makeDraggable(document.getElementById(document.getElementById("DragToolsInput").value))
+    }
+          
+    function Repair() {
+     ShutDown()
+     setTimeout(RepairRepaired, 20000)
+    }
+    function RepairRepaired() {
+     location.replace("http://thediamondclan.atwebpages.com/htmlos.php")
+    }
+    function DataViewProtected() {
+     if(prompt("Enter Your Password") == Password) {
+      OpenApp("Data")
+     }
+    }
+    function ShutDown() {
+     document.getElementById("desktop").remove()
+     var gif = document.createElement("img")
+     gif.id = "ShutDownGif"
+     gif.src = "http://thediamondclan.atwebpages.com/shuting-down.gif"
+     gif.width = "2280"
+     gif.height = "1500"
+     document.body.appendChild(gif)
+     setTimeout(off, 10000)
+    }
+    function off() {
+     document.body.style.backgroundColor = "black";
+     document.getElementById("ShutDownGif").remove()
+    }
+    
+    function Save(app) {
+     if(app == "Super Diamond Notepad") {
+      localStorage.setItem("NotepadText", documet.getElementById("NotepadText").value)
+     }
+    }
+    
+    function setPassword(pass) {
+     localStorage.setItem("Password", pass)
+     Password = pass
+    }
+    
+    function lock() {
+     if(prompt("Enter Password to Unlock Screen") == Password) {
+      alert("Screen Unlocked Sucesfully")
+     }
+     else {
+      alert("Incorrect Password")
+      lock()
+     }
+    }
+          
+    function changeBackground() {
+     backgroundIsImage = confirm("Would you like to set your background as a image?")
+     localStorage.setItem("backgroundIsImage", backgroundIsImage)
+     if(backgroundIsImage) {
+      background = prompt("Enter Background Image Url")
+      document.getElementById("desktop").style.backgroundImage  = "url('" + background + "')";
+      localStorage.setItem("background", background)
+     }
+     else {
+      background = prompt("Enter Background Color")
+      document.getElementById("desktop").style.backgroundColor  = background;
+      localStorage.setItem("background", background)
+     }
+    }
+    
+    function AddAppShortcut(img, text, app) {
+     var imgelem = document.createElement("p")
+     var imgelement = document.createElement("img")
+     var textelem = document.createElement("p")
+     var textelement = document.createElement("a")
+     textelement.innerHTML = text
+     textelement.onclick = "OpenApp('" + app + "')"
+     imgelement.onclick = "OpenApp('" + app + "')"
+     imgelement.height = "50"
+     imgelement.width = "50"
+     imgelement.src = img
+     textelem.appendChild(textelement)
+     imgelem.appendChild(imgelement)
+     var ShortcutPlace = document.getElementById("AppShortcuts")
+     ShortcutPlace.appendChild(imgelem)
+     ShortcutPlace.appendChild(textelem)
+    }
+    function CreateAppShortcut() {
+     var imgurl = prompt("Enter Image Url")
+     var shortcuttext = prompt("Enter Shortcut Text")
+     var appid = prompt("Enter App Id")
+     AddAppShortcut(imgurl, shortcuttext, appid)
+     OSMessage("Your Shortcut of " + appid + " Was Created")
+    }
+   
+function startTime() {
+  const today = new Date();
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('timeText').innerHTML =  h + ":" + m + ":" + s;
+  setTimeout(startTime, 1000);
+}
+           
+function getTime() {
+  const today = new Date();
+  return today;
+}
+
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}
+
+    // Make all windows draggable
+    const windows = document.querySelectorAll(".window");
+    windows.forEach(window => {
+      makeDraggable(window);
+    });
+  </script>
+  <script src="./Super Diamond OS_files/vedit.js.lejupielāde"></script><div style="background-color: blue; opacity: 0.5; position: absolute; z-index: 1000; display: none;"></div><div style="background-color: white; border: 2px solid black; padding: 15px; position: absolute; z-index: 1001; display: none;"><ul style="list-style: none; padding: 0px; margin: 0px;"><li style="padding: 3px;"><a href="http://thediamondclan.atwebpages.com/htmlos.php#" style="color: black; text-decoration: none;">Add &gt;</a><div style="display: none; border: 1px solid black; padding: 10px; position: absolute; margin-left: 30px; margin-top: -20px; background-color: white;"><p>TagName: </p><p><input id="vedit_create_tagname"></p><p><select id="vedit_insert_type"><option value="1">Insert before element</option><option value="2" selected="true">Insert inside element</option><option value="3">Insert after element</option></select></p><p><input type="button" value="Create"></p></div></li><li style="padding: 3px;"><a href="http://thediamondclan.atwebpages.com/htmlos.php#" style="color: black; text-decoration: none;">Edit &gt;</a><div style="display: none; border: 1px solid black; padding: 10px; position: absolute; margin-left: 30px; margin-top: -20px; background-color: white;"><p>Current tag: <span id="vedit_element_tag"></span></p><p>Current id: <span id="vedit_element_id"></span></p><p>Current class: <span id="vedit_element_class"></span></p><p><select id="vedit_select_properties"></select></p><p><input id="vedit_property_value"></p><p><select id="vedit_select_attributes"></select></p><p><input id="vedit_attribute_value"></p></div></li><li style="padding: 3px;"><a href="http://thediamondclan.atwebpages.com/htmlos.php#" style="color: black; text-decoration: none;">Copy</a></li><li style="padding: 3px;"><a href="http://thediamondclan.atwebpages.com/htmlos.php#" style="color: black; text-decoration: none;">Paste &gt;</a><div style="display: none; border: 1px solid black; padding: 10px; position: absolute; margin-left: 30px; margin-top: -20px; background-color: white;"><p><select id="vedit_paste_type" disabled="true"><option value="1">Paste before element</option><option value="2" selected="true">Paste inside element</option><option value="3">Paste after element</option></select></p><p><input type="button" value="Paste &gt;" id="vedit_paste_button" disabled="true"></p></div></li><li style="padding: 3px;"><a href="http://thediamondclan.atwebpages.com/htmlos.php#" style="color: black; text-decoration: none;">Delete</a></li></ul></div>
+
+</body></html>
