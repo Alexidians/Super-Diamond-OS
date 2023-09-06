@@ -1,0 +1,51 @@
+  <html>
+	<head></head>
+  
+  
+  
+  
+  <link rel="icon" type="image/x-icon" href="superdiamond.png">
+  <title>Super Diamond Community | Click Counter</title>
+  <body>
+<script src="countly.js"></script>
+
+
+
+
+
+
+
+    <p><center>Click Counter</center></p>
+    <center><button onclick="NewClick()" id="ClickCounterButton">Click</button></p><center/>
+    <center><button onclick="Restart()" id="RestartCounterButton">Restart</button></p><center/>
+    <h1 id="ClickCountDisplay"><center>0</center></h1>
+    <p><center></center></p>
+    <p><center></center></p>
+    <p><center></center></p>
+    <p><center></center></p>
+    <p><center></center></p>
+    <p><center></center></p>
+    <p><center></center></p>
+    <p><center></center></p>
+    <p><center></center></p>
+    <p><center></center></p>
+    <p><center></center></p>
+    <p><center></center></p>
+    <p><center></center></p>
+    <center><h1><a href="https://sourceforge.net/projects/orphamielautoclicker/">Auto Clicker</a></h1></center>
+    <script>
+            var counter = 0;
+      function NewClick() {
+      counter = counter + 1
+      document.getElementById("ClickCountDisplay").innerHTML = counter;
+      }
+      
+      function Restart() {
+      counter = 0
+      document.getElementById("ClickCountDisplay").innerHTML = counter;
+      }
+
+    </script>
+    <script src="vedit.js"></script>
+	</body>
+</html>
