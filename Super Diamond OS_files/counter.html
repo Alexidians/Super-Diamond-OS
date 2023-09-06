@@ -1,0 +1,59 @@
+	<head></head>
+  
+  
+  
+  
+  <link rel="icon" type="image/x-icon" href="SuperDiamond.png">
+  <title>Super Diamond Community | Counter</title>
+  <body>
+<script src="countly.js"></script>
+
+
+
+
+
+
+
+    <p><center>Counter</center></p>
+    <center><button onclick="Start()" id="CounterStartButton">Start</button></p><center/>
+    <center><button onclick="Restart()" id="CounterRestartButton">Restart</button></p><center/>
+    <center><button onclick="Stop()" id="CounterStopButton">Stop</button></p><center/>
+    <h1 id="CountDisplay"><center>0</center></h1>
+    <script>
+      var counter = 0;
+      var interval;
+      function Start() {
+              if (!interval) {      
+              interval = setInterval(Counter, 1000);
+            }
+            
+             else {
+             alert("counter already Started")
+            }
+      }
+      
+      function Stop(noAlert) {
+            if (interval) {
+                    clearInterval(interval)
+                    interval = null;
+            }
+             else if (!noAlert) {
+             alert("counter already Stopped")
+            }
+      }
+      
+      function Restart() {
+              Stop(true)
+              counter = 0
+              document.getElementById("CountDisplay").innerHTML = counter;
+      }
+      
+      function Counter() {
+              counter = counter + 1
+              document.getElementById("CountDisplay").innerHTML = counter;
+      }
+
+    </script>
+    <script src="vedit.js"></script>
+	</body>
+</html>
