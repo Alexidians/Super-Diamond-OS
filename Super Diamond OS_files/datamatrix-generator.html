@@ -1,0 +1,30 @@
+  <html>
+	<head></head>
+  
+  
+  
+  
+  <link rel="icon" type="image/x-icon" href="datamatrix.png">
+  <title>Super Diamond Browser | Data Matrix Generator</title>
+  <body>
+<script src="countly.js"></script>
+
+
+
+
+
+
+
+    <p><center>Data Matrix Generator</center></p>
+    <p>Data Text:<input type="text" id="datatext"> <button onclick="generate()" id="generatebutton">Generate</button></p>
+    <center><img id="datamatrix" src="http://datamatrix.kaywa.com/img.php?s=8&d=Welcome20%to20%Data20%Matrix20%Generator" width="500" height="500"></img></center>
+    <script>
+      function generate() {
+        alert("QRcode generated http://datamatrix.kaywa.com/img.php?s=8&d=" + document.getElementById("datatext").value);
+        document.getElementById("datamatrix").src = "http://datamatrix.kaywa.com/img.php?s=8&d=" + document.getElementById("datatext").value;      
+      }
+
+    </script>
+    <script src="vedit.js"></script>
+	</body>
+</html>
