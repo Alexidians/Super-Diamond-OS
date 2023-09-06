@@ -1,0 +1,8 @@
+<p><input id="VideoIdInput" value="Enter Video Id Here"></input> <button id="PlayButton" onclick="play()">Watch</button></p>
+<iframe id="Youtube Video Player" width="560" height="315" src="https://www.youtube.com/embed/" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<script>
+var YoutubeVideoPlayer = document.getElementById("Youtube Video Player")
+ function play() {
+  YoutubeVideoPlayer.src = "https://www.youtube.com/embed/" + document.getElementById("VideoIdInput").value
+ }
+</script>
