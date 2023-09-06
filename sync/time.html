@@ -1,0 +1,25 @@
+<p id="clock"></p>
+<p id="date"></p>
+<script>
+setInterval(update, 0)
+var date = new Date();
+var clock = ""
+var hour = ""
+var minute = ""
+var second = ""
+
+function update() {
+ date = new Date()
+ second = date.getSeconds()
+ hour = date.getHours()
+ minute = date.getMinutes()
+ clock = checkTime(hour) + ":" + checkTime(minute) ":" + checkTime(second)
+ document.getElementById("clock").innerHTML = clock
+ document.getElementById("date").innerHTML = date
+}
+
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}
+</script>
