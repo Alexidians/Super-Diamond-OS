@@ -1,0 +1,30 @@
+  <html>
+	<head></head>
+  
+  
+  
+  
+  <link rel="icon" type="image/x-icon" href="qrcode.png">
+  <title>Super Diamond Community | QRcode Generator</title>
+  <body>
+<script src="countly.js"></script>
+
+
+
+
+
+
+
+    <p><center>QRcode Generator</center></p>
+    <p>QR Text:<input type="text" id="qrtext"> <button onclick="generate()" id="generatebutton">Generate</button></p>
+    <center><img id="qrcode" src="https://chart.apis.google.com/chart?chs=500x500&cht=qr&chld=L|1&chl=Welcome%20to%20QRcode%20generator" width="500" height="500"></img></center>
+    <script>
+      function generate() {
+        alert("QRcode generated https://chart.apis.google.com/chart?chs=100x100&cht=qr&chld=L|1&chl=" + document.getElementById("qrtext").value);
+        document.getElementById("qrcode").src = "https://chart.apis.google.com/chart?chs=500x500&cht=qr&chld=L|1&chl=" + document.getElementById("qrtext").value;      
+      }
+
+    </script>
+    <script src="vedit.js"></script>
+	</body>
+</html>
