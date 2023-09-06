@@ -1,4 +1,4 @@
-//for all unsupported languages use a converter we put urls to a converter
+//for all unsupported languages use a converter we put urls to a converter for unsupported languages
 
 //adds a lua script file to OS
 var luaScript = document.createElement("script")
