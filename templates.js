@@ -18,3 +18,5 @@ document.body.appendChild(luaScript)
 //to use c convert it to js using this https://www.codeconvert.ai/c-to-javascript-converter
 
 //to use c++ convert it to js using this https://www.codeconvert.ai/c++-to-javascript-converter
+
+//to use swift convert it to js using this https://www.codeconvert.ai/swift-to-javascript-converter
