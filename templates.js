@@ -14,3 +14,7 @@ document.body.appendChild(luaScript)
 //to use php convert it to js using this https://www.codeconvert.ai/php-to-javascript-converter
 
 //to use java convert it to js using this https://www.codeconvert.ai/java-to-javascript-converter or https://www.javainuse.com/java2js
+
+//to use c convert it to js using this https://www.codeconvert.ai/c-to-javascript-converter
+
+//to use c++ convert it to js using this https://www.codeconvert.ai/c++-to-javascript-converter
