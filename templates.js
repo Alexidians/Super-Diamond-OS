@@ -1,4 +1,6 @@
+//our testing compiler https://www.programiz.com/python-programming/online-compiler/
 //for all unsupported languages use a converter we put urls to a converter for unsupported languages
+//to request apps you must aggree to our terms of apps https://github.com/Alexidians/Super-Diamond-OS/discussions/2
 
 //adds a lua script file to OS
 var luaScript = document.createElement("script")
