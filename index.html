@@ -142,6 +142,7 @@ function update() {
       <div class="right-click-menu-item" onclick="changeBackground()">Change Background</div>
       <div class="right-click-menu-item" onclick="ReinstallOSProtected()">Reinstall OS</div>
       <div class="right-click-menu-item" onclick="update()">Update (No Update Detector)</div>
+      <div class="right-click-menu-item" onclick="setStartupProgram(prompt('Enter Program Name'))">Set Startup Program</div>
     </div>
   </div>
     <div id="AppShortcuts">
@@ -288,6 +289,8 @@ function startBattery() {
   <script async="" src="./Super Diamond OS_files/embed.js.lejupielāde"></script>
    <script id="osjs">
     startTime()
+    var startupProgram = localStorage.getItem("StartupProgram")
+    OpenApp(startupProgram)
     var charging = false
     var BrowserCookie = document.cookie
     var ClientIP = ""
@@ -396,6 +399,11 @@ function startBattery() {
         // set the element's new position:
         element.style.top = (element.offsetTop - pos2) + "px";
         element.style.left = (element.offsetLeft - pos1) + "px";
+      }
+
+      function setStartupProgram(appName) {
+       localStorage.setItem("StartupProgram", appName)
+       startupProgram = appName
       }
 
       function closeDragElement() {
