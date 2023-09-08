@@ -27,6 +27,17 @@
       left: 100px;
       cursor: move;
     }
+
+    .windowblack {
+      width: 600px;
+      height: 500px;
+      background-color: black;
+      border: 1px solid #ccc;
+      position: absolute;
+      top: 100px;
+      left: 100px;
+      cursor: move;
+    }
       
     .windown {
      width: 600px;
@@ -181,6 +192,10 @@ function update() {
        <a onclick="OpenApp('Feed The Cat&')">Feed The Cat</a>
      </div>
      
+     <div class="windowblack" id="Terminal">
+      <p><input id="terminalCodeInput"></input> <button onclick="terminal()">Run</button></p>
+      <p id="terminalResponse"></p>
+     </div>
       <div class="window">
        <h3>Battery</h3>
        <div id="batteryProgress">
@@ -386,6 +401,11 @@ function startBattery() {
         document.onmouseup = closeDragElement;
         // call a function whenever the cursor moves:
         document.onmousemove = elementDrag;
+      }
+
+      function terminal() {
+       var response = eval(document.getElementById("terminalCodeInput").value)
+       document.getElementById("terminalResponse").innerHTML = response
       }
 
       function elementDrag(e) {
@@ -1355,6 +1375,10 @@ function clock() {
     // Make all windows draggable
     const windows = document.querySelectorAll(".window");
     windows.forEach(window => {
+      makeDraggable(window);
+    });
+   const blackwindows = document.querySelectorAll(".windowblack");
+    blackwindows.forEach(window => {
       makeDraggable(window);
     });
   </script>
