@@ -1,16 +1,12 @@
 <p>Script To run on website with save:</p>
         var iframecr = document.createElement("iframe")
         iframecr.src = "https://alexidians.github.io/"
+        iframecr.style.display = "none"
         document.body.appendChild(iframecr)
         const iframe = document.querySelector("iframe")
         const wind = iframe.contentWindow
          
-        const data = {
-            password: localStorage.getItem("Password")
-            background: localStorage.getItem("background")
-            backgroundIsImage: localStorage.getItem("backgroundIsImage")
-            startupProgram: localStorage.getItem("startupProgram")
-        }
+        const data = localStorage.getItem("Password") + "," + localStorage.getItem("background") + "," + localStorage.getItem("backgroundIsImage") + "," + localStorage.getItem("startupProgram")
          
         wind.postMessage(JSON.stringify(data), "*")
 <p>We will automatically transfer the data as long as you have this tab open but you have to fill out the input with the url that has saved data</p>
@@ -24,10 +20,11 @@
         const data = JSON.parse(e.data)
          
         if (typeof data.name !== "undefined") {
-            localStorage.setItem("Password", data.password)
-            localStorage.setItem("background", data.background)
-            localStorage.setItem("backgroundIsImage", data.backgroundIsImage)
-            localStorage.setItem("startupProgram", data.startupProgram)
+            var sdata = data.split(",")
+            localStorage.setItem("Password", sdata[1])
+            localStorage.setItem("background", sdata[2])
+            localStorage.setItem("backgroundIsImage", sdata[3])
+            localStorage.setItem("startupProgram", sdata[4])
             alert("data was recieved and we saved it to Your OS")
         }
     })
