@@ -284,22 +284,14 @@ function startBattery() {
      </div>
     <div id="OS Message" style="width: 600px; height: 500px; background-color: rgb(255, 255, 255); border: 1px solid rgb(204, 204, 204); position: absolute; top: 1131px; left: 2115px; cursor: move;"><h3>OS Message</h3><p>(Super Diamond Anti-Virus) All System Apps Have All Permissions You will be Save from Detected Viruses</p></div></div>
     <style>
+.message {
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: Segoe UI, Frutiger, Frutiger Linotype, Dejavu Sans, Helvetica Neue, Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #3c3c3c;
-  color: #fff;
-}
-
-.card {
+.message {
   padding: 1px;
   max-width: 500px;
   overflow: hidden;
@@ -336,7 +328,7 @@ img {
   opacity: 0.8;
 }
 
-.card:before {
+.message:before {
   content: '';
   display: block;
   position: absolute;
@@ -351,8 +343,9 @@ img {
   top: var(--y);
   transform: translate(-3rem, -3rem);
 }
+}
 </style>
-<div class="card">
+<div class="message">
   <div class="content">
     <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Windows_logo_-_2012_%28dark_blue%29.svg/600px-Windows_logo_-_2012_%28dark_blue%29.svg.png" alt="window10">
     <h1 class="messageTitle">Ceo</h1>
