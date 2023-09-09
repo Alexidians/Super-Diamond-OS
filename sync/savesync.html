@@ -3,7 +3,9 @@
 var saveSyncWeb = open("https://alexidians.github.io/Super-Diamond-OS/sync/savesync.html")
 saveSyncWeb.setLocalStorage("Password", localStorage.getItem("Password"))
 saveSyncWeb.setLocalStorage("background", localStorage.getItem("background"))
-saveSyncWeb.setLocalStorage("backgroundIsImage", localStorage.getItem("backgroundIsImage"))*/
+saveSyncWeb.setLocalStorage("backgroundIsImage", localStorage.getItem("backgroundIsImage"))
+console.debug("Data Transfered To " + saveSyncWeb.location.href)
+saveSyncWeb.close()*/
 function setLocalStorage(item, value) {
  localStorage.setItem(item, value)
 }
