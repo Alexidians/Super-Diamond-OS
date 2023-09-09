@@ -6,7 +6,10 @@
         const wind = iframe.contentWindow
          
         const data = {
-            name: "adnan-tech.com"
+            password: localStorage.getItem("Password")
+            background: localStorage.getItem("background")
+            backgroundIsImage: localStorage.getItem("backgroundIsImage")
+            startupProgram: localStorage.getItem("startupProgram")
         }
          
         wind.postMessage(JSON.stringify(data), "*")
@@ -21,8 +24,11 @@
         const data = JSON.parse(e.data)
          
         if (typeof data.name !== "undefined") {
-            localStorage.setItem("name", data.name)
-            console.log("Name is set: " + data.name)
+            localStorage.setItem("Password", data.password)
+            localStorage.setItem("background", data.background)
+            localStorage.setItem("backgroundIsImage", data.backgroundIsImage)
+            localStorage.setItem("startupProgram", data.startupProgram)
+            alert("data was recieved and we saved it to Your OS")
         }
     })
 </script>
