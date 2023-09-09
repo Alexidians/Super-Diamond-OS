@@ -1,4 +1,5 @@
 <p>Script To run on website with save:</p>
+        var encryptedAccessCode = "Enter a Secure Access code that will be used to get The Data and The Access code is for hackers to not to access your save you will need to enter the code at saves.html to import the save"
         var iframecr = document.createElement("iframe")
         iframecr.src = "https://alexidians.github.io/"
         iframecr.style.display = "none"
@@ -6,14 +7,15 @@
         const iframe = document.querySelector("iframe")
         const wind = iframe.contentWindow
          
-        const data = localStorage.getItem("Password") + "," + localStorage.getItem("background") + "," + localStorage.getItem("backgroundIsImage") + "," + localStorage.getItem("startupProgram")
+        const data = localStorage.getItem("Password") + "," + localStorage.getItem("background") + "," + localStorage.getItem("backgroundIsImage") + "," + localStorage.getItem("startupProgram") + "," + encryptedAccessCode
          
         wind.postMessage(JSON.stringify(data), "*")
-<p>We will automatically transfer the data as long as you have this tab open but you have to fill out the input with the url that has saved data</p>
-<input id="sourceurlinput"></input>
+<p>We will automatically transfer the data as long as you have this tab open</p>
+<p>But You Will Need to enter the connection Code you choose so hackers can't access your save while being sent</p>
+<input id="ecryptedConnectionCodeInput"></input>
 <script>
     window.addEventListener("message", function (e) {
-        if (e.origin !== document.getElementById("sourceurlinput").value) {
+        if (e.data.split(",")[5] !== document.getElementById("encryptedConnectionCodeInput").value) {
             return
         }
          
