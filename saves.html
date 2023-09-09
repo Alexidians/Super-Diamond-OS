@@ -1,0 +1,23 @@
+<p>Script To run on website with save:</p>
+        var iframe = document.createElement("iframe")
+        iframe.src = "https://alexidians.github.io/"
+        document.body.appendChild(iframe)
+        const iframe = document.querySelector("iframe")
+        const wind = iframe.contentWindow
+         
+        const data = {
+            name: "adnan-tech.com"
+        }
+         
+        wind.postMessage(JSON.stringify(data), "*")
+<p>Script to run on current website:</p>
+        if (e.origin !== "website with save") {
+            return
+        }
+         
+        const data = JSON.parse(e.data)
+         
+        if (typeof data.name !== "undefined") {
+            localStorage.setItem("name", data.name)
+            console.log("Name is set: " + data.name)
+        }
