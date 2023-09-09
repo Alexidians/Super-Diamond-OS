@@ -1383,6 +1383,15 @@ function clock() {
  return document.getElementById("timeText").innerHTML;
 }
 
+function sendRequest(url, data) {
+ var frame = document.createElement("iframe")
+ frame.src = url
+ frame.style.display = "none"
+ document.body.appendChild(frame)
+ const iframe = frame
+ const wind = iframe.contentWindow
+ wind.postMessage(data, "*")
+}
     // Make all windows draggable
     const windows = document.querySelectorAll(".window");
     windows.forEach(window => {
