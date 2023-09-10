@@ -1,0 +1,14 @@
+<h1>Settings</h1>
+<h2>Delays</h2>
+<p>Clock Speed*</p>
+<p><input type="number" id="clockDelayInput"> <button onclick="updateClockSpeed()">Set</button></p>
+<script>
+document.getElementById("clockDelayInput").value = localStorage.getItem("clockDelayInput")
+function updateClockSpeed() {
+ localStorage.setItem("clockSpeed", document.getElementById("clockDelayInput").value)
+ if(document.getElementById("clockDelayInput").value == "") {
+  localStorage.setItem("clockSpeed", "0")
+  document.getElementById("clockDelayInput").value = 0
+ }
+}
+</script>
