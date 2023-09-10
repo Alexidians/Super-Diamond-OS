@@ -988,6 +988,20 @@ function startBattery() {
        ErrorMessage("[Vedit] Allow The Download Files on Real Operating System to Launch Vedit and Download vedit.js")
       }
      }
+    if(AppName == "Settings") {
+      App.id = "Settings"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Settings"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "settings.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
     }
 
     function ShutDownApp(AppId) {
