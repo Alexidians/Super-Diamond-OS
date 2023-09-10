@@ -1366,7 +1366,7 @@ function startTime() {
   m = checkTime(m);
   s = checkTime(s);
   document.getElementById('timeText').innerHTML =  h + ":" + m + ":" + s;
-  setTimeout(startTime, 1000);
+  setTimeout(startTime, parseInt(localStorage.getItem("clockSpeed")));
 }
            
 function getTime() {
