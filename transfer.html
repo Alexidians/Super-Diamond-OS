@@ -1,13 +1,13 @@
 //tansfer a disc from another version to this version (and it formats the disc for you)
 <p>Code:</p>
-<code>var iframecr = document.createElement("iframe")</code>
-<code>iframecr.src = "https://alexidians.github.io/Super-Diamond-OS/transfer.html"</code>
-<code>iframecr.style.display = "none"</code>
-<code>document.body.appendChild(iframecr)</code>
-<code>const iframe = document.querySelector("iframe")</code>
-<code>const wind = iframe.contentWindow</code>
-<code>const data = localStorage.getItem("Password") + "," + localStorage.getItem("background") + "," + localStorage.getItem("backgroundIsImage") + "," + localStorage.getItem("startupProgram")</code>
-<code>wind.postMessage(JSON.stringify(data), "*")</code>
+<p><code>var iframecr = document.createElement("iframe")</code></p>
+<p><code>iframecr.src = "https://alexidians.github.io/Super-Diamond-OS/transfer.html"</code></p>
+<p><code>iframecr.style.display = "none"</code></p>
+<p><code>document.body.appendChild(iframecr)</code></p>
+<p><code>const iframe = document.querySelector("iframe")</code></p>
+<p><code>const wind = iframe.contentWindow</code></p>
+<p><code>const data = localStorage.getItem("Password") + "," + localStorage.getItem("background") + "," + localStorage.getItem("backgroundIsImage") + "," + localStorage.getItem("startupProgram")</code></p>
+<p><code>wind.postMessage(JSON.stringify(data), "*")</code></p>
 <script>
     window.addEventListener("message", function (e) {
         const data = JSON.parse(e.data)
