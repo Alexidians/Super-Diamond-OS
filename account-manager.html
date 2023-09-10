@@ -1,1 +1,42 @@
+<button onclick="saveCurrent()">Save Current</button>
+<p>or</p>
+<p><input id="newAccountDiscInput"> <button onclick="saveWithDisc()">Save From Disc</button></p>
+<p><input id="deleteAccountNameInput"> <button onclick="deleteFromName()">Delete</button></p>
+<p><input id="loginAccountNameInput"> <button onclick="loginFromName()">Login</button></p>
+<script>
+function saveCurrent() {
+ var name = prompt("Enter Account Name. Will overwrite data if name is in use")
+ var disc = localStorage.getItem("Password") + "," + localStorage.getItem("background") + "," + localStorage.getItem("backgroundIsImage") + "," + localStorage.getItem("startupProgram")
+ localStorage.setItem(name, disc)
+ alert("Current Data was saved as " + name + ". the data is only accesable from this device")
+}
 
+function saveWithDisc() {
+ var name = prompt("Enter Account Name. Will overwrite data if name is in use")
+ var disc = docoument.getElementById("newAccountDiscInput").value
+ localStorage.setItem(name, disc)
+ alert("Disc " + disc + " was saved as " + name + ". the data is only accesable from this device")
+}
+
+function deleteFromName() {
+ var name = document.getElementById("deleteAccountNameInput").value
+ if(prompt("Verify Your Identity by Entering Your Password") == localStorage.getItem(name).split(",")[1]) {
+  localStorage.setItem(name, "*Account Was Deleted*")
+  alert("Account " + name + " was Deleted")
+ }
+ else {
+  alert("Incorrect Password")
+ }
+}
+
+function loginFromName() {
+ var name = docoument.getElementById("loginAccountNameInput").value
+ var disc = localStorage.getItem(name)
+ disc = disc.split(",")
+ localStorage.setItem("Password", disc[1])
+ localStorage.setItem("background", disc[2])
+ localStorage.setItem("backgroundIsImage", disc[3])
+ localStorage.setItem("startupProgram", disc[4])
+ alert("Data From Save " + name + " has been loaded. all procceses of the OS need to be restarted to have the data")
+}
+</script>
