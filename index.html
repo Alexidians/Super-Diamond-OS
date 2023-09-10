@@ -314,6 +314,9 @@ function startBattery() {
   </script>
   <script async="" src="./Super Diamond OS_files/embed.js.lejupielāde"></script>
    <script id="osjs">
+    if(localStorage.getItem("clockSpeed") == null || localStorage.getItem("clockSpeed") == "") {
+     localStorage.setItem("clockSpeed", 0)
+    }
     startTime()
     var startupProgram = localStorage.getItem("StartupProgram")
     OpenApp(startupProgram)
