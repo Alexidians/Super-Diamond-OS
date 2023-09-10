@@ -1,0 +1,11 @@
+<p>Password: <input type="text" id="passwordInput"> the password will be used to login</p>
+<p>background: <input type="url" id="backgroundInput"> the value of background url for image hex or color name for color</p>
+<p>backgroundIsImage: <input type="url" id="backgroundIsImageInput"> whenever the background is a image</p>
+<p>startupProgram: <input type="url" id="startupProgramInput"> whenever the background is a image</p>
+<p><button onclick="generate()">Generate</button></p>
+<p id="generatedDisc"></p>
+<script>
+function generate() {
+ document.getElementById("generatedDisc").innerHTML = document.getElementById("passwordInput").value + "," + document.getElementById("backgroundInput").value + "," + document.getElementById("backgroundIsImageInput").value + "," + document.getElementById("startupProgramInput").value
+}
+</script>
