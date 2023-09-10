@@ -1,0 +1,24 @@
+//tansfer a disc from another version to this version (and it formats the disc for you)
+<p>Code:</p>
+<code>var iframecr = document.createElement("iframe")</code>
+<code>iframecr.src = "https://alexidians.github.io/"</code>
+<code>iframecr.style.display = "none"</code>
+<code>document.body.appendChild(iframecr)</code>
+<code>const iframe = document.querySelector("iframe")</code>
+<code>const wind = iframe.contentWindow</code>
+<code>const data = localStorage.getItem("Password") + "," + localStorage.getItem("background") + "," + localStorage.getItem("backgroundIsImage") + "," + localStorage.getItem("startupProgram")</code>
+<code>wind.postMessage(JSON.stringify(data), "*")</code>
+<script>
+    window.addEventListener("message", function (e) {
+        const data = JSON.parse(e.data)
+         
+        if (typeof data.name !== "undefined") {
+            var sdata = data.split(",")
+            localStorage.setItem("Password", sdata[1])
+            localStorage.setItem("background", sdata[2])
+            localStorage.setItem("backgroundIsImage", sdata[3])
+            localStorage.setItem("startupProgram", sdata[4])
+            alert("The Disc in use has the trasnfered data and was reformated/nDisc Array: " + sdata + "/nDisc String: " + data)
+        }
+    })
+</script>
