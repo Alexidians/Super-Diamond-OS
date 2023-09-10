@@ -13,7 +13,7 @@ function saveCurrent() {
 
 function saveWithDisc() {
  var name = prompt("Enter Account Name. Will overwrite data if name is in use")
- var disc = docoument.getElementById("newAccountDiscInput").value
+ var disc = document.getElementById("newAccountDiscInput").value
  localStorage.setItem(name, disc)
  alert("Disc " + disc + " was saved as " + name + ". the data is only accesable from this device")
 }
@@ -30,7 +30,7 @@ function deleteFromName() {
 }
 
 function loginFromName() {
- var name = docoument.getElementById("loginAccountNameInput").value
+ var name = document.getElementById("loginAccountNameInput").value
  var disc = localStorage.getItem(name)
  disc = disc.split(",")
  localStorage.setItem("Password", disc[1])
