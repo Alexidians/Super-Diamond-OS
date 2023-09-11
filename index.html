@@ -202,7 +202,7 @@ function update() {
 }
 </style>
 <script>
-var closeNotificationTimer = null
+var closeNotificationTimer = "none"
 function notification(title, message) {
  if(Notification.permission == "granted") {
  clearInterval(closeNoteficationTimer)
