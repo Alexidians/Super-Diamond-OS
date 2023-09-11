@@ -1,7 +1,47 @@
 <!DOCTYPE html>
 <html id="htmloshtml"><head>
   <title>Super Diamond OS</title>
-  <style id="oscss">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+.popup {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+
+.popup-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.popup-close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.popup-close:hover,
+.popup-close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+</style> 
+ <style id="oscss">
     body {
       margin: 0;
       padding: 0;
@@ -155,7 +195,43 @@ function update() {
 }
 </style>
   </center></center></div>
-  <div id="desktop" ">
+  <div id="desktop">
+<div id="popup" class="popup">
+  <div class="popup-content">
+    <span class="close">&times;</span>
+    <h1 id="popupTitle">Message Title</h1>
+    <p id="popupText">Message Text</p>
+  </div>
+<script>
+var popup = document.getElementById("popup");
+
+// Get the <span> element that closes the modal
+var popupCloseButton = document.getElementsByClassName("close")[0];
+function popup(title, message) {
+ if(Notification.permission == "granted")
+  document.getElementById("popupTitle").innerHTML = title
+  document.getElementById("popupText").innerHTML = message
+  modal.style.display = "block";
+ }
+ else {
+  if(Notification.permission == "default") {
+   Notification.requestPermission()
+   if(Notification.permission == "granted") {
+    popup(title, message)
+   }
+  }
+ }
+}
+popupCloseButton.onclick = function() {
+  popup.style.display = "none";
+}
+window.onclick = function(event) {
+  if (event.target == popup) {
+    popup.style.display = "none";
+  }
+}
+</script>
+</div>
       <div id="right-click-target" style="">
     <div class="right-click-menu" id="menu">
       <div class="right-click-menu-item" onclick="CustomApp()">Custom App (Dangerous)</div>
