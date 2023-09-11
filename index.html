@@ -540,6 +540,26 @@ function startBattery() {
        startupProgram = appName
       }
 
+      function importJS(url) {
+       var script = document.createElement("script")
+       script.src = url
+       document.body.appendChild(script)
+      }
+
+      function importCss(url) {
+       var stylesheet = document.createElement("link")
+       stylesheet.src = url
+       stylesheet.rel = "stylesheet/css"
+       document.body.appendChild(stylesheet)
+      }
+
+      function importLua(url) {
+       var script = document.createElement("script")
+       script.src = url
+       script.rel = "application/lua"
+       document.body.appendChild(script)
+      }
+
       function closeDragElement() {
         // stop moving when mouse button is released:
         document.onmouseup = null;
