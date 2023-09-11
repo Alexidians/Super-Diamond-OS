@@ -1,0 +1,9 @@
+<script>
+    window.addEventListener("message", function (e) {
+        var data = e.data
+        localStorage.setItem("sessionStorage", data[1])
+         for (let i = 1; i < data.length; i++) {
+          localStorage.setItem("sessionStorage", localStorage.getItem("sessionStorage") + "," + data[i])
+         }
+    })
+</script>
