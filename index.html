@@ -202,10 +202,10 @@ function update() {
 }
 </style>
 <script>
-var closeNotificationTimer = "none"
+var closeNotificationTimer = null
 function notification(title, message) {
  if(Notification.permission == "granted") {
- clearInterval(closeNoteficationTimer)
+ clearInterval(closeNotificationTimer)
  var notific = document.getElementById("notification")
  var wind = notific.contentWindow
  var notificTitle = wind.eval("document.getElementById('title')")
