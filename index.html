@@ -970,6 +970,34 @@ function startBattery() {
       document.getElementById("Apps").appendChild(App)
       makeDraggable(App)
      }
+     if(AppName == "Google play") {
+      App.id = "Google play"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Google play"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "Super Diamond OS_files/google-play.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Gmail") {
+      App.id = "Gmail"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Gmail"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "Super Diamond OS_files/gmail.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
      if(AppName == "Corrupted File Generator") {
       App.id = "Corrupted File Generator"
       var AppFrame = document.createElement("iframe")
