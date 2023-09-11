@@ -210,6 +210,10 @@ function update() {
        <h3>Games</h3>
        <a onclick="OpenApp('Feed The Cat&')">Feed The Cat</a>
      </div>
+      <div class="window" id="Google">
+       <h3>Google</h3>
+       <iframe is="x-frame-bypass" src="https://google.com/search?q=Google"></iframe>
+      </div>
       <div class="window">
        <h3>Battery</h3>
        <div id="batteryProgress">
@@ -489,36 +493,6 @@ function startBattery() {
       App.appendChild(AppFrame)
       AppFrame.id = "Browser"
       AppFrame.src = "http://corrupt-a-file.net"
-      AppFrame.width = "600"
-      AppFrame.height = "500"
-      document.getElementById("Apps").appendChild(App)
-      makeDraggable(App)
-     }
-     if(AppName == "Google") {
-      App.id = "Google"
-      var AppFrame = document.createElement("iframe")
-      AppTitle.InnerHTML = "Google"
-      AppTitle.appendChild(AppTitleTextNode)
-      App.appendChild(AppTitle)
-      App.appendChild(AppFrame)
-      AppFrame.id = "Browser"
-      AppFrame.src = "https://google.com/search?q=google"
-      AppFrame.is = "x-frame-bypass"
-      AppFrame.width = "600"
-      AppFrame.height = "500"
-      document.getElementById("Apps").appendChild(App)
-      makeDraggable(App)
-     }
-     if(AppName == "Google lv") {
-      App.id = "Google"
-      var AppFrame = document.createElement("iframe")
-      AppTitle.InnerHTML = "Google"
-      AppTitle.appendChild(AppTitleTextNode)
-      App.appendChild(AppTitle)
-      App.appendChild(AppFrame)
-      AppFrame.id = "Browser"
-      AppFrame.src = "https://google.lv/search?q=google"
-      AppFrame.is = "x-frame-bypass"
       AppFrame.width = "600"
       AppFrame.height = "500"
       document.getElementById("Apps").appendChild(App)
