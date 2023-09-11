@@ -214,8 +214,7 @@ function notification(title, message) {
  notificMessage.innerHTML = message
  notific.style.display = "none"
  closeNotificationTimer = setTimeout(hideNotification, 5000)
- }
- else {
+ } else {
   if(Notification.permission == "default") {
    Notification.requestPermission()
    if(Notification.permission == "granted") {
@@ -244,8 +243,7 @@ function popup(title, message) {
   document.getElementById("popupTitle").innerHTML = title
   document.getElementById("popupText").innerHTML = message
   modal.style.display = "block";
- }
- else {
+ } else {
   if(Notification.permission == "default") {
    Notification.requestPermission()
    if(Notification.permission == "granted") {
@@ -341,8 +339,7 @@ function startBattery() {
           elem.innerHTML = width  + "%";
           elem.style.backgroundColor = "green"
          }
-        }
-        else {
+        } else {
          width--;
          elem.style.width = width + "%";
          elem.innerHTML = width  + "%";
@@ -465,35 +462,30 @@ function startBattery() {
      alert("Setup Note: Every Browser on Every Device has the has different Data saved/n if you are a parent setting this up for kids a account needs to be created for all of your kids/n important: if you are using a browser with restricted website access for kids it can be bypassed with our browser that uses iframes or other apps that have iframes to not allowed websites")
      alert("Before you go Add a Password")
      passSetup()
-    }
-    else {
+    } else {
      if(Password == null) {
       alert("Welcome")
       alert("if you are a child/kid ask your parents to help setup Super Diamond OS in this browser")
       alert("Setup Note: Every Browser on Every Device has the has different Data saved/n if you are a parent setting this up for kids a account needs to be created for all of your kids/n important: if you are using a browser with restricted website access for kids it can be bypassed with our browser that uses iframes or other apps that have iframes to not allowed websites")
       alert("Before you go Add a Password")
       passSetup()
-     }
-     else {
+     } else {
       if(Password == "Recover") {
        alert("Welcome")
        alert("if you are a child/kid ask your parents to help setup Super Diamond OS in this browser")
        alert("Setup Note: Every Browser on Every Device has the has different Data saved/n if you are a parent setting this up for kids a account needs to be created for all of your kids/n important: if you are using a browser with restricted website access for kids it can be bypassed with our browser that uses iframes or other apps that have iframes to not allowed websites")
        alert("Before you go Add a Password")
        passSetup()
-      }
-      else {
+      } else {
        var LoginEnteredPass = prompt("Enter Password To Continue")
        if(LoginEnteredPass == Password) {
         alert("Welcome Back")
-       }
-       else {
+       } else {
         if(LoginEnteredPass == "Recover") {
          alert("The Recovery Feature might not be added but it currently is not here/n If you need to recover/reset your password Contact us at super_diamond_community@inbox.lv")
          open("mailto:super_diamond_community@inbox.lv")
          location.replace(location.href)
-        }
-        else {
+        } else {
          alert("Incorrect Password")
          location.replace(location.href)
         }
@@ -1441,8 +1433,7 @@ function closeFullscreen(elem) {
     function ReinstallOSProtected() {
      if(prompt("Enter Password") == Password) {
       OSReinstall()
-     }
-     else {
+     } else {
       alert("Incorrect Password")
      }
     }
@@ -1492,8 +1483,7 @@ function closeFullscreen(elem) {
     function lock() {
      if(prompt("Enter Password to Unlock Screen") == Password) {
       alert("Screen Unlocked Sucesfully")
-     }
-     else {
+     } else {
       alert("Incorrect Password")
       lock()
      }
@@ -1506,8 +1496,7 @@ function closeFullscreen(elem) {
       background = prompt("Enter Background Image Url")
       document.getElementById("desktop").style.backgroundImage  = "url('" + background + "')";
       localStorage.setItem("background", background)
-     }
-     else {
+     } else {
       background = prompt("Enter Background Color")
       document.getElementById("desktop").style.backgroundColor  = background;
       localStorage.setItem("background", background)
