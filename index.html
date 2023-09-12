@@ -1200,6 +1200,19 @@ window.onclick = function(event) {
       document.getElementById("Apps").appendChild(App)
       makeDraggable(App)
      }
+     if(AppName == "Github {
+      App.id = "Github"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Github"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      var AppFrame = document.createElement("p")
+      AppFrame.innerHTML = "<iframe is='x-frame-bypass' src='https://github.com'></iframe>"
+      App.appendChild(p)
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
      if(AppName == "Corrupted File Generator") {
       App.id = "Corrupted File Generator"
       var AppFrame = document.createElement("iframe")
