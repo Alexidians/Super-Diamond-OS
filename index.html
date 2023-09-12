@@ -246,40 +246,6 @@ function hideNotification() {
  document.getElementById("notefication").style.display = "none"
 }
 </script>
-<div id="popup" class="popup">
-  <div class="popup-content">
-    <span class="close">&times;</span>
-    <h1 id="popupTitle">Message Title</h1>
-    <p id="popupText">Message Text</p>
-  </div>
-<script>
-var popup = document.getElementById("popup");
-
-// Get the <span> element that closes the modal
-var popupCloseButton = document.getElementsByClassName("close")[0];
-function popup(title, message) {
- if(Notification.permission == "granted")
-  document.getElementById("popupTitle").innerHTML = title
-  document.getElementById("popupText").innerHTML = message
-  modal.style.display = "block";
- } else {
-  if(Notification.permission == "default") {
-   Notification.requestPermission()
-   if(Notification.permission == "granted") {
-    popup(title, message)
-   }
-  }
- }
-}
-popupCloseButton.onclick = function() {
-  popup.style.display = "none";
-}
-window.onclick = function(event) {
-  if (event.target == popup) {
-    popup.style.display = "none";
-  }
-}
-</script>
 </div>
       <div id="right-click-target" style="">
     <div class="right-click-menu" id="menu">
