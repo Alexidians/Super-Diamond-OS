@@ -157,7 +157,7 @@ function AutomaticUpdateCheck() {
  var checkerApi = document.createElement("iframe")
  checkerApi.src = "Super Diamond OS_files/updateCheckerApi.html"
  document.body.appendChild(checkerApi)
- var newsetVersion = checkerApi.eval("document.getElementById('apiReturn').innerHTML")
+ var newsetVersion = checkerApi.contentWindow.eval("document.getElementById('apiReturn').innerHTML")
  if(version < newetVersion) {
   clearInterval(AutomaticUpdateCheckInterval)
   document.getElementById("updateButton").style.display = "block"
