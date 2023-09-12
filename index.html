@@ -486,17 +486,11 @@ function startBattery() {
     }
     AntiVirusPermissionRequest()
     openFullscreen(document.body)
-    sendOSToHomeMenu()
     openHomeMenu()
+
    function openHomeMenu() {
     var homeMenu = document.getElementById("homeMenu")
-    homeMenu.style.display = "none"
-   }
-
-   function sendOSToHomeMenu() {
-    var homeMenu = document.getElementById("homeMenu")
-    var wind = homeMenu.contentWindow
-    wind.eval("var OS = " + window)
+    homeMenu.style.display = "block"
    }
 
 window.onclick = function(event) {
