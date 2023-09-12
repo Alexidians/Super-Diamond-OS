@@ -496,8 +496,7 @@ function startBattery() {
    function sendOSToHomeMenu() {
     var homeMenu = document.getElementById("homeMenu")
     var wind = homeMenu.contentWindow
-    var data = window
-    wind.postMessage(data, "*")
+    wind.eval("var OS = " + window)
    }
 
 window.onclick = function(event) {
