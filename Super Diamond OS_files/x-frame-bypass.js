@@ -60,8 +60,10 @@ customElements.define('x-frame-bypass', class extends HTMLIFrameElement {
 		}
 	})
 	</script>`)
-		}).catch(e => localStorage.setItem("error", e); location.replace("https://alexidians.github.io/Super-Diamond-OS/Super Diamond OS_files/error.html"))
-	}
+		}).catch(e =>
+                 localStorage.setItem("error", e)
+                 location.replace("https://alexidians.github.io/Super-Diamond-OS/Super Diamond OS_files/error.html")
+                )}
 	fetchProxy (url, options, i) {
 		const proxy = [
 			'https://cors.io/?',
