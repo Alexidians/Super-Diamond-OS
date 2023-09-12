@@ -61,7 +61,7 @@ customElements.define('x-frame-bypass', class extends HTMLIFrameElement {
 	})
 	</script>`)
 		}).catch(e =>
-                 localStorage.setItem("error", e)
+                 localStorage.setItem("error", "an error connecting to iframe proxy")
                  location.replace("https://alexidians.github.io/Super-Diamond-OS/Super Diamond OS_files/error.html")
                 )}
 	fetchProxy (url, options, i) {
