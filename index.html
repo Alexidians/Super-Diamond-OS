@@ -706,10 +706,9 @@ window.onclick = function(event) {
       AppTitle.InnerHTML = "Roblox"
       AppTitle.appendChild(AppTitleTextNode)
       App.appendChild(AppTitle)
-      App.appendChild(AppFrame)
       var AppFrame = document.createElement("p")
       AppFrame.innerHTML = "<iframe is='x-frame-bypass' src='https://roblox.com'></iframe>"
-      App.appendChild(p)
+      App.appendChild(AppFrame)
       document.getElementById("Apps").appendChild(App)
       makeDraggable(App)
      }
