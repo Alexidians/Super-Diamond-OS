@@ -1,0 +1,8 @@
+<script id="errScript">
+var err = document.createElement("p")
+err.innerHTML = localStorage.getItem("error")
+localStorage.removeItem("error")
+document.body.appendChild(err)
+err = undefined
+document.getElementById("errScript").remove()
+</script>
