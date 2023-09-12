@@ -18,6 +18,11 @@ body {font-family: Arial, Helvetica, sans-serif;}
   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 }
 
+#homeMenu {
+ display: block;
+ background-color: black;
+ float:  left;
+}
 
 .popup-content {
   background-color: #fefefe;
@@ -374,7 +379,7 @@ function startBattery() {
      </div>
     <div id="OS Message" style="width: 600px; height: 500px; background-color: rgb(255, 255, 255); border: 1px solid rgb(204, 204, 204); position: absolute; top: 1131px; left: 2115px; cursor: move;"><h3>OS Message</h3><p>(Super Diamond Anti-Virus) All System Apps Have All Permissions You will be Save from Detected Viruses</p></div></div>
     <div class="taskbar" id="taskbar">
-      <p><button onclick="CreateAppShortcut()">Create App Shortcut</button><img height="50" width="50" src="./Super Diamond OS_files/repair-hammer.png" onclick="Repair()"><img height="50" width="50" src="./Super Diamond OS_files/lock.png" onclick="lock()"><img height="50" width="50" src="./Super Diamond OS_files/power-button.png" onclick="ShutDown()"><input type="text" class="taskbarSearch"><img height="50" width="50" src="./Super Diamond OS_files/arrow-right.png" onclick="TaskBarSearch()"><img height="50" width="50" src="./Super Diamond OS_files/Task Manager.png" onclick="OpenApp(&#39;Task Manager&#39;)"><img height="50" width="50" src="./Super Diamond OS_files/SuperDiamond.png" onclick="OpenApp(&#39;Super Diamond Notepad&#39;)"><img height="50" width="50" src="./Super Diamond OS_files/youtube.png" onclick="OpenApp(&#39;Youtube&#39;)"><button onclick="ShutDownApp(&#39;Task Manager&#39;)">Shut Down Task Mng</button><a onclick="alert(getTime())" id="timeText">13:36:33</a> <iframe src="Super Diamond OS_files/notification.html" style="display: none" width="300" height="150" id="notification"></iframe></p>
+      <p><iframe id="homeMenu" src="Super Diamond OS_files/home.html" style="display: block"></iframe><img src="superdiamond.png" onclick="openHomeMenu()"><button onclick="CreateAppShortcut()">Create App Shortcut</button><img height="50" width="50" src="./Super Diamond OS_files/repair-hammer.png" onclick="Repair()"><img height="50" width="50" src="./Super Diamond OS_files/lock.png" onclick="lock()"><img height="50" width="50" src="./Super Diamond OS_files/power-button.png" onclick="ShutDown()"><input type="text" class="taskbarSearch"><img height="50" width="50" src="./Super Diamond OS_files/arrow-right.png" onclick="TaskBarSearch()"><img height="50" width="50" src="./Super Diamond OS_files/Task Manager.png" onclick="OpenApp(&#39;Task Manager&#39;)"><img height="50" width="50" src="./Super Diamond OS_files/SuperDiamond.png" onclick="OpenApp(&#39;Super Diamond Notepad&#39;)"><img height="50" width="50" src="./Super Diamond OS_files/youtube.png" onclick="OpenApp(&#39;Youtube&#39;)"><button onclick="ShutDownApp(&#39;Task Manager&#39;)">Shut Down Task Mng</button><a onclick="alert(getTime())" id="timeText">13:36:33</a> <iframe src="Super Diamond OS_files/notification.html" style="display: none" width="300" height="150" id="notification"></iframe></p>
     </div>
 </div>
   <script>
@@ -408,6 +413,7 @@ function startBattery() {
      localStorage.setItem("clockSpeed", 0)
     }
     startTime()
+    var version = 13
     var startupProgram = localStorage.getItem("StartupProgram")
     OpenApp(startupProgram)
     var charging = false
@@ -480,6 +486,25 @@ function startBattery() {
     }
     AntiVirusPermissionRequest()
     openFullscreen(document.body)
+    sendOSToHomeMenu()
+    openHomeMenu()
+   function openHomeMenu() {
+    var homeMenu = document.getElementById("homeMenu")
+    homeMenu.style.display = "none"
+   }
+
+   function sendOSToHomeMenu() {
+    var homeMenu = document.getElementById("homeMenu")
+    var wind = homeMenu.contentWindow
+    var data = window
+    wind.postMessage(data, "*")
+   }
+
+window.onclick = function(event) {
+  if (event.target == document.getElementById("homeMenu")) {
+   document.getElementById("homeMenu").style.display = "none";
+  }
+}
     // Function to make windows draggable
     function makeDraggable(element) {
       let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
