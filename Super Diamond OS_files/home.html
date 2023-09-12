@@ -1,0 +1,9 @@
+<p><img src="youtube.png" onclick="OS.openApp('Youtube')"></p>
+<script>
+    window.addEventListener("message", function (e) {
+      const data = e.data
+      if (typeof data.name !== "undefined") {
+       var OS = data
+      }
+    })
+</script>
