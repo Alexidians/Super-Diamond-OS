@@ -152,12 +152,11 @@ body {font-family: Arial, Helvetica, sans-serif;}
 <body>
 <script>
 var version = 36
-var AutomaticUpdateCheckInterval = setInterval(AutomaticUpdateCheck, 0)
+var AutomaticUpdateCheckInterval = setInterval(AutomaticUpdateCheck, 1000)
 function AutomaticUpdateCheck() {
- var checkerApi = document.createElement("iframe")
- checkerApi.src = "Super Diamond OS_files/updateCheckerApi.html"
+ var checkerApi = document.createElement("script")
+ checkerApi.src = "Super Diamond OS_files/updateCheckerApi.js"
  document.body.appendChild(checkerApi)
- var newsetVersion = checkerApi.contentWindow.eval("document.getElementById('apiReturn').innerHTML")
  checkerApi.remove()
  if(version < newetVersion) {
   clearInterval(AutomaticUpdateCheckInterval)
