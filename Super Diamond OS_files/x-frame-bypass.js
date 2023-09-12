@@ -60,10 +60,8 @@ customElements.define('x-frame-bypass', class extends HTMLIFrameElement {
 		}
 	})
 	</script>`)
-		}).catch(e =>
-                 localStorage.setItem("error", "an error connecting to iframe proxy")
-                 location.replace("https://alexidians.github.io/Super-Diamond-OS/Super Diamond OS_files/error.html")
-                )}
+		}).catch(e => console.error('Cannot load X-Frame-Bypass:', e))
+	}
 	fetchProxy (url, options, i) {
 		const proxy = [
 			'https://cors.io/?',
