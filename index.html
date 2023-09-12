@@ -195,7 +195,7 @@ function update() {
 }
 </style>
   </center></center></div>
-  <div id="desktop">
+<div id="desktop">
 <style>
 #notification {
  float: right;
@@ -246,7 +246,6 @@ function hideNotification() {
  document.getElementById("notefication").style.display = "none"
 }
 </script>
-</div>
    <div id="right-click-target">
     <div class="right-click-menu" id="menu">
       <div class="right-click-menu-item" onclick="CustomApp()">Custom App (Dangerous)</div>
@@ -377,7 +376,7 @@ function startBattery() {
     <div class="taskbar" id="taskbar">
       <p><button onclick="CreateAppShortcut()">Create App Shortcut</button><img height="50" width="50" src="./Super Diamond OS_files/repair-hammer.png" onclick="Repair()"><img height="50" width="50" src="./Super Diamond OS_files/lock.png" onclick="lock()"><img height="50" width="50" src="./Super Diamond OS_files/power-button.png" onclick="ShutDown()"><input type="text" class="taskbarSearch"><img height="50" width="50" src="./Super Diamond OS_files/arrow-right.png" onclick="TaskBarSearch()"><img height="50" width="50" src="./Super Diamond OS_files/Task Manager.png" onclick="OpenApp(&#39;Task Manager&#39;)"><img height="50" width="50" src="./Super Diamond OS_files/SuperDiamond.png" onclick="OpenApp(&#39;Super Diamond Notepad&#39;)"><img height="50" width="50" src="./Super Diamond OS_files/youtube.png" onclick="OpenApp(&#39;Youtube&#39;)"><button onclick="ShutDownApp(&#39;Task Manager&#39;)">Shut Down Task Mng</button><a onclick="alert(getTime())" id="timeText">13:36:33</a> <iframe src="Super Diamond OS_files/notification.html" style="display: none" width="300" height="150" id="notification"></iframe></p>
     </div>
-  </div>
+</div>
   <script>
     function Crash(crash) {
      crashInterval = setInterval(CrashAct, 0, crash)
