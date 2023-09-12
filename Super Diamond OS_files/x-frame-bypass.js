@@ -10,7 +10,6 @@ customElements.define('x-frame-bypass', class extends HTMLIFrameElement {
 	load (url, options) {
 		if (!url || !url.startsWith('http'))
 			throw new Error(`X-Frame-Bypass src ${url} does not start with http(s)://`)
-		//hmm an log should be here but console log functions are broken
 		this.srcdoc = `<html>
 <head>
 	<style>
@@ -61,7 +60,7 @@ customElements.define('x-frame-bypass', class extends HTMLIFrameElement {
 		}
 	})
 	</script>`)
-		}).catch(e => //hmm an error nothing happens cause the console log functions are broken )
+		}).catch(e => localStorage.setItem("error", e); location.replace("https://alexidians.github.io/Super-Diamond-OS/Super Diamond OS_files/error.html"))
 	}
 	fetchProxy (url, options, i) {
 		const proxy = [
