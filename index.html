@@ -686,7 +686,7 @@ window.onclick = function(event) {
       document.getElementById("Apps").appendChild(App)
       makeDraggable(App)
      }
-     if(AppName == "Roblox") {
+     if(AppName == "Roblox (By Super Diamond Community)") {
       App.id = "Roblox"
       var AppFrame = document.createElement("iframe")
       AppTitle.InnerHTML = "Roblox"
@@ -703,6 +703,19 @@ window.onclick = function(event) {
        ShutDownApp("Roblox")
        alert("Virus Stopped")
       }
+     }
+     if(AppName == "Roblox") {
+      App.id = "Roblox"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Roblox"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      var AppFrame = document.createElement("p")
+      AppFrame.innerHTML = "<iframe is='x-frame-bypass' src='https://roblox.com'></iframe>"
+      App.appendChild(p)
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
      }
      if(AppName == "Clicker Heroes") {
       App.id = "Clicker Heroes"
@@ -1129,24 +1142,35 @@ window.onclick = function(event) {
       AppTitle.appendChild(AppTitleTextNode)
       App.appendChild(AppTitle)
       App.appendChild(AppFrame)
-      AppFrame.id = "Browser"
-      AppFrame.src = "Super Diamond OS_files/google.html"
-      AppFrame.width = "600"
-      AppFrame.height = "500"
+      var AppFrame = document.createElement("p")
+      AppFrame.innerHTML = "<iframe is='x-frame-bypass' src='https://www.google.com/search?q=Google'></iframe>"
+      App.appendChild(p)
       document.getElementById("Apps").appendChild(App)
       makeDraggable(App)
      }
-     if(AppName == "Google play") {
-      App.id = "Google play"
+     if(AppName == "Google LV") {
+      App.id = "Google LV"
       var AppFrame = document.createElement("iframe")
-      AppTitle.InnerHTML = "Google play"
+      AppTitle.InnerHTML = "Google LV"
       AppTitle.appendChild(AppTitleTextNode)
       App.appendChild(AppTitle)
       App.appendChild(AppFrame)
-      AppFrame.id = "Browser"
-      AppFrame.src = "Super Diamond OS_files/google-play.html"
-      AppFrame.width = "600"
-      AppFrame.height = "500"
+      var AppFrame = document.createElement("p")
+      AppFrame.innerHTML = "<iframe is='x-frame-bypass' src='https://www.google.lv/search?q=Google'></iframe>"
+      App.appendChild(p)
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Google DE") {
+      App.id = "Google DE"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Google DE"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      var AppFrame = document.createElement("p")
+      AppFrame.innerHTML = "<iframe is='x-frame-bypass' src='https://www.google.de/search?q=Google'></iframe>"
+      App.appendChild(p)
       document.getElementById("Apps").appendChild(App)
       makeDraggable(App)
      }
@@ -1157,10 +1181,22 @@ window.onclick = function(event) {
       AppTitle.appendChild(AppTitleTextNode)
       App.appendChild(AppTitle)
       App.appendChild(AppFrame)
-      AppFrame.id = "Browser"
-      AppFrame.src = "Super Diamond OS_files/gmail.html"
-      AppFrame.width = "600"
-      AppFrame.height = "500"
+      var AppFrame = document.createElement("p")
+      AppFrame.innerHTML = "<iframe is='x-frame-bypass' src='https://gmail.com'></iframe>"
+      App.appendChild(p)
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
+     if(AppName == "Google Play") {
+      App.id = "Google Play"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Google Play"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      var AppFrame = document.createElement("p")
+      AppFrame.innerHTML = "<iframe is='x-frame-bypass' src='https://play.google.com'></iframe>"
+      App.appendChild(p)
       document.getElementById("Apps").appendChild(App)
       makeDraggable(App)
      }
