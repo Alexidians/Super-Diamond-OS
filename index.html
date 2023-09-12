@@ -202,6 +202,16 @@ function update() {
 }
 </style>
 <script>
+var geoLocation = [
+ function() {
+  return navigator.geoLocation;
+ }
+ function permissionRequest() {
+  var geo = navigator.geoLocation;
+ }
+]
+</script>
+<script>
 var closeNotificationTimer = null
 function notification(title, message) {
  if(Notification.permission == "granted") {
