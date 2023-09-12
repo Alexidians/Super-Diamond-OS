@@ -1,4 +1,12 @@
+<div id="menu">
 <p><img src="youtube.png" onclick="OS.OpenApp('Youtube')"></p>
 <script>
 var OS = window.parent
+if(OS.location.href !== "https://alexidians.github.io/Super-Diamond-OS" || OS.locaton.href !== "http://alexidians.github.io/Super-Diamond-OS") {
+ document.getElementById("menu").remove()
+ var error = document.createElement("p")
+ error.innerHTML = "ERROR: Failed to Load Super Diamond Home Menu: Incorrect OS"
+ document.body.appendChild(error)
+}
 </script>
+</div>
