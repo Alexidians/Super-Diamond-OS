@@ -11,7 +11,7 @@
       bottom: 0;
     }
 
-#home {
+#screen {
       background-position: center;
       background-size: cover;
 }
@@ -206,11 +206,11 @@ function clock() {
      localStorage.setItem("backgroundIsImage", backgroundIsImage)
      if(backgroundIsImage) {
       background = prompt("Enter Background Image Url")
-      document.getElementById("home").style.backgroundImage  = "url('" + background + "')";
+      document.getElementById("screen").style.backgroundImage  = "url('" + background + "')";
       localStorage.setItem("background", background)
      } else {
       background = prompt("Enter Background Color")
-      document.getElementById("home").style.backgroundColor  = background;
+      document.getElementById("screen").style.backgroundColor  = background;
       localStorage.setItem("background", background)
      }
     }
