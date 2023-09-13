@@ -230,15 +230,15 @@ function updateCoords() {
   navigator.permissions.query({ name: "geolocation" }).then((result) => {
     if (result.state === "granted") {
      navigator.geolocation.getCurrentPosition(function(position) {
-      latitude = position.coords.latitude;
-      longitude = position.coords.longitude;
+      Latitude = position.coords.latitude;
+      Longitude = position.coords.longitude;
      });
     } else if (result.state === "prompt") {
-      latitute = "ERROR: None Perm Answer"
-      longtitute = "ERROR: None Perm Answer"
+      Latitute = "ERROR: None Perm Answer"
+      Longtitute = "ERROR: None Perm Answer"
     } else if (result.state === "denied") {
-     latitute = "ERROR: Non Perms"
-     longtitute = "ERROR: Non Perms"
+     Latitute = "ERROR: Non Perms"
+     Longtitute = "ERROR: Non Perms"
     }
   });
 }
