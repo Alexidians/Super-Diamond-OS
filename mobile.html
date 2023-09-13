@@ -13,12 +13,72 @@
 </style>
 <div id="bar"><img onclick="exitApp()" src="Super Diamond OS_files/cube.png" width="30" height="30"></div>
 <div id="home">
+<p><button href="javascript: OpenApp(prompt('Enter App Name'))">Open App</button> <button onclick="changeBackground()">Change Background</button> <button onclick="lock()">Lock</button></p>
+<center><h3 onclick="showTime()" id="timeText">Loading...</h2></center>
 </div>
 <div id="app"></div>
 <script type="module" src="Super Diamond OS_files/x-frame-bypass.js"></script>
 <script src="Super Diamond OS_files/fengari-web.js"></script>
 <script src="https://unpkg.com/@ungap/custom-elements-builtin"></script>
 <script>
+    startTime()
+    var Password = localStorage.getItem("Password")
+    var background = localStorage.getItem("background")
+    var backgroundIsImage = localStorage.getItem("backgroundIsImage")
+    if(backgroundIsImage == "true") {
+     document.getElementById("home").style.backgroundImage = "url('" + background + "')";
+    }
+    if(backgroundIsImage == "true") {
+     document.getElementById("home").style.backgroundColor = background
+    }
+    if(background == null) {
+     document.getElementById("desktop").style.backgroundImage = "url('SuperDiamond.png')";
+     background = "SuperDiamond.png"
+     backgroundIsImage = "true"
+    }
+    if(backgroundIsImage == null) {
+     document.getElementById("desktop").style.backgroundImage = "url('SuperDiamond.png')";
+     background = "SuperDiamond.png"
+     backgroundIsImage = "true"
+    }
+    if(Password == "null") {
+     alert("Welcome")
+     alert("if you are a child/kid ask your parents to help setup Super Diamond OS in this browser")
+     alert("Setup Note: Every Browser on Every Device has the has different Data saved/n if you are a parent setting this up for kids a account needs to be created for all of your kids/n important: if you are using a browser with restricted website access for kids it can be bypassed with our browser that uses iframes or other apps that have iframes to not allowed websites")
+     alert("Before you go Add a Password")
+     passSetup()
+    } else {
+     if(Password == null) {
+      alert("Welcome")
+      alert("if you are a child/kid ask your parents to help setup Super Diamond OS in this browser")
+      alert("Setup Note: Every Browser on Every Device has the has different Data saved/n if you are a parent setting this up for kids a account needs to be created for all of your kids/n important: if you are using a browser with restricted website access for kids it can be bypassed with our browser that uses iframes or other apps that have iframes to not allowed websites")
+      alert("Before you go Add a Password")
+      passSetup()
+     } else {
+      if(Password == "Recover") {
+       alert("Welcome")
+       alert("if you are a child/kid ask your parents to help setup Super Diamond OS in this browser")
+       alert("Setup Note: Every Browser on Every Device has the has different Data saved/n if you are a parent setting this up for kids a account needs to be created for all of your kids/n important: if you are using a browser with restricted website access for kids it can be bypassed with our browser that uses iframes or other apps that have iframes to not allowed websites")
+       alert("Before you go Add a Password")
+       passSetup()
+      } else {
+       var LoginEnteredPass = prompt("Enter Password To Continue")
+       if(LoginEnteredPass == Password) {
+        alert("Welcome Back")
+       } else {
+        if(LoginEnteredPass == "Recover") {
+         alert("The Recovery Feature might not be added but it currently is not here/n If you need to recover/reset your password Contact us at super_diamond_community@inbox.lv")
+         open("mailto:super_diamond_community@inbox.lv")
+         location.replace(location.href)
+        } else {
+         alert("Incorrect Password")
+         location.replace(location.href)
+        }
+       }
+      }
+     }
+    }
+
       function importJS(url) {
        var script = document.createElement("script")
        script.src = url
@@ -39,7 +99,7 @@
        document.body.appendChild(script)
       }
 
-function openApp(appName) {
+function OpenApp(appName) {
  var App = document.getElementById("app").innerHTML
  App.innerHTML = ""
  if(AppName == "Roblox") {
@@ -54,12 +114,22 @@ function openApp(appName) {
  }
  if(AppName == "Wix Owner") {
   document.getElementById("app").style.display = "block"
-  document.getElementById("app").innerHTML = "<iframe src='https://wix.com'></iframe>"
+  document.getElementById("app").innerHTML = "<iframe is='x-frame-bypass' src='https://wix.com'></iframe>"
   document.getElementById("home").style.display = "none"
  }
  if(AppName == "Youtube") {
   document.getElementById("app").style.display = "block"
-  document.getElementById("app").innerHTML = "<iframe src='https://youtube.com'></iframe>"
+  document.getElementById("app").innerHTML = "<iframe is='x-frame-bypass' src='https://youtube.com'></iframe>"
+  document.getElementById("home").style.display = "none"
+ }
+ if(AppName == "Github") {
+  document.getElementById("app").style.display = "block"
+  document.getElementById("app").innerHTML = "<iframe is='x-frame-bypass' src='https://github.com'></iframe>"
+  document.getElementById("home").style.display = "none"
+ }
+ if(AppName == "Super Diamond Browser") {
+  document.getElementById("app").style.display = "block"
+  document.getElementById("app").innerHTML = "<iframe is='x-frame-bypass' src='Super Diamond OS_files/good_super_diamond_browser.html'></iframe>"
   document.getElementById("home").style.display = "none"
  }
 }
@@ -69,4 +139,80 @@ function exitApp() {
  document.getElementById("home").style.display = "block"
  document.getElementById("app").innerHTML = ""
 }
+
+    function passSetup() {
+     var pass = prompt("Enter A Password")
+     localStorage.setItem("Password", pass)
+     Password = pass
+     if(pass == "null") {
+      alert("Password can't be null")
+      passSetup()
+     }
+     if(pass == null) {
+      alert("Enter a Password")
+      passSetup()
+     }
+     if(pass == "Recover") {
+      alert("Pass can't Be The Recovery Text That Might Be Added Later as a Feature")
+      passSetup()
+     }
+    }
+
+    function setPassword(pass) {
+     localStorage.setItem("Password", pass)
+     Password = pass
+    }
+
+function startTime() {
+  const today = new Date();
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('timeText').innerHTML =  h + ":" + m
+  setTimeout(startTime, 0);
+}
+           
+function getTime() {
+  const today = new Date();
+  return today;
+}
+
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}
+
+function ShowTime() {
+ var today = new Date();
+ alert(today.getHours(); + ":" + today.getMinutes(); + ":" + today.getSeconds(); + "/n" + today)
+}
+
+function clock() {
+ return document.getElementById("timeText").innerHTML;
+}
+
+    function changeBackground() {
+     backgroundIsImage = confirm("Would you like to set your background as a image?")
+     localStorage.setItem("backgroundIsImage", backgroundIsImage)
+     if(backgroundIsImage) {
+      background = prompt("Enter Background Image Url")
+      document.getElementById("desktop").style.backgroundImage  = "url('" + background + "')";
+      localStorage.setItem("background", background)
+     } else {
+      background = prompt("Enter Background Color")
+      document.getElementById("desktop").style.backgroundColor  = background;
+      localStorage.setItem("background", background)
+     }
+    }
+
+    function lock() {
+     if(prompt("Enter Password to Unlock Screen") == Password) {
+      alert("Screen Unlocked Sucesfully")
+     } else {
+      alert("Incorrect Password")
+      lock()
+     }
+    }
 </script>
