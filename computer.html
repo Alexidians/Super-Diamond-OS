@@ -442,7 +442,6 @@ function startBattery() {
     var BrowserLanguage = navigator.language;
     var Password = localStorage.getItem("Password")
     var SuperDiamondVirusInterval = null;
-    var TheDarkWebHasMngPermsPermission = false
     var crashInterval = null;
     var DragToolInterval = null
     const menu = document.getElementById("menu");
@@ -1530,7 +1529,7 @@ function closeFullscreen(elem) {
      setTimeout(RepairRepaired, 20000)
     }
     function RepairRepaired() {
-     location.replace("http://thediamondclan.atwebpages.com/htmlos.php")
+     location.replace(location.href)
     }
     function DataViewProtected() {
      if(prompt("Enter Your Password") == Password) {
