@@ -1,0 +1,72 @@
+<style>
+    #bar {
+      width: 100%;
+      height: 35px;
+      background-color: #333;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      bottom: 0;
+    }
+</style>
+<div id="bar"><img onclick="exitApp()" src="Super Diamond OS_files/cube.png" width="30" height="30"></div>
+<div id="home">
+</div>
+<div id="app"></div>
+<script type="module" src="Super Diamond OS_files/x-frame-bypass.js"></script>
+<script src="Super Diamond OS_files/fengari-web.js"></script>
+<script src="https://unpkg.com/@ungap/custom-elements-builtin"></script>
+<script>
+      function importJS(url) {
+       var script = document.createElement("script")
+       script.src = url
+       document.body.appendChild(script)
+      }
+
+      function importCss(url) {
+       var stylesheet = document.createElement("link")
+       stylesheet.src = url
+       stylesheet.rel = "stylesheet/css"
+       document.body.appendChild(stylesheet)
+      }
+
+      function importLua(url) {
+       var script = document.createElement("script")
+       script.src = url
+       script.rel = "application/lua"
+       document.body.appendChild(script)
+      }
+
+function openApp(appName) {
+ var App = document.getElementById("app").innerHTML
+ App.innerHTML = ""
+ if(AppName == "Roblox") {
+  document.getElementById("app").style.display = "block"
+  document.getElementById("app").innerHTML = "<iframe is='x-frame-bypass' src='https://roblox.com'></iframe>"
+  document.getElementById("home").style.display = "none"
+ }
+ if(AppName == "Google") {
+  document.getElementById("app").style.display = "block"
+  document.getElementById("app").innerHTML = "<iframe is='x-frame-bypass' src='https://google.com/search?q=Google'></iframe>"
+  document.getElementById("home").style.display = "none"
+ }
+ if(AppName == "Wix Owner") {
+  document.getElementById("app").style.display = "block"
+  document.getElementById("app").innerHTML = "<iframe src='https://wix.com'></iframe>"
+  document.getElementById("home").style.display = "none"
+ }
+ if(AppName == "Youtube") {
+  document.getElementById("app").style.display = "block"
+  document.getElementById("app").innerHTML = "<iframe src='https://youtube.com'></iframe>"
+  document.getElementById("home").style.display = "none"
+ }
+}
+
+function exitApp() {
+ document.getElementById("app").style.display = "none"
+ document.getElementById("home").style.display = "block"
+ document.getElementById("app").innerHTML = ""
+}
+</script>
