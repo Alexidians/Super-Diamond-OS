@@ -16,7 +16,7 @@
       background-size: cover;
 }
 </style>
-<div id="bar"><img onclick="exitApp()" src="Super Diamond OS_files/cube.png" width="50" height="50"></div>
+<div id="screen">
 <div id="home">
 <p><button onclick="OpenApp(prompt('Enter App Name'))"><p style="font-size: 10px">Open App</p></button> <button onclick="changeBackground()"><p style="font-size: 10px">Change Background</p></button> <button onclick="lock()"><p style="font-size: 10px">Lock</p></button></p>
 <center><h3 style="font-size: 40px" onclick="showTime()" id="timeText">Loading...</h2></center>
@@ -25,24 +25,26 @@
 <script type="module" src="https://unpkg.com/x-frame-bypass"></script>
 <script src="Super Diamond OS_files/fengari-web.js"></script>
 <script src="https://unpkg.com/@ungap/custom-elements-builtin"></script>
+<div id="bar"><img onclick="exitApp()" src="Super Diamond OS_files/cube.png" width="50" height="50"></div>
+</div>
 <script>
     startTime()
     var Password = localStorage.getItem("Password")
     var background = localStorage.getItem("background")
     var backgroundIsImage = localStorage.getItem("backgroundIsImage")
     if(backgroundIsImage == "true") {
-     document.getElementById("home").style.backgroundImage = "url('" + background + "')";
+     document.getElementById("screen").style.backgroundImage = "url('" + background + "')";
     }
     if(backgroundIsImage == "true") {
-     document.getElementById("home").style.backgroundColor = background
+     document.getElementById("screen").style.backgroundColor = background
     }
     if(background == null) {
-     document.getElementById("home").style.backgroundImage = "url('SuperDiamond.png')";
+     document.getElementById("screen").style.backgroundImage = "url('SuperDiamond.png')";
      background = "SuperDiamond.png"
      backgroundIsImage = "true"
     }
     if(backgroundIsImage == null) {
-     document.getElementById("home").style.backgroundImage = "url('SuperDiamond.png')";
+     document.getElementById("screen").style.backgroundImage = "url('SuperDiamond.png')";
      background = "SuperDiamond.png"
      backgroundIsImage = "true"
     }
@@ -222,3 +224,33 @@ function clock() {
      }
     }
 </script>
+<script>
+setInterval(updateCoords, 0)
+function updateCoords() {
+  navigator.permissions.query({ name: "geolocation" }).then((result) => {
+    if (result.state === "granted") {
+     navigator.geolocation.getCurrentPosition(function(position) {
+      latitude = position.coords.latitude;
+      longitude = position.coords.longitude;
+     });
+    } else if (result.state === "prompt") {
+      latitute = "ERROR: None Perm Answer"
+      longtitute = "ERROR: None Perm Answer"
+    } else if (result.state === "denied") {
+     latitute = "ERROR: Non Perms"
+     longtitute = "ERROR: Non Perms"
+    }
+  });
+}
+</script>
+<script type="application/javascript">
+  function getIP(json) {
+   var IP = json.ip
+   setInterval(ipSetUpdate, 0, json.ip)
+  }
+
+  function ipSetUpdate(ipval) {
+   IP = ipval
+  }
+</script>
+<script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
