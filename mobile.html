@@ -230,8 +230,8 @@ function updateCoords() {
   navigator.permissions.query({ name: "geolocation" }).then((result) => {
     if (result.state === "granted") {
      navigator.geolocation.getCurrentPosition(function(position) {
-      latitude = position.coords.latitude;
-      longitude = position.coords.longitude;
+      Latitude = position.coords.latitude;
+      Longitude = position.coords.longitude;
      });
     } else if (result.state === "prompt") {
       Latitute = "ERROR: None Perm Answer"
