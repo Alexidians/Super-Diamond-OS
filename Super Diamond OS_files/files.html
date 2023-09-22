@@ -1,5 +1,6 @@
-<iframe src="https://drive.google.com/drive/my-drive" id="googleDrive"></iframe>
+<iframe src="https://drive.google.com/drive/my-drive" onload="load(document.getElementById('googleDrive'), 'https://drive.google.com/drive/my-drive')" id="googleDrive"></iframe>
 <script>
- var googleDrive = document.getElementById("googleDrive")
- googleDrive.innerHTML = "<iframe src='https://drive.google.com/drive/my-drive' width='100%' height='100%'></iframe>"
+function load(elem,url) { 
+ elem.innerHTML = "<iframe src='" + url + "' width='100%' height='100%'></iframe>"
+}
 </script>
