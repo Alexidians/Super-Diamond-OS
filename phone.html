@@ -148,6 +148,11 @@ function OpenApp(AppName) {
   document.getElementById("app").innerHTML = "<iframe src='Super Diamond OS_files/data.html' width='100%' height='100%'></iframe>"
   document.getElementById("home").style.display = "none"
  }
+ if(AppName == "Files") {
+  document.getElementById("app").style.display = "block"
+  document.getElementById("app").innerHTML = "<iframe src='Super Diamond OS_files/files.html' width='100%' height='100%'></iframe>"
+  document.getElementById("home").style.display = "none"
+ }
  if(AppName == "Maps") {
   document.getElementById("app").style.display = "block"
   document.getElementById("app").innerHTML = "<iframe src='Super Diamond OS_files/maps.html' width='100%' height='100%'></iframe>"
