@@ -1,9 +1,22 @@
-<iframe src="https://drive.google.com/drive/my-drive" onload="load(document.getElementById('googleDrive'), 'https://drive.google.com/drive/my-drive')" id="googleDrive"></iframe>
-<script>
-function load(elem,url) { 
- var newbody = elem.contentWindow.eval("document.createElement('body')")
- newbody.innerHTML "<iframe src='" + url + "' width='100%' height='100%'></iframe>"
- elem.contentWindow.eval("document.querySelector('html')").appendChild(newbody)
- elem.contentWindow.eval("document.body") = newbody
+<html>
+<head>
+<style>
+#title {
+ color: #A68F8F;
 }
-</script>
+body {
+ background-color: black;
+}
+.option {
+ color: #A68F8F;
+}
+.option:hover {
+ color: white;
+}
+</style>
+</head>
+<body>
+<center><h1 id="title">Select A File System</h1></center>
+<h3 class="option" onclick="location.replace('https://icedrive.net')">Ice Drive</h3>
+</body>
+</html>
