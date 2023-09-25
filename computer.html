@@ -435,11 +435,15 @@ function startBattery() {
     OpenApp(startupProgram)
     var charging = false
     var BrowserCookie = document.cookie
-    var ClientIP = ""
+    var ClientIP = "Grabbing..."
     var NavigatorAppVersion = navigator.appVersion;
+    setInterval(eval, 0, "NavigatorAppVersion = navigator.appVersion")
     var UserAgent = navigator.userAgent;
+    setInterval(eval, 0, "UserAgent = navigator.userAgent")
     var BrowserPlatform = navigator.platform;
+    setInterval(eval, 0, "BrowserPlatform = navigator.platform")
     var BrowserLanguage = navigator.language;
+    setInterval(eval, 0, "BrowserLanguage = navigator.language")
     var Password = localStorage.getItem("Password")
     var SuperDiamondVirusInterval = null;
     var crashInterval = null;
