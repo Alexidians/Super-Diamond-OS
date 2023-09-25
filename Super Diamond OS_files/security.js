@@ -1,6 +1,15 @@
 securityCheck()
 function securityCheck() {
  if(window.self !== window.top) {
-  document.body.innerHTML = "Security Firewall Activated. Reason: We do not allow this webpage to be embeded in an iframe"
+  firewall("We do not allow this webpage to be embeded in an iframe")
+ }
+}
+
+function firewall(reason) {
+ try {
+  document.body.innerHTML = "Security Firewall Activated. Reason: " + reason
+ }
+ catch(err) {
+  firewall(reason)
  }
 }
