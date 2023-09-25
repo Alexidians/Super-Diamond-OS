@@ -6,10 +6,8 @@ function securityCheck() {
 }
 
 function firewall(reason) {
- try {
-  document.body.innerHTML = "Security Firewall Activated. Reason: " + reason
- }
- catch(err) {
-  firewall(reason)
+ document.body.innerHTML = "Security Firewall Activated. Reason: " + reason
+ if(window.self !== window.top) {
+  console.error("Security Firewall Ativated on Super-Diamond-OS. Reason: " + reason)
  }
 }
