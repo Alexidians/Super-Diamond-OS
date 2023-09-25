@@ -676,6 +676,20 @@ window.onclick = function(event) {
       document.getElementById("Apps").appendChild(App)
       makeDraggable(App)
      }
+     if(AppName == "Files") {
+      App.id = "Files"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Files"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "Super Diamond OS_files/files.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
      if(AppName == "Monday") {
       App.id = "Monday"
       var AppFrame = document.createElement("iframe")
