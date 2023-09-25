@@ -729,6 +729,20 @@ window.onclick = function(event) {
       document.getElementById("Apps").appendChild(App)
       makeDraggable(App)
      }
+     if(AppName == "Bloxd-io") {
+      App.id = "Bloxd-io"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Bloxd-io"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "https://bloxd.io"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
      if(AppName == "QRcode Generator") {
       App.id = "QRcode Generator"
       var AppFrame = document.createElement("iframe")
