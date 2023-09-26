@@ -30,11 +30,18 @@ h5 {
 h6 {
  color: white;
 }
+
+.cmd_input {
+ bottom: 0;
+}
 </style>
 <div id="log">
-
+<p>Super Diamond OS Command Prompt Started. run anything and we will log the command and response</p>
+<p>Our Command Prompt runs js and error logs will have the same like text as js errors for html</p>
+<p>be aware of what you run importing stuff like lua and js with importLua("url") importJS("url") can be harmful none of our anti-virus will stop it</p>
+<p>That stuff may steal data. find code to change your password and you be not get it back until we help. it can be anything bad or good only run anything if you know what ur doing</p>
 </div>
-<p><input id="commandInput"></input> <button onclick="run()">Run</button></p>
+<p class="cmd_input"><input id="commandInput"></input> <button onclick="run()">Run</button></p>
 <script>
 function run() {
  var command = document.getElementById("commandInput").value
