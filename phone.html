@@ -22,7 +22,7 @@
 </style>
 <div id="screen">
 <div id="home">
-<p><button onclick="OpenApp(prompt('Enter App Name'))"><p style="font-size: 10px">Open App</p></button> <button onclick="changeBackground()"><p style="font-size: 10px">Change Background</p></button> <button onclick="lock()"><p style="font-size: 10px">Lock</p></button></p>
+<p><button onclick="OpenApp(prompt('Enter App Name'))"><p style="font-size: 10px">Open App</p></button> <button onclick="changeBackground()"><p style="font-size: 10px">Change Background</p></button> <button onclick="lock()"><p style="font-size: 10px">Lock</p></button> <button onclick="alert(importPlugin(prompt('Enter Plugin File Url'),prompt('Enter File Extension. we need it to know how to import the plugin for you')))"><p style="font-size: 10px">Add Plugin</p></button></p>
 <center><h3 style="font-size: 40px" onclick="ShowTime()" id="timeText">Loading...</h2></center>
 </div>
 <div id="app"></div>
