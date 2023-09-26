@@ -585,6 +585,24 @@ window.onclick = function(event) {
        document.body.appendChild(script)
       }
 
+      function importPlugin(url) {
+       var splitUrl = url.split(".")
+       var fileEndpoint = splitUrl[splitUrl.length]
+       switch(fileEndpoint) {
+  case "js":
+    importJS(url)
+    return "succesfully Added JS plugin: " + url;
+  case "css":
+    importCss(url)
+    return "succesfully Added Css plugin: " + url;
+  case "lua":
+   importLua(url) 
+   return "succesfully Added lua plugin: " + url;
+  default:
+   return "plugin has invalid file type"
+}
+      }
+
       function closeDragElement() {
         // stop moving when mouse button is released:
         document.onmouseup = null;
