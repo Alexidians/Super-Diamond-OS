@@ -1,0 +1,55 @@
+<style>
+body {
+ background-color: black;
+}
+
+p {
+ color: white;
+}
+
+h1 {
+ color: white;
+}
+
+h2 {
+ color: white;
+}
+
+h3 {
+ color: white;
+}
+
+h4 {
+ color: white;
+}
+
+h5 {
+ color: white;
+}
+
+h6 {
+ color: white;
+}
+</style>
+<div id="log">
+
+</div>
+<p><input id="commandInput"></input> <button onclick="run()">Run</button></p>
+<script>
+function run() {
+ var command = document.getElementById("commandInput").value
+ try {
+  var logtext = parent.eval(command)
+ }
+ catch(err) {
+  logtext = err
+ }
+ var logelem = document.createElement("p")
+ var commandelem = document.createElement("p")
+ commandelem.innerHTML = command
+ logelem.innerHTML = logtext
+ document.getElementById("log").appendChild(commandelem)
+ document.getElementById("log").appendChild(logelem)
+ document.getElementById("commandInput").value = ""
+}
+</script>
