@@ -110,6 +110,23 @@
        document.body.appendChild(script)
       }
 
+
+      function importPlugin(url,endpoint) {
+       switch(endpoint) {
+  case "js":
+    importJS(url)
+    return "succesfully Added JS plugin: " + url;
+  case "css":
+    importCss(url)
+    return "succesfully Added Css plugin: " + url;
+  case "lua":
+   importLua(url) 
+   return "succesfully Added lua plugin: " + url;
+  default:
+   return "plugin has invalid file type"
+}
+      }
+
 function OpenApp(AppName) {
  var App = document.getElementById("app").innerHTML
  App.innerHTML = ""
