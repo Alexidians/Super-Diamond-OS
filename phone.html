@@ -21,6 +21,7 @@
 }
 </style>
 <div id="screen">
+<progress id="batteryAmountDisplay" value="0" max="100"></progress>
 <div id="home">
 <p><button onclick="OpenApp(prompt('Enter App Name'))"><p style="font-size: 10px">Open App</p></button> <button onclick="changeBackground()"><p style="font-size: 10px">Change Background</p></button> <button onclick="lock()"><p style="font-size: 10px">Lock</p></button> <button onclick="alert(importPlugin(prompt('Enter Plugin File Url'),prompt('Enter File Extension. we need it to know how to import the plugin for you')))"><p style="font-size: 10px">Add Plugin</p></button></p>
 <center><h3 style="font-size: 40px" onclick="ShowTime()" id="timeText">Loading...</h2></center>
@@ -31,6 +32,43 @@
 <script src="https://unpkg.com/@ungap/custom-elements-builtin"></script>
 <div id="bar"><img onclick="exitApp()" src="Super Diamond OS_files/cube.png" width="50" height="50"></div>
 </div>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+</style>
+<div id="chargingMessage" class="modal">
+  <div class="modal-content">
+    <center><h1>Now Charging</h1></center>
+    <center><h3>0%</h3 id="chargingMessagePrecentage"></center>
+  </div>
+</div>
+
+<script>
+function chargingMessage() {
+var msg = document.getElementById("chargingMessage");
+}
+</script>
 <script>
     startTime()
     var Password = localStorage.getItem("Password")
@@ -109,7 +147,23 @@
        script.rel = "application/lua"
        document.body.appendChild(script)
       }
+      navigator.getBattery().then((battery) => {
+       battery.addEventListener("chargingchange", () => {
+        charging = battery.charging;
+        if(charging == true) {
+         chargingMessage()
+        }
+       });
+      });
 
+      function updateBattery() {
+       navigator.getBattery().then((battery) => {
+        charging = battery.charging;
+        batteryAmount = battery.level;
+        document.getElementById("chargingMessagePrecentage").innerHTML = batteryAmount + "%"
+        document.getElementById("batteryAmountDisplay").value = batteryAmount
+       });
+      }
 
       function importPlugin(url,endpoint) {
        switch(endpoint) {
@@ -192,7 +246,6 @@ function exitApp() {
  document.getElementById("home").style.display = "block"
  document.getElementById("app").innerHTML = ""
 }
-
     function passSetup() {
      var pass = prompt("Enter A Password")
      localStorage.setItem("Password", pass)
@@ -321,5 +374,8 @@ function updateCoords() {
     setInterval(eval, 0, "BrowserLanguage = navigator.language")
 </script>
 <script src="https://alexidians.github.io/Super-Diamond-Programing-Language/programing-language.js"></script>
+<script>
+elements.topStick(document.getElementById("batteryAmountDisplay"))
+</script>
 </body>
 </html>
