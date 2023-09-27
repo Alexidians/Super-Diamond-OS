@@ -157,7 +157,8 @@ function chargingMessage() {
         }
        });
       });
-
+      
+      setInterval(updateBattery, 0)
       function updateBattery() {
        navigator.getBattery().then((battery) => {
         charging = battery.charging;
@@ -377,7 +378,9 @@ function updateCoords() {
 </script>
 <script src="https://alexidians.github.io/Super-Diamond-Programing-Language/programing-language.js"></script>
 <script>
-elements.topStick(document.getElementById("batteryAmountDisplay"))
+document.getElementById("batteryAmountDisplay").position = "fixed"
+document.getElementById("batteryAmountDisplay").bottom = "0"
+document.getElementById("batteryAmountDisplay").width = "100%"
 </script>
 </body>
 </html>
