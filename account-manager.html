@@ -1,42 +1,36 @@
 <button onclick="saveCurrent()">Save Current</button>
 <p>or</p>
 <p><input id="newAccountDiscInput"> <button onclick="saveWithDisc()">Save From Disc</button></p>
-<p><input id="deleteAccountNameInput"> <button onclick="deleteFromName()">Delete</button></p>
-<p><input id="loginAccountNameInput"> <button onclick="loginFromName()">Login</button></p>
+<p><button onclick="deleteFromName()">Delete</button></p>
+<p><button onclick="loginFromName()">Login</button></p>
+<iframe style="display: none" src="https://super-diamond-os-account-storage.github.io/storage/create.html" id="accountCreateApi"></iframe>
+<iframe style="display: none" src="https://super-diamond-os-account-storage.github.io/storage/delete.html" id="accountDeleteApi"></iframe>
+<iframe style="display: none" src="https://super-diamond-os-account-storage.github.io/storage/get.html" id="accountReadApi"></iframe>
 <script>
+var createWind = document.getElementById("accountCreateApi")
+var deleteWind = document.getElementById("accountDeleteApi")
+var getWind = document.getElementById("accountReadApi")
 function saveCurrent() {
- var name = prompt("Enter Account Name. Will overwrite data if name is in use")
  var disc = localStorage.getItem("Password") + "," + localStorage.getItem("background") + "," + localStorage.getItem("backgroundIsImage") + "," + localStorage.getItem("startupProgram")
- localStorage.setItem(name, disc)
+ createWind.postMessage(disc, "*")
  alert("Current Data was saved as " + name + ". the data is only accesable from this device")
 }
 
 function saveWithDisc() {
- var name = prompt("Enter Account Name. Will overwrite data if name is in use")
  var disc = document.getElementById("newAccountDiscInput").value
- localStorage.setItem(name, disc)
- alert("Disc " + disc + " was saved as " + name + ". the data is only accesable from this device")
+ createWind.postMessage(disc, "*")
 }
 
 function deleteFromName() {
- var name = document.getElementById("deleteAccountNameInput").value
- if(prompt("Verify Your Identity by Entering Your Password") == localStorage.getItem(name).split(",")[1]) {
-  localStorage.setItem(name, "*Account Was Deleted*")
-  alert("Account " + name + " was Deleted")
- }
- else {
-  alert("Incorrect Password")
- }
+ deleteWind.postMessage("delete", "*")
 }
 
 function loginFromName() {
- var name = document.getElementById("loginAccountNameInput").value
- var disc = localStorage.getItem(name)
- disc = disc.split(",")
- localStorage.setItem("Password", disc[1])
- localStorage.setItem("background", disc[2])
- localStorage.setItem("backgroundIsImage", disc[3])
- localStorage.setItem("startupProgram", disc[4])
+ disc = accountDisc.split(",")
+ localStorage.setItem("Password", disc[0])
+ localStorage.setItem("background", disc[1])
+ localStorage.setItem("backgroundIsImage", disc[2])
+ localStorage.setItem("startupProgram", disc[3])
  alert("Data From Save " + name + " has been loaded. all procceses of the OS need to be restarted to have the data")
 }
 </script>
