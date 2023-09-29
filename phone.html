@@ -143,6 +143,19 @@ function chargingMessage() {
        document.body.appendChild(stylesheet)
       }
 
+      function newIframeApp(url, title) {
+  document.getElementById("app").style.display = "block"
+  document.getElementById("app").innerHTML = "<iframe src='" + url + "' width='100%' height='100%'></iframe>"
+  document.getElementById("home").style.display = "none"
+     return  document.getElementById("app");
+      }
+
+      function newJSApp(code, title) {
+     var App = document.getElementById("app")
+     eval(code)
+     return App;
+      }
+
       function importLua(url) {
        var script = document.createElement("script")
        script.src = url
