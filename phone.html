@@ -156,6 +156,15 @@ function chargingMessage() {
      return App;
       }
 
+      function newLuaApp(code, title) {
+     var App = document.getElementById("app")
+     var script = document.createElement("script")
+     script.type = "application/lua"
+     script.innerHTML = code
+     App.appendChild(script)
+     return App;
+      }  
+
       function importLua(url) {
        var script = document.createElement("script")
        script.src = url
