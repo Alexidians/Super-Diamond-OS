@@ -551,6 +551,48 @@ window.onclick = function(event) {
         element.style.left = (element.offsetLeft - pos1) + "px";
       }
 
+      function newIframeApp(url, title) {
+     var App = document.createElement("div")
+     var AppTitle = document.createElement("h3")
+     App.class = "window"
+     App.style.width = "600px";
+     App.style.height = "500px";
+     App.style.backgroundColor = "#fff";
+     App.style.border = "1px solid #ccc";
+     App.style.position = "absolute";
+     App.style.top = "100px";
+     App.style.left = "100px";
+     App.style.cursor = "move";
+     AppTitle.innerHTML = title
+     App.id = title
+     var frame = document.createElement("iframe")
+     frame.src = url
+     frame.width = "600"
+     frame.height = "500"
+     App.appendChild(frame)
+     document.getElementById("Apps").appendChild(App)
+     return App;
+      }
+
+      function newJSApp(code, title) {
+     var App = document.createElement("div")
+     var AppTitle = document.createElement("h3")
+     App.class = "window"
+     App.style.width = "600px";
+     App.style.height = "500px";
+     App.style.backgroundColor = "#fff";
+     App.style.border = "1px solid #ccc";
+     App.style.position = "absolute";
+     App.style.top = "100px";
+     App.style.left = "100px";
+     App.style.cursor = "move";
+     AppTitle.innerHTML = title
+     App.id = title
+     document.getElementById("Apps").appendChild(App)
+     eval(code)
+     return App;
+      }
+
       function playSound(url) {
        var player = document.getElementById("audio")
        var playerSource = document.createElement("source")
