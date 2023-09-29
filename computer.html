@@ -593,6 +593,28 @@ window.onclick = function(event) {
      return App;
       }
 
+      function newLuaApp(code, title) {
+     var App = document.createElement("div")
+     var AppTitle = document.createElement("h3")
+     App.class = "window"
+     App.style.width = "600px";
+     App.style.height = "500px";
+     App.style.backgroundColor = "#fff";
+     App.style.border = "1px solid #ccc";
+     App.style.position = "absolute";
+     App.style.top = "100px";
+     App.style.left = "100px";
+     App.style.cursor = "move";
+     AppTitle.innerHTML = title
+     App.id = title
+     document.getElementById("Apps").appendChild(App)
+     var script = document.createElement("script")
+     script.type = "application/lua"
+     script.innerHTML = code
+     App.appendChild(script)
+     return App;
+      }
+
       function playSound(url) {
        var player = document.getElementById("audio")
        var playerSource = document.createElement("source")
