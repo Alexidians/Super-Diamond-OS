@@ -9,56 +9,10 @@ body {
 #buttonBar {
  bottom: 0px;
 }
-
-#internetBarIP {
- bottom: 10px;
-}
-
-#internetBar {
- bottom: 23px;
-}
-
- p {
- color: white;
-}
-
-h1 {
- color: white;
-}
 </style>
 <iframe src="https://super-diamond-internet.github.io/internet/connector.html" style="display: none" id="connector"></iframe>
-<h1 id="internetBar"></h1>
-<p id="internetBarIP"></p>
-<p id="buttonBar"><button id="disconnectButton" style="display: none" onclick="disconnect()">Disconnect</button> <button id="connectButton" style="display: none" onclick="connect()">Connect</button></p>
+<p id="buttonBar"><button onclick="disconnect()">Disconnect</button> <button onclick="connect()">Connect</button> <button onclick="internetInfo()">Information</button></p>
 <script>
-setInterval(updateButtons, 0)
-setInterval(updateInternetBar, 0)
-
-function updateButtons() {
- if(isConnected()) {
-  document.getElementById("connectButton").style.display = "block"
-  document.getElementById("disconnectButton").style.display = "none"
- }
- else {
-  document.getElementById("connectButton").style.display = "none"
-  document.getElementById("disconnectButton").style.display = "block"
- }
-}
-
-function updateInternetBar() {
- document.getElementById("internetBarIP").innerHTML = localStorage.getItem("ip")
- document.getElementById("internetBar").innerHTML = localStorage.getItem("internet")
-}
-
-function isConnected() {
- if(localStorage.getItem("internet") == null && localStorage.getItem("ip") == null) {
-  return false;
- }
- else {
-  return true;
- }
-}
-
 function connect() {
  documet.getElementById("connector").contentWindow.postMessage("User Requested Internet Connection", "*")
 }
@@ -67,6 +21,10 @@ function disconnect() {
  localStorage.removeItem("internet")
  localStorage.removeItem("ip")
  alert("Internet Disconnected")
+}
+
+function internetInfo() {
+ alert("internet:/nName: " + localStorage.getItem("internet") + "/nIP: " + localStorage.getItem("ip"))
 }
 </script>
 </body>
