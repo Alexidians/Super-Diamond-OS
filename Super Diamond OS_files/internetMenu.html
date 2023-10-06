@@ -19,7 +19,7 @@ body {
 }
 </style>
 <iframe src="https://super-diamond-internet.github.io/internet/connector.html" style="display: none" id="connector"></iframe>
-<p id="ĪnternetBar"><img style="font-size: 13.3px;" src="wifi.png"></img> </p>
+<h1 id="ĪnternetBar"></h1>
 <p id="internetBarIP"></p>
 <p id="buttonBar"><button id="disconnectButton" style="display: none" onclick="disconnect()">Disconnect</button> <button id="connectButton" style="display: none" onclick="connect()">Connect</button></p>
 <script>
@@ -39,7 +39,7 @@ function updateButtons() {
 
 function updateInternetBar() {
  document.getElementById("internetBarIP").innerHTML = localStorage.getItem("ip")
- document.getElementById("internetBar").innerHTML = localStorage.getItem("ip")
+ document.getElementById("internetBar").innerHTML = localStorage.getItem("internet")
 }
 
 function isConnected() {
