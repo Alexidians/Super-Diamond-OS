@@ -491,9 +491,14 @@ function startBattery() {
        alert("Before you go Add a Password")
        passSetup()
       } else {
+       if(getCookie("loggedIn") == "itis") {
+        alert("Welcome Back")
+       }
+       else {
        var LoginEnteredPass = prompt("Enter Password To Continue")
        if(LoginEnteredPass == Password) {
         alert("Welcome Back")
+        setCookie("loggedIn", "itis", 1)
        } else {
         if(LoginEnteredPass == "Recover") {
          alert("The Recovery Feature might not be added but it currently is not here/n If you need to recover/reset your password Contact us at super_diamond_community@inbox.lv")
@@ -504,12 +509,36 @@ function startBattery() {
          location.replace(location.href)
         }
        }
+       }
       }
      }
     }
     AntiVirusPermissionRequest()
     openFullscreen(document.body)
     openHomeMenu()
+
+function setCookie(cname,cvalue,exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
 
    function openHomeMenu() {
     var homeMenu = document.getElementById("homeMenu")
