@@ -121,9 +121,14 @@ function chargingMessage() {
        alert("Before you go Add a Password")
        passSetup()
       } else {
+       if(getCookie("loggedIn") == "itis") {
+        alert("Welcome Back")
+       }
+       else {
        var LoginEnteredPass = prompt("Enter Password To Continue")
        if(LoginEnteredPass == Password) {
         alert("Welcome Back")
+        setCookie("loggedIn", "itis", 1)
        } else {
         if(LoginEnteredPass == "Recover") {
          alert("The Recovery Feature might not be added but it currently is not here/n If you need to recover/reset your password Contact us at super_diamond_community@inbox.lv")
@@ -133,6 +138,7 @@ function chargingMessage() {
          alert("Incorrect Password")
          location.replace(location.href)
         }
+       }
        }
       }
      }
