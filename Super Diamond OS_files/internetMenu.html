@@ -43,11 +43,11 @@ function updateInternetBar() {
 }
 
 function isConnected() {
- if(localStorage.getItem("internet") !== null && localStorage.getItem("ip") !== null) {
-  return true;
+ if(localStorage.getItem("internet") == null && localStorage.getItem("ip") == null) {
+  return false;
  }
  else {
-  return false;
+  return true;
  }
 }
 
