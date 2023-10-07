@@ -381,15 +381,9 @@ function updateCoords() {
   });
 }
 </script>
-<script type="application/javascript">
-  function getIP(json) {
-   var IP = json.ip
-   setInterval(ipSetUpdate, 0, json.ip)
-  }
-
-  function ipSetUpdate(ipval) {
-   IP = ipval
-  }
+<script>
+var IP = localStorage.getItem("ip")
+setInterval(eval, 0, "IP = localStorage.getItem('ip')")
 </script>
 <script>
     var NavigatorAppVersion = navigator.appVersion;
