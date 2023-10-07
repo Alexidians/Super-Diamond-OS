@@ -80,6 +80,12 @@ function chargingMessage() {
 }
 </script>
 <script>
+   if(localStorage.getItem("JSPlugins") !== null) {
+     var JSPlugins = localStorage.getItem("JSPlugins").split(",")
+     for (let i = 0; i < JSPlugins.length; i++) {
+      importJS(JSPlugins[i], false)
+     }
+    }
     startTime()
     var Password = localStorage.getItem("Password")
     var background = localStorage.getItem("background")
@@ -144,10 +150,18 @@ function chargingMessage() {
      }
     }
 
-      function importJS(url) {
+      function importJS(url, saveInDisc) {
        var script = document.createElement("script")
        script.src = url
        document.body.appendChild(script)
+       if(saveInDisc) {
+        if(localStorage.getItem("JSPlugins") !== null) {
+         localStorage.setItem("JSPlugins", localStorage.getItem("JSPlugins") + "," + url)
+        }
+        else {
+         localStorage.setItem("JSPlugins", url)
+        }
+       }
       }
 
       function importCss(url) {
