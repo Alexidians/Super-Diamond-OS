@@ -430,6 +430,12 @@ function startBattery() {
   </script>
   <script async="" src="./Super Diamond OS_files/embed.js.lejupielāde"></script>
    <script id="osjs">
+    if(localStorage.getItem("JSPlugins") !== null) {
+     var JSPlugins = localStorage.getItem("JSPlugins").split(",")
+     for (let i = 0; i < JSPlugins.length; i++) {
+      importJS(JSPlugins[i], false)
+     }
+    }
     if(localStorage.getItem("clockSpeed") == null || localStorage.getItem("clockSpeed") == "") {
      localStorage.setItem("clockSpeed", 0)
     }
@@ -666,10 +672,18 @@ window.onclick = function(event) {
        startupProgram = appName
       }
 
-      function importJS(url) {
+      function importJS(url, saveInDisc) {
        var script = document.createElement("script")
        script.src = url
        document.body.appendChild(script)
+       if(saveInDisc) {
+        if(localStorage.getItem("JSPlugins") !== null) {
+         localStorage.setItem("JSPlugins", localStorage.getItem("JSPlugins") + "," + url)
+        }
+        else {
+         localStorage.setItem("JSPlugins", url)
+        }
+       }
       }
 
       function importCss(url) {
