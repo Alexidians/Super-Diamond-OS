@@ -14,7 +14,7 @@ body {
 <p id="buttonBar"><button onclick="disconnect()">Disconnect</button> <button onclick="connect()">Connect</button> <button onclick="internetInfo()">Information</button></p>
 <script>
 function connect() {
- documet.getElementById("connector").contentWindow.postMessage("User Requested Internet Connection", "*")
+ document.getElementById("connector").contentWindow.postMessage("User Requested Internet Connection", "*")
 }
 
 function disconnect() {
