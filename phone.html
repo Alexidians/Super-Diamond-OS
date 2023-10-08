@@ -237,6 +237,11 @@ function chargingMessage() {
 function OpenApp(AppName) {
  var App = document.getElementById("app").innerHTML
  App.innerHTML = ""
+ if(AppName == "Virtual Machine") {
+  document.getElementById("app").style.display = "block"
+  document.getElementById("app").innerHTML = "<iframe src='Super Diamond OS_files/Virtual-Machine.html' width='100%' height='100%'></iframe>"
+  document.getElementById("home").style.display = "none"
+ }
  if(AppName == "Roblox") {
   document.getElementById("app").style.display = "block"
   document.getElementById("app").innerHTML = "<iframe is='x-frame-bypass' src='https://roblox.com' width='100%' height='100%'></iframe>"
