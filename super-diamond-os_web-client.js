@@ -39,4 +39,4 @@ navigator.__defineGetter__('languages', function() {
     return array
 });
 
-chrome = null
+chrome = undefined
