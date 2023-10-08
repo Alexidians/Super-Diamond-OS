@@ -32,4 +32,11 @@ navigator.__defineGetter__('platform', function() {
     return 'Super-Diamond-OS Latest-Release';
 });
 
+navigator.__defineGetter__('languages', function() {
+   var array = []
+   array[0] = "en-US"
+   array[1] = "en"
+    return array
+});
+
 chrome = null
