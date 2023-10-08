@@ -396,6 +396,7 @@ function clock() {
     }
 
     function lock() {
+     setCookie("loggedIn", "heIsnt", 1)
      if(prompt("Enter Password to Unlock Screen") == Password) {
       alert("Screen Unlocked Sucesfully")
      } else {
