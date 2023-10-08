@@ -740,6 +740,20 @@ window.onclick = function(event) {
      App.style.left = "100px";
      App.style.cursor = "move";
      var AppTitleTextNode = document.createTextNode(AppName)
+     if(AppName == "Virtual Machine") {
+      App.id = "Virtual Machine"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Virtual Machine"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "Super Diamond OS_files/Virtual-Machine.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
      if(AppName == "Super Diamond Browser") {
       App.id = "Super Diamond Browser"
       var AppFrame = document.createElement("iframe")
