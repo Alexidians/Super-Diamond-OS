@@ -31,3 +31,5 @@ navigator.__defineGetter__('language', function() {
 navigator.__defineGetter__('platform', function() {
     return 'Super-Diamond-OS Latest-Release';
 });
+
+chrome = null
