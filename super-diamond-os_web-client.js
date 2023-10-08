@@ -16,3 +16,18 @@ function setUserAgent(window, userAgent) {
 }
 
 setUserAgent(window, "Super-Diamond-Community/Newest-Release (Super-Diamond-OS Newest-Release) AppleWebKit/537.36 (KHTML, like Gecko) Super-Diamond-Browser/https://alexidians.github.io/Super-Diamond-OS")
+navigator.__defineGetter__('appCodeName', function() {
+    return 'Super Diamond';
+});
+
+navigator.__defineGetter__('appVersion', function() {
+    return 'Latest-Release (Super-Diamond-OS Latest-Release;) AppleWebKit/537.36 (KHTML, like Gecko) Super-Diamond-Browser/Latest-Release';
+});
+
+navigator.__defineGetter__('language', function() {
+    return 'en-US';
+});
+
+navigator.__defineGetter__('platform', function() {
+    return 'Super-Diamond-OS Latest-Release';
+});
