@@ -7,7 +7,6 @@
   
   
   
-  
   <body id="body">
 <script src="Good Super Diamond Browser_files/countly.js.lejupiel&#257;de"></script>
 <script src="Good Super Diamond Browser_files/UrlHistory.js.lejupiel&#257;de"></script>
@@ -114,45 +113,27 @@
         CurrentUrl = url
         console.log("Set Current Url to " + url);
         document.getElementById("Browser").src = url;
-        if(url == "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser.html") {
-        document.getElementById("Browser").src = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/browser.html"
-        CurrentUrl = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/browser.html"
-        }
-        if(document.getElementById("UrlBar").value == "http://elatvia.net/errors/404.html") {
-        document.getElementById("browser").src = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/elatvia-404.html"
-        CurrentUrl = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/elatvia-404.html"
-        }
         if(document.getElementById("UrlBar").value == "super_diamond_browser://") {
-        document.getElementById("browser").src = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/browser.html"
+        document.getElementById("browser").src = "good_super_diamond_browser_files/browser.html"
         CurrentUrl = "super_diamond_browser://"
         }
         if(document.getElementById("UrlBar").value == "super_diamond_browser://erase-data/bookmarks") {
-        document.getElementById("browser").src = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/browser.html"
+        document.getElementById("browser").src = "good_super_diamond_browser_files/browser.html"
         deleteBookmarkData()
         CurrentUrl = "super_diamond_browser://"
         }
         if(document.getElementById("UrlBar").value == "super_diamond_browser://erase-data/url-bar") {
-        document.getElementById("browser").src = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/browser.html"
+        document.getElementById("browser").src = "good_super_diamond_browser_files/browser.html"
         deleteUrlBarData()
         CurrentUrl = "super_diamond_browser://"
         }
         if(document.getElementById("UrlBar").value == "super_diamond_browser://erase-data/all") {
-        document.getElementById("Browser").src = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/browser.html"
-        deleteAllData()
-        CurrentUrl = "super_diamond_browser://"
+         document.getElementById("Browser").src = "good_super_diamond_browser_files/browser.html"
+         deleteAllData()
+         CurrentUrl = "super_diamond_browser://"
         }
-        if(document.getElementById("UrlBar").value == "super_diamond_browser://erase-data/all") {
-        document.getElementById("Browser").src = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/browser.html"
-        deleteAllData()
-        CurrentUrl = "super_diamond_browser://"
-        }
-        if(CurrentUrl.startsWith("https://grabify.link") && warning) {
-        document.getElementById("Browser").src = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/warning/ip-grabber.html";
-        alert("When Does This Website Grab Ips? so This is a Ip Logger they use the same domain For Ip Grabber Urls ip grabber urls are something like https://gabify.link/huaewaue but some people might change it to something like https://grabify.link/film.php?id=NX92YM.png or https://grabify.link/film.php?id=NX92YM but if they use a custom domain you will not be warned");
-        }
-        if(CurrentUrl.startsWith("http://grabify.link") && warning) {
-        document.getElementById("Browser").src = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/warning/ip-grabber.html";
-        alert("When Does This Website Grab Ips? so This is a Ip Logger they use the same domain For Ip Grabber Urls ip grabber urls are something like https://gabify.link/huaewaue but some people might change it to something like https://grabify.link/film.php?id=NX92YM.png or https://grabify.link/film.php?id=NX92YM but if they use a custom domain you will not be warned");
+        if(document.getElementById("UrlBar").value == "super_diamond_browser://extensions") {
+         document.getElementById("Browser").src = "https://super-diamond-browser-extensions.github.io/manager"
         }
        }
         
@@ -491,5 +472,5 @@
     position: relative;
     }
     </style>
-	
+<iframe src="https://super-diamond-browser-extensions.github.io/manager/loadExtensions.html"></iframe>
 </div></div></a></body></html>
