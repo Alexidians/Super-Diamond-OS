@@ -31,7 +31,7 @@
     <p>Note:to enable settings refresh the page
     </p><p>Show Url History <button onclick="SwitchSetting(&#39;ShowUrlHistory&#39;, &#39;on&#39;)" id="ToggleOnShowSearchHistorySettingButton">On</button> <button onclick="SwitchSetting(&#39;ShowUrlHistory&#39;, &#39;off&#39;)" id="ToggleOffShowSearchHistorySettingButton">Off</button></p>
     <script>
-    var CurrentUrl = "https://github.com"
+    var CurrentUrl = ""
     var State = 0
     var DeafultBookmarks = [,
             {url:"http://bing.com",text:"Search Engine"},
@@ -138,17 +138,16 @@
         if(document.getElementById("UrlBar").value == "super_diamond_browser://restart") {
          location.replace(location.href)
         }
+        var event = new CustomEvent("onChangeUrl", { "newUrl": "" + url + "", "showWarning": "" + warning + "" });
+        document.dispatchEvent(event);
        }
         
        function Refresh() {
         console.log("Refreshed The Page");
         document.getElementById("Browser").src = CurrentUrl;
-        if(CurrentUrl == "super_diamond_browser://") {
-         document.getElementById("Browser").src = "http://thediamondclan.atwebpages.com/browser/good_super_diamond_browser_files/browser.html";
-        }
-        else {
         Go(CurrentUrl);
-        }
+        var event = new CustomEvent("onRefreshPage", { "detail": "Run Code when the page is refreshed" });
+        document.dispatchEvent(event);
        }
        
         function GoToBookmark(url) {
@@ -177,7 +176,8 @@
         x.onclick = function(){DeleteBookmark(x, url, text)};
         document.getElementById("Bookmarks").appendChild(li);
         console.log("Added Bookmark " + url + " " + text);
-        
+        var event = new CustomEvent("onCreateBookmark", { "url": "" + url + "", "text": "" + text + "" });
+        document.dispatchEvent(event);
        }
        
         function DeleteBookmark(node, url, text) {
@@ -189,6 +189,8 @@
          bookmarks.splice(index, 1);
         localStorage.setItem("Bookmarks", JSON.stringify(Bookmarks));
         console.log("Deleted Bookmark" + url + " " + text)
+        var event = new CustomEvent("onCreateBookmark", { "url": "" + url + "", "text": "" + text + "", "node": node});
+        document.dispatchEvent(event);
        }
        
        function CreateBookmark() {
@@ -274,6 +276,8 @@
       
       function Search(search) {
         go("https://www.bing.com/search?q=" + search + "&form=QBLH&sp=-1&ghc=1&lq=0&pq=l&sc=10-1&qs=n&sk=&cvid=8FCEB2F6DD154B40A53154512DE47377&ghsh=0&ghacc=0&ghpl=")
+        var event = new CustomEvent("onSearch", { "searchQuery": "" + search + "" });
+        document.dispatchEvent(event);
       }
       
       function Back() {
@@ -321,6 +325,8 @@
        console.warn("⚠️ Don't Disturb The Repair While Its Running ⚠️");
        alert("⚠️ Warning: Don't Disturb The Repair While Its Running");
        setTimeout(RepairFix1, 3000);
+       var event = new CustomEvent("onStartRepair", { "detail": "Run Code when the Repair is runned" });
+       document.dispatchEvent(event);
       }
       
       function RepairFix1() {
@@ -359,6 +365,8 @@
        console.log("Failed to Run " + command);
        alert("ERROR: " + err);
        }
+       var event = new CustomEvent("onCommandRunned", { "cmd": "" + command + "", "isFullscreen": "" + fullscreen + ""});
+       document.dispatchEvent(event);
        /*if(command == "EraseUrlBarData()") {
        try {
        EraseUrlBarData();
