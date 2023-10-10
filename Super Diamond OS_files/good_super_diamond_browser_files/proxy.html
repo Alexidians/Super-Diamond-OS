@@ -1,0 +1,13 @@
+</html>
+<head></head>
+<body>
+<script src="https://unpkg.com/@ungap/custom-elements-builtin"></script>
+<script type="module" src="https://unpkg.com/x-frame-bypass"></script>
+<iframe is="x-frame-bypass" id="proxyFrame" width="100%" height="100%"></iframe>
+<script>
+const parameters = new URL(location.href).searchParams;
+var url = parameters.getAll('q')[0]
+document.getElementById("proxyFrame").src = url
+</script>
+</body>
+</html>
