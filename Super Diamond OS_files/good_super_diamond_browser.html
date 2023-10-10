@@ -136,6 +136,9 @@
         if(document.getElementById("UrlBar").value == "super_diamond_browser://restart") {
          location.replace(location.href)
         }
+        if(document.getElementById("UrlBar").value == "super_diamond_browser://proxy") {
+         location.replace("good_super_diamond_browser_files/proxyhome.html")
+        }
         var event = new CustomEvent("onChangeUrl", { "newUrl": "" + url + "", "showWarning": "" + warning + "" });
         document.dispatchEvent(event);
         UrlHistory.push(url);
