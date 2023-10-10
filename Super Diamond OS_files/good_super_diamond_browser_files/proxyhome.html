@@ -1,0 +1,15 @@
+<html>
+<head></head>
+<body>
+<center><p>Note: The proxy is not owned by us. https://unpkg.com/browse/x-frame-bypass@1.0.2/index.html</p></center>
+<center><h1>Super Diamond Browser Webpage Proxy</h1></center>
+<input id="urlInput" type="url" width="100%"></input>
+<button onclick="proxyUp()">Run Webpage Proxy</button>
+<script>
+ function proxyUp() {
+  var url = document.getElementById("urlInput").value
+  location.replace("proxy.html?q=" + url)
+ }
+</script>
+</body>
+</html>
