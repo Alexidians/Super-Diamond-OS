@@ -107,7 +107,6 @@
        }
     
        function Go(url,warning) {
-        State = UrlHistory.length-1;
         CurrentUrl = url
         console.log("Set Current Url to " + url);
         document.getElementById("Browser").src = url;
@@ -143,6 +142,7 @@
         document.dispatchEvent(event);
         UrlHistory.push(url);
         localStorage.setItem("UrlHistory", JSON.stringify(UrlHistory));
+        State = UrlHistory.length-1;
        }
         
        function Refresh() {
