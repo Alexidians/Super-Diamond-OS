@@ -107,8 +107,6 @@
        }
     
        function Go(url,warning) {
-        UrlHistory.push(url);
-        localStorage.setItem("UrlHistory", JSON.stringify(UrlHistory));
         State = UrlHistory.length-1;
         CurrentUrl = url
         console.log("Set Current Url to " + url);
@@ -140,6 +138,8 @@
         }
         var event = new CustomEvent("onChangeUrl", { "newUrl": "" + url + "", "showWarning": "" + warning + "" });
         document.dispatchEvent(event);
+        UrlHistory.push(url);
+        localStorage.setItem("UrlHistory", JSON.stringify(UrlHistory));
        }
         
        function Refresh() {
