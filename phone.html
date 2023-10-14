@@ -107,7 +107,7 @@ function chargingMessage() {
      background = "SuperDiamond.png"
      backgroundIsImage = "true"
     }
-    if(Password == "" + "null".atCharCode() + "") {
+    if(Password == "null") {
      alert("Welcome")
      alert("if you are a child/kid ask your parents to help setup Super Diamond OS in this browser")
      alert("Setup Note: Every Browser on Every Device has the has different Data saved/n if you are a parent setting this up for kids a account needs to be created for all of your kids/n important: if you are using a browser with restricted website access for kids it can be bypassed with our browser that uses iframes or other apps that have iframes to not allowed websites")
@@ -121,28 +121,19 @@ function chargingMessage() {
       alert("Before you go Add a Password")
       passSetup()
      } else {
-      if(Password == "" + "Recover".atCharCode() + "") {
+      if(Password == "Recover") {
        alert("Welcome")
        alert("if you are a child/kid ask your parents to help setup Super Diamond OS in this browser")
        alert("Setup Note: Every Browser on Every Device has the has different Data saved/n if you are a parent setting this up for kids a account needs to be created for all of your kids/n important: if you are using a browser with restricted website access for kids it can be bypassed with our browser that uses iframes or other apps that have iframes to not allowed websites")
        alert("Before you go Add a Password")
        passSetup()
       } else {
-       if(String.fromCharCode(Password).contains("/x00")) {
-        if(confirm("We Detected That Your Password is not updated for our encryption. would you like to update it? if no we will run the password Setup")) {
-         localStorage.setItem("Password", Password.atCharCode)
-        }
-        else {
-         passSetup()
-        }
-       }
-       else {
        if(getCookie("loggedIn") == "itis") {
         alert("Welcome Back")
        }
        else {
        var LoginEnteredPass = prompt("Enter Password To Continue")
-       if(LoginEnteredPass == eval("String.fromCharCode(" + Password + ")) {
+       if(LoginEnteredPass == Password) {
         alert("Welcome Back")
         setCookie("loggedIn", "itis", 1)
        } else {
@@ -159,7 +150,6 @@ function chargingMessage() {
       }
      }
     }
-   }
 
 function setCookie(cname,cvalue,exdays) {
   const d = new Date();
