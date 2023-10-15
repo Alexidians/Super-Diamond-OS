@@ -39,5 +39,64 @@ for (let i = 1; i < array.length; i++) {
   secretDisc = secretDisc + ", " + array[i].charCodeAt()
 }
 download("SuperDiamondOSData.superDiamondDataDisc", secretDisc)
+document.getElementById("driveDiscDownload").postMessage("User Request", "*")
+document.getElementById("extensionsDiscDownload").postMessage("User Request", "*")
+}
+
+function importDataDisc() {
+document.getElementById("superDiamondDataDiscUpload").click()
+alert("Click Ok when file is uploaded")
+var file = document.getElementById("superDiamondDataDiscUpload").files[0];
+var discContent = "reading..."
+var fileName = file.name;
+if (file) {
+    var reader = new FileReader();
+    reader.readAsText(file, "UTF-8");
+    reader.onload = function (evt) {
+discContent = evt.target.result
+        var disc = eval("String.fromCharCode(" + discContent + ")")
+        var array = disc.split("<>")
+for (let i = 0; i < array.length; i++) {
+ var name = array[i].split("Ϩ")[0]
+ var content = array[i].split("Ϩ")[1]
+ localStorage.setItem(name, content)
+}
+    }
+    reader.onerror = function (evt) {
+     alert("we encoutered an error while reading Disc File. please try again")
+    }
+}
+}
+
+function importFilesDisc() {
+document.getElementById("superDiamondFilesDiscUpload").click()
+alert("Click Ok when file is uploaded")
+var file = document.getElementById("superDiamondFilesDiscUpload").files[0];
+if (file) {
+    var reader = new FileReader();
+    reader.readAsText(file, "UTF-8");
+    reader.onload = function (evt) {
+     document.getElementById("driveDiscImport").contentWindow.postMessage(evt.target.result, "*")
+    }
+    reader.onerror = function (evt) {
+     alert("we encoutered an error while reading Disc File. please try again")
+    }
+}
+}
+
+function importExtensionsDisc() {
+document.getElementById("superDiamondExtensionsDiscUpload").click()
+alert("Click Ok when file is uploaded")
+var file = document.getElementById("superDiamondExtensionsDiscUpload").files[0];
+if (file) {
+    var reader = new FileReader();
+    reader.readAsText(file, "UTF-8");
+    reader.onload = function (evt) {
+     document.getElementById("extensionsDiscImport").contentWindow.postMessage(evt.target.result, "*")
+    }
+    reader.onerror = function (evt) {
+     alert("we encoutered an error while reading Disc File. please try again")
+    }
+}
 }
 </script>
