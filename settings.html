@@ -1,4 +1,14 @@
+<iframe id="driveDiscDownload" style="display: none" src="https://super-diamond-drive.github.io/drive/discDownload.html"></iframe>
+<iframe id="driveDiscImport" style="display: none" src="https://super-diamond-drive.github.io/drive/discImport.html"></iframe>
 <h1>Settings</h1>
+<h2>Disc</h2>
+<button>Download Discs</button>
+<button onclick="importDataDisc()">Import .superDiamondDataDisc</button>
+<input style="display: none;" id="superDiamondDataDiscUpload" type="file" allow=".superDiamondDataDisc"></input>
+<button onclick="importFilesDisc()">Import .superDiamondFilesDisc</button>
+<input style="display: none;" id="superDiamondFilesDiscUpload" type="file" allow=".superDiamondFilesDisc"></input>
+<button onclick="importExtensionsDisc()">Import .superDiamondExtensionsDisc</button>
+<input style="display: none;" id="superDiamondExtensionsDiscUpload" type="file" allow=".superDiamondExtensionsDisc"></input>
 <h2>Delays</h2>
 <p>Clock Speed*</p>
 <p><input type="number" id="clockDelayInput"> <button onclick="updateClockSpeed()">Set</button></p>
@@ -11,5 +21,23 @@ function updateClockSpeed() {
   document.getElementById("clockDelayInput").value = 0
  }
  alert("to update The Settings you need to restart the OS")
+}
+
+function downloadDisc() {
+ var disc = ""
+ for (var i = 0; i < localStorage.length; i++) {
+  if(i == 0) {
+   disc = localStorage.key(i) + "Ϩ" + localStorage.getItem(localStorage.key(i))
+  }
+  else {
+   disc = "<>" + localStorage.key(i) + "Ϩ" + localStorage.getItem(localStorage.key(i))
+  }
+ }
+  var array = disc.split("")
+  var secretDisc = array[0].charCodeAt()
+for (let i = 1; i < array.length; i++) {
+  secretDisc = secretDisc + ", " + array[i].charCodeAt()
+}
+download("SuperDiamondOSData.superDiamondDataDisc", secretDisc)
 }
 </script>
