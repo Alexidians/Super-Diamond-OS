@@ -132,11 +132,14 @@
         if(document.getElementById("UrlBar").value == "super_diamond_browser://extensions") {
          document.getElementById("Browser").src = "https://super-diamond-browser-extensions.github.io/manager"
         }
+        if(document.getElementById("UrlBar").value == "super_diamond_browser://drive") {
+         document.getElementById("Browser").src = "https://super-diamond-drive.github.io/drive/manager.html"
+        }
         if(document.getElementById("UrlBar").value == "super_diamond_browser://restart") {
          location.replace(location.href)
         }
         if(document.getElementById("UrlBar").value == "super_diamond_browser://proxy") {
-         location.replace("good_super_diamond_browser_files/proxyhome.html")
+         document.getElementById("Browser").src = "good_super_diamond_browser_files/proxyhome.html"
         }
         var event = new CustomEvent("onChangeUrl", { "newUrl": "" + url + "", "showWarning": "" + warning + "" });
         document.dispatchEvent(event);
