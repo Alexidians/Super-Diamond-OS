@@ -2,4 +2,4 @@
 
 it does not have features like bookmarks.
 
-to get started download Super-Diamond-Browser.zip
+to get started download Super-Diamond-Browser-Python.zip
