@@ -1,0 +1,83 @@
+<html>
+<head>
+<title>Super Diamond OS Setup - Computer</title>
+</head>
+<body>
+<style>
+ body {
+  background-image: url("superdiamond.png")
+ }
+ h1 {
+  color: black
+ }
+ h3 {
+  color: black
+ }
+ p {
+  color: black
+ }
+</style>
+<div id="setup">
+<h1>Super Diamond OS Setup</h1>
+<p>Requires 30Mib space on disc</p>
+<div id="step1">
+ <h3>Password</h3>
+ <p><input type="text" id="passInput"></input></p>
+ <p><button onclick="completeStep1()">Next</button></p>
+</div>
+<div id="step2" style="display: none">
+ <h3>You will have to authoirze our other services</h3>
+ <p><button onclick="Finish()">Finish</button></p>
+ <iframe style="display: none" id="DriveAuth" src="https://super-diamond-drive.github.io/auth/authMaker.html"></iframe>
+ <iframe style="display: none" id="ExtensionsAuth" src="https://super-diamond-browser-extensions.github.io/auth/authMaker.html"></iframe>
+</div>
+</div>
+<div id="setuper" style="display: none">
+ <center><img src="superdiamond.png"></img></center>
+ <center><h1>Setting Up Super Diamond OS</h1 style="color: white"></center>
+ <center><p>This may take a bit</p style="color: white"></center>
+ <center><p>You can continue your work while we setup this device</p style="color: white"></center>
+</div>
+<script>
+var pass = "notAdded"
+ 
+function setCookie(cname,cvalue,exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+ 
+function completeStep1() {
+ pass = document.getElementById("passInput").value
+ switch(pass) {
+   case "null":
+     alert("Password can't be null")
+    break;
+   case "":
+     alert("Enter A Password")
+    break;
+   case "Recover":
+     alert("Pass can't Be The Recovery Text That Might Be Added Later as a Feature")
+    break;
+  default:
+    document.getElementById("step1").style.display = "none"
+    document.getElementById("step2").style.display = "block"
+    document.getElementById("DriveAuth").contentWindow.postMessage("alexidians.github.io", "*")
+    document.getElementById("ExtensionsAuth").contentWindow.postMessage("alexidians.github.io", "*")
+ }
+}
+function Finish() {
+ document.body.style.backgroundImage = "url('black.png')"
+ document.body.style.backgroundColor = "black"
+ document.getElementById("setup").style.display = "none"
+ document.getElementById("setuper").style.display = "block"
+ setTimeout(SetuperCompleted, 10000)
+}
+function SetuperCompleted() {
+ localStorage.setItem("Password", pass)
+ setCookie("loggedIn", "itis", 1)
+ location.replace("phone.html")
+}
+</script>
+</html>
