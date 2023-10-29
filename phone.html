@@ -112,21 +112,21 @@ function chargingMessage() {
      alert("if you are a child/kid ask your parents to help setup Super Diamond OS in this browser")
      alert("Setup Note: Every Browser on Every Device has the has different Data saved/n if you are a parent setting this up for kids a account needs to be created for all of your kids/n important: if you are using a browser with restricted website access for kids it can be bypassed with our browser that uses iframes or other apps that have iframes to not allowed websites")
      alert("Before you go Add a Password")
-     passSetup()
+     Setup()
     } else {
      if(Password == null) {
       alert("Welcome")
       alert("if you are a child/kid ask your parents to help setup Super Diamond OS in this browser")
       alert("Setup Note: Every Browser on Every Device has the has different Data saved/n if you are a parent setting this up for kids a account needs to be created for all of your kids/n important: if you are using a browser with restricted website access for kids it can be bypassed with our browser that uses iframes or other apps that have iframes to not allowed websites")
       alert("Before you go Add a Password")
-      passSetup()
+      Setup()
      } else {
       if(Password == "Recover") {
        alert("Welcome")
        alert("if you are a child/kid ask your parents to help setup Super Diamond OS in this browser")
        alert("Setup Note: Every Browser on Every Device has the has different Data saved/n if you are a parent setting this up for kids a account needs to be created for all of your kids/n important: if you are using a browser with restricted website access for kids it can be bypassed with our browser that uses iframes or other apps that have iframes to not allowed websites")
        alert("Before you go Add a Password")
-       passSetup()
+       Setup()
       } else {
        if(getCookie("loggedIn") == "itis") {
         alert("Welcome Back")
@@ -329,22 +329,8 @@ function exitApp() {
  document.getElementById("app").innerHTML = ""
 }
 
-    function passSetup() {
-     var pass = prompt("Enter A Password")
-     localStorage.setItem("Password", pass.atCharCode())
-     Password = pass.atCharCode()
-     if(pass == "null") {
-      alert("Password can't be null")
-      passSetup()
-     }
-     if(pass == null) {
-      alert("Enter a Password")
-      passSetup()
-     }
-     if(pass == "Recover") {
-      alert("Pass can't Be The Recovery Text That Might Be Added Later as a Feature")
-      passSetup()
-     }
+    function Setup() {
+     location.replace("phone-setup.html")
     }
 
     function setPassword(pass) {
