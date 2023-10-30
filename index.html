@@ -22,7 +22,7 @@ body {
 </head>
 <body>
 <script>
-if(localStorage.getItem("Password") !== null || localStorage.getItem("Password") !== "Recovery" || localStorage.getItem("Password") !== "null") {
+if(localStorage.getItem("Password") == null || localStorage.getItem("Password") == "Recovery" || localStorage.getItem("Password") == "null") {
  document.getElementById("activateOption").style.display = "block"
 }
 </script>
