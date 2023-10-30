@@ -17,6 +17,12 @@
   color: black
  }
 </style>
+<script>
+if(localStorage.getItem("Password") !== null || localStorage.getItem("Password") !== "Recovery" || localStorage.getItem("Password") !== "null") {
+ alert("Device Already Setuped")
+ location.replace("computer.html")
+}
+</script>
 <div id="setup">
 <h1>Super Diamond OS Setup</h1>
 <p>Requires 30Mib space on disc</p>
