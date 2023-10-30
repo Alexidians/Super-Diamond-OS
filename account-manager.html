@@ -7,6 +7,12 @@
 <iframe style="display: none" src="https://super-diamond-os-account-storage.github.io/storage/delete.html" id="accountDeleteApi"></iframe>
 <iframe style="display: none" src="https://super-diamond-os-account-storage.github.io/storage/get.html" id="accountReadApi"></iframe>
 <script>
+if(localStorage.getItem("Password") !== null || localStorage.getItem("Password") !== "Recovery" || localStorage.getItem("Password") !== "null") {
+ alert("Setup Device First. go to Super Diamond OS Phone or Super Diamond OS Computer to get started. then come back")
+ location.replace("index.html")
+}
+</script>
+<script>
 var createWind = document.getElementById("accountCreateApi")
 var deleteWind = document.getElementById("accountDeleteApi")
 var getWind = document.getElementById("accountReadApi")
