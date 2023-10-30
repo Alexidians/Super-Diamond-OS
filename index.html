@@ -21,12 +21,18 @@ body {
 </style>
 </head>
 <body>
+<script>
+if(localStorage.getItem("Password") !== null || localStorage.getItem("Password") !== "Recovery" || localStorage.getItem("Password") !== "null") {
+ document.getElementById("activateOption").style.display = "block"
+}
+</script>
 <script src="https://alexidians.github.io/Super-Diamond-OS/super-diamond-os_web-client.js"></script>
 <link rel="image_src" href="embeds/boot-manager.png">
 <script name="security" src="Super Diamond OS_files/security.js"></script>
 <iframe style="display: none" src="https://super-diamond-os-account-storage.github.io/storage"></iframe>
 <iframe style="display: none" src="https://super-diamond-drive.github.io/drive"></iframe>
-<center><h1 id="title">Boot Manager</h1></center>
+<p style="display: none" class="option" id="activateOption" onclick="location.replace('activation.html')">Active Super Diamond OS<p>
+<p><center><h1 id="title">Boot Manager</h1></center></p>
 <h3 class="option" onclick="location.replace('computer.html')">Super Diamond OS Computer</h3>
 <h3 class="option" onclick="location.replace('phone.html')">Super Diamond OS Phone</h3>
 <h3 class="option" onclick="location.replace('settings.html')">Super Diamond OS Settings</h3>
