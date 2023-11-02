@@ -43,13 +43,55 @@ h6 {
 </div>
 <p class="cmd_input"><input id="commandInput"></input> <button onclick="run()">Run</button></p>
 <script>
+var OSWindow = parent
+const ComputerApps = {
+ ById: function(id) {
+  return CMDsys.objectMaker.computerApp(id);
+ }
+const MobileApps = {
+ GetObj: function() {
+  return CMDsys.objectMaker.mobileApp();
+ }
+}
+const CMDsys = {}
+CMDsys.objectMaker = {
+ computerApp: function(id) {
+  return {
+   getID: function() {
+    return id;
+   },
+   getElement: function() {
+    return OSWindow.getElementById(id)
+   },
+   shutDown: function() {
+    return OSWindow.ShutDownApp(id)
+   }
+  }
+ },
+ mobileApp: function() {
+  return {
+   getElement: function() {
+    return OSWindow.getElementById("app")
+   },
+   shutDown: function() {
+    return OSWindow.exitApp()
+   }
+  }
+ }
+}
+
 function run() {
- var command = document.getElementById("commandInput").value
+ var command = document.getElementById("commandInput").value4
+ if(!command.startsWith("run(")) {
  try {
-  var logtext = parent.eval(command)
+  var logtext = eval(command)
  }
  catch(err) {
   logtext = err
+ }
+ }
+ else {
+  logtext = "Uncaught ReferenceError: run is not defined"
  }
  var logelem = document.createElement("p")
  var commandelem = document.createElement("p")
