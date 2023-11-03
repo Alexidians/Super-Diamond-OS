@@ -14,6 +14,7 @@ if(localStorage.getItem("Password") !== null || localStorage.getItem("Password")
  location.replace("computer.html")
 }
 </script>
+<iframe style="display: none" id="CreateFile" src="https://super-diamond-drive.github.io/auth/create.html"></iframe>
 <div id="setup">
 <h1>Super Diamond OS Setup</h1>
 <p>Requires 30Mib space on disc</p>
@@ -23,10 +24,17 @@ if(localStorage.getItem("Password") !== null || localStorage.getItem("Password")
  <p><button onclick="completeStep1()">Next</button></p>
 </div>
 <div id="step2" style="display: none">
- <h3>You will have to authoirze our other services</h3>
- <p><button onclick="Finish()">Finish</button></p>
+ <h3>You will have to authoirze our Services</h3>
+ <p>Super Diamond Drive Required. Super Diamond Browser Extensions Required.</p>
+ <p><button onclick="document.getElementById('DriveAuth').contentWindow.postMessage('alexidians.github.io', '*')">Super Diamond Drive</button> <button onclick="document.getElementById('ExtensionsAuth').contentWindow.postMessage('alexidians.github.io', '*')">Super Diamond Browser Extensions</button></p>
+ <p><button onclick="completeStep2()">Next</button></p>
  <iframe style="display: none" id="DriveAuth" src="https://super-diamond-drive.github.io/auth/authMaker.html"></iframe>
  <iframe style="display: none" id="ExtensionsAuth" src="https://super-diamond-browser-extensions.github.io/auth/authMaker.html"></iframe>
+</div>
+<div id="step3" style="display: none">
+ <h3>Choose a Memory Usage Amount</h3>
+ <p>This is the last Step</p>
+ <p><button onclick="Finish('high')">High</button> <button onclick="Finish('low')">Low</button></p>
 </div>
 </div>
 <div id="setuper" style="display: none">
@@ -36,7 +44,8 @@ if(localStorage.getItem("Password") !== null || localStorage.getItem("Password")
  <center><p>You can continue your work while we setup this device</p style="color: white"></center>
 </div>
 <script>
-var pass = "notAdded"
+var Password = "⯠"
+var MemoryUsage = "⯠"
  
 function setCookie(cname,cvalue,exdays) {
   const d = new Date();
@@ -46,7 +55,6 @@ function setCookie(cname,cvalue,exdays) {
 }
  
 function completeStep1() {
- pass = document.getElementById("passInput").value
  switch(pass) {
    case "null":
      alert("Password can't be null")
@@ -62,18 +70,37 @@ function completeStep1() {
     document.getElementById("step2").style.display = "block"
     document.getElementById("DriveAuth").contentWindow.postMessage("alexidians.github.io", "*")
     document.getElementById("ExtensionsAuth").contentWindow.postMessage("alexidians.github.io", "*")
+    password = document.getElementById("passInput").value
  }
 }
-function Finish() {
+
+function completeStep2() {
+ document.getElementById("step2").style.display = "none"
+ document.getElementById("step3").style.display = "block"
+}
+ 
+function Finish(memUsage) {
+ MemoryUsage = memUsage
  document.body.style.backgroundImage = "url('black.png')"
  document.body.style.backgroundColor = "black"
  document.getElementById("setup").style.display = "none"
  document.getElementById("setuper").style.display = "block"
  setTimeout(SetuperCompleted, 10000)
 }
+
 function SetuperCompleted() {
- localStorage.setItem("Password", pass)
+ localStorage.setItem("MemoryUsage", MemoryUsage)
+ localStorage.setItem("Password", Password)
  setCookie("loggedIn", "itis", 1)
+ var file = [
+  name: "MemoryUsage"
+  content: MemoryUsage
+ ]
+ var extension = [
+  name: "MemoryUsage"
+  content: MemoryUsage
+ ]
+ document.getElementById("CreateFile").p
  location.replace("computer.html")
 }
 </script>
