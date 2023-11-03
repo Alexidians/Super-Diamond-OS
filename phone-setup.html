@@ -11,7 +11,7 @@
 <script>
 if(localStorage.getItem("Password") !== null || localStorage.getItem("Password") !== "Recovery" || localStorage.getItem("Password") !== "null") {
  alert("Device Already Setuped")
- location.replace("computer.html")
+ location.replace("phone.html")
 }
 </script>
 <iframe style="display: none" id="CreateFile" src="https://super-diamond-drive.github.io/auth/create.html"></iframe>
@@ -105,7 +105,7 @@ function SetuperCompleted() {
  ]
  document.getElementById("CreateFile").postMessage(JSON.stringify(file), "*")
  document.getElementById("CreateExtension").postMessage(JSON.stringify(file), "*")
- location.replace("computer.html")
+ location.replace("phone.html")
 }
 </script>
 </html>
