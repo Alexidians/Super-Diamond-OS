@@ -15,6 +15,7 @@ if(localStorage.getItem("Password") !== null || localStorage.getItem("Password")
 }
 </script>
 <iframe style="display: none" id="CreateFile" src="https://super-diamond-drive.github.io/auth/create.html"></iframe>
+<iframe style="display: none" id="CreateExtension" src="https://super-diamond-browser-extensions.github.io/auth/create.html"></iframe>
 <div id="setup">
 <h1>Super Diamond OS Setup</h1>
 <p>Requires 30Mib space on disc</p>
@@ -100,7 +101,8 @@ function SetuperCompleted() {
   name: "MemoryUsage"
   content: MemoryUsage
  ]
- document.getElementById("CreateFile").p
+ document.getElementById("CreateFile").postMessage(JSON.stringify(file), "*")
+ document.getElementById("CreateExtension").postMessage(JSON.stringify(file), "*")
  location.replace("computer.html")
 }
 </script>
