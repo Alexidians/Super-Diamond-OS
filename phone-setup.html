@@ -58,7 +58,7 @@ function setCookie(cname,cvalue,exdays) {
 }
  
 function completeStep1() {
- switch(pass) {
+ switch(document.getElementById("passInput").value) {
    case "null":
      alert("Password can't be null")
     break;
