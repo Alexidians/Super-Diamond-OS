@@ -103,8 +103,8 @@ function SetuperCompleted() {
   name: "MemoryUsage",
   content: MemoryUsage
  }
- document.getElementById("CreateFile").postMessage(JSON.stringify(file), "*")
- document.getElementById("CreateExtension").postMessage(JSON.stringify(extension), "*")
+ document.getElementById("CreateFile").contentWindow.postMessage(JSON.stringify(file), "*")
+ document.getElementById("CreateExtension").contentWindow.postMessage(JSON.stringify(extension), "*")
  location.replace("computer.html")
 }
 </script>
