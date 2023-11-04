@@ -101,7 +101,7 @@ function SetuperCompleted() {
  }
  var extension = {
   name: "MemoryUsage",
-  content: MemoryUsage
+  manifest: MemoryUsage
  }
  document.getElementById("CreateFile").contentWindow.postMessage(JSON.stringify(file), "*")
  document.getElementById("CreateExtension").contentWindow.postMessage(JSON.stringify(extension), "*")
