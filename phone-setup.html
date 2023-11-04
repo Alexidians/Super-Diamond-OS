@@ -95,16 +95,16 @@ function SetuperCompleted() {
  localStorage.setItem("MemoryUsage", MemoryUsage)
  localStorage.setItem("Password", Password)
  setCookie("loggedIn", "itis", 1)
- var file = [
-  name: "MemoryUsage"
+ var file = {
+  name: "MemoryUsage",
   content: MemoryUsage
- ]
- var extension = [
-  name: "MemoryUsage"
+ }
+ var extension = {
+  name: "MemoryUsage",
   content: MemoryUsage
- ]
+ }
  document.getElementById("CreateFile").postMessage(JSON.stringify(file), "*")
- document.getElementById("CreateExtension").postMessage(JSON.stringify(file), "*")
+ document.getElementById("CreateExtension").postMessage(JSON.stringify(extension), "*")
  location.replace("phone.html")
 }
 </script>
