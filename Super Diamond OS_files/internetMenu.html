@@ -14,7 +14,11 @@ body {
 <p id="buttonBar"><button onclick="disconnect()">Disconnect</button> <button onclick="connect()">Connect</button> <button onclick="internetInfo()">Information</button></p>
 <script>
 function connect() {
- document.getElementById("connector").contentWindow.postMessage("User Requested Internet Connection", "*")
+ var InternetConnectData = document.getElementById("connector").contentWindow.postMessage("User Requested Internet Connection", "*")
+ if(InternetConnectData.state == true) {
+  localStorage.setItem("internet", InternetConnectData.name)
+  localStorage.setItem("ip", InternetConnectData.ip)
+ }
 }
 
 function disconnect() {
