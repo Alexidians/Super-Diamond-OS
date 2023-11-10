@@ -13,12 +13,19 @@ body {
 <iframe src="https://super-diamond-internet.github.io/internet/connector.html" style="display: none" id="connector"></iframe>
 <p id="buttonBar"><button onclick="disconnect()">Disconnect</button> <button onclick="connect()">Connect</button> <button onclick="internetInfo()">Information</button></p>
 <script>
+    window.addEventListener("message", function (e) {
+        if (e.origin !== "http://super-diamond-internet.github.io") {
+            return
+        }
+        var InternetConnectData = JSON.parse(e.data)
+        if(InternetConnectData.state == true) {
+         localStorage.setItem("internet", InternetConnectData.name)
+         localStorage.setItem("ip", InternetConnectData.ip)
+        }
+    })
+
 function connect() {
- var InternetConnectData = document.getElementById("connector").contentWindow.postMessage("User Requested Internet Connection", "*")
- if(InternetConnectData.state == true) {
-  localStorage.setItem("internet", InternetConnectData.name)
-  localStorage.setItem("ip", InternetConnectData.ip)
- }
+ document.getElementById("connector").contentWindow.postMessage("User Requested Internet Connection", "*")
 }
 
 function disconnect() {
