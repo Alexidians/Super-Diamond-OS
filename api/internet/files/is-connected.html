@@ -1,0 +1,9 @@
+<script>
+    window.addEventListener("message", function (e) {
+      const isConnected = false
+      if(localStorage.getItem("internet") !== null && localStorage.getItem("ip")) {
+       isConnected = true
+      }
+      return isConnected;
+    })
+</script>
