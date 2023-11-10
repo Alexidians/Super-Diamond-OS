@@ -1,9 +1,11 @@
 <script>
     window.addEventListener("message", function (e) {
-      const isConnected = false
-      if(localStorage.getItem("internet") !== null && localStorage.getItem("ip")) {
-       isConnected = true
+      const isConnected = {
+       value: false
       }
-      return isConnected;
+      if(localStorage.getItem("internet") !== null && localStorage.getItem("ip")) {
+       isConnected.value = true
+      }
+      parent.postMessage(JSON.stringify(isConnected), "*")
     })
 </script>
