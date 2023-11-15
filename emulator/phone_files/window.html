@@ -1,0 +1,195 @@
+<html>
+<head>
+ <title>Emulated Super Diamond App (Computer)</title>
+</head>
+<body>
+<p id="timeText"></p>
+<script id="emulatorjs">
+   window.addEventListener("message", function (e) {
+        if (e.origin !== "https://alexidians.github.io") {
+            return
+        }
+        const url = e.data
+        document.getElementById("appIframe").src = url
+    })
+</script>
+<script>
+    startTime()
+
+function setCookie(cname,cvalue,exdays) {
+  const d = new Date();
+  d.setTime(d.getTime() + (exdays*24*60*60*1000));
+  let expires = "expires=" + d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(';');
+  for(let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == ' ') {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
+      function importJS(url, saveInDisc) {
+       var script = document.createElement("script")
+       script.src = url
+       document.body.appendChild(script)
+      }
+
+      function importCss(url) {
+       var stylesheet = document.createElement("link")
+       stylesheet.src = url
+       stylesheet.rel = "stylesheet/css"
+       document.body.appendChild(stylesheet)
+      }
+
+      function newIframeApp(url, title) {
+       alert("ERROR: Super Diamond Emulator Does Not Support newIframeApp()")
+       return "ERROR: Super Diamond Emulator Does Not Support newIframeApp()"
+      }
+
+      function newJSApp(code, title) {
+       alert("ERROR: Super Diamond Emulator Does Not Support newJSApp()")
+       return "ERROR: Super Diamond Emulator Does Not Support newJSApp()"
+      }
+
+      function newLuaApp(code, title) {
+       alert("ERROR: Super Diamond Emulator Does Not Support newLuaApp()")
+       return "ERROR: Super Diamond Emulator Does Not Support newLuaApp()"
+      }  
+
+      function importLua(url) {
+       var script = document.createElement("script")
+       script.src = url
+       script.rel = "application/lua"
+       document.body.appendChild(script)
+      }
+
+      function importPlugin(url,endpoint) {
+       alert("ERROR: Super Diamond Emulator Does Not Support importPlugin()")
+       return "ERROR: Super Diamond Emulator Does Not Support importPlugin()"
+      }
+
+function OpenApp(AppName) {
+ alert("ERROR: Super Diamond Emulator Does Not Support OpenApp()")
+ return "ERROR: Super Diamond Emulator Does Not Support OpenApp()"
+}
+
+function exitApp() {
+ alert("ERROR: Super Diamond Emulator Does Not Support exitApp()")
+ return "ERROR: Super Diamond Emulator Does Not Support exitApp()"
+}
+
+    function setPassword(pass) {
+     localStorage.setItem("Password", pass)
+     Password = pass
+    }
+
+function startTime() {
+  const today = new Date();
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('timeText').innerHTML =  h + ":" + m
+  setTimeout(startTime, 0);
+}
+           
+function getTime() {
+  const today = new Date();
+  return today;
+}
+
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
+  return i;
+}
+
+function ShowTime() {
+ var today = new Date();
+ var messageData = today.getHours(); + ":" + today.getMinutes(); + ":" + today.getSeconds(); + "/n" + today
+ alert(messageData)
+}
+
+function clock() {
+ return document.getElementById("timeText").innerHTML;
+}
+
+    function changeBackground() {
+       alert("ERROR: Super Diamond Emulator Does Not Support newIframeApp()")
+       return "ERROR: Super Diamond Emulator Does Not Support newIframeApp()"
+    }
+
+    function lock() {
+     setCookie("loggedIn", "heIsnt", 1)
+     if(prompt("Enter Password to Unlock Screen") == Password) {
+      setCookie("loggedIn", "itis", 1)
+      alert("Screen Unlocked Sucesfully")
+     } else {
+      alert("Incorrect Password")
+      lock()
+     }
+    }
+</script>
+<script>
+setInterval(updateCoords, 0)
+function updateCoords() {
+  navigator.permissions.query({ name: "geolocation" }).then((result) => {
+    if (result.state === "granted") {
+     navigator.geolocation.getCurrentPosition(function(position) {
+      Latitude = position.coords.latitude;
+      Longitude = position.coords.longitude;
+     });
+    } else if (result.state === "prompt") {
+      Latitute = "ERROR: None Perm Answer"
+      Longtitute = "ERROR: None Perm Answer"
+    } else if (result.state === "denied") {
+     Latitute = "ERROR: Non Perms"
+     Longtitute = "ERROR: Non Perms"
+    }
+  });
+}
+</script>
+<script>
+var IP = localStorage.getItem("ip")
+setInterval(eval, 0, "IP = localStorage.getItem('ip')")
+</script>
+<script>
+    var NavigatorAppVersion = navigator.appVersion;
+    setInterval(eval, 0, "NavigatorAppVersion = navigator.appVersion")
+    var UserAgent = navigator.userAgent;
+    setInterval(eval, 0, "UserAgent = navigator.userAgent")
+    var BrowserPlatform = navigator.platform;
+    setInterval(eval, 0, "BrowserPlatform = navigator.platform")
+    var BrowserLanguage = navigator.language;
+    setInterval(eval, 0, "BrowserLanguage = navigator.language")
+</script>
+<script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
+<script>
+    var NavigatorAppVersion = navigator.appVersion;
+    setInterval(eval, 0, "NavigatorAppVersion = navigator.appVersion")
+    var UserAgent = navigator.userAgent;
+    setInterval(eval, 0, "UserAgent = navigator.userAgent")
+    var BrowserPlatform = navigator.platform;
+    setInterval(eval, 0, "BrowserPlatform = navigator.platform")
+    var BrowserLanguage = navigator.language;
+    setInterval(eval, 0, "BrowserLanguage = navigator.language")
+</script>
+<script src="https://alexidians.github.io/Super-Diamond-Programing-Language/programing-language.js"></script>
+<script src="https://alexidians.github.io/Super-Diamond-OS/super-diamond-os_web-client.js"></script>
+<iframe width="100%" height="100%" id="appIframe"></iframe>
+<script type="module" src="https://unpkg.com/x-frame-bypass"></script>
+<script src="Super Diamond OS_files/fengari-web.js"></script>
+<script src="https://unpkg.com/@ungap/custom-elements-builtin"></script>
+</body>
+</html>
