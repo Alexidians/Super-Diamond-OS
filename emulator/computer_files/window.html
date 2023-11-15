@@ -3,6 +3,7 @@
  <title>Emulated Super Diamond App</title>
 </head>
 <body>
+<p id="timeText"></p>
 <script id="emulatorjs">
    window.addEventListener("message", function (e) {
         if (e.origin !== "https://alexidians.github.io") {
@@ -12,6 +13,54 @@
         document.getElementById("appIframe").src = url
     })
 </script>
+<script>
+setInterval(updateCoords, 0)
+function updateCoords() {
+  navigator.permissions.query({ name: "geolocation" }).then((result) => {
+    if (result.state === "granted") {
+     navigator.geolocation.getCurrentPosition(function(position) {
+      Latitude = position.coords.latitude;
+      Longitude = position.coords.longitude;
+     });
+    } else if (result.state === "prompt") {
+      Latitute = "ERROR: None Perm Answer"
+      Longtitute = "ERROR: None Perm Answer"
+    } else if (result.state === "denied") {
+     Latitute = "ERROR: Non Perms"
+     Longtitute = "ERROR: Non Perms"
+    }
+  });
+}
+</script>
+<script>
+var closeNotificationTimer = null
+function notification(title, message) {
+ ErrorMessage("Super Diamond Emulator Does Not Support notification()")
+ return "ERROR: Super Diamond App Emulator does not support notification()"
+}
+function hideNotification() {
+ ErrorMessage("Super Diamond Emulator Does Not Support hideNotification()")
+ return "ERROR: Super Diamond App Emulator does not support hideNotification()"
+}
+</script>
+  <script>
+    function Crash(crash) {
+     ErrorMessage("Super Diamond Emulator Does Not Support Crash()")
+     return "ERROR: Super Diamond App Emulator does not support Crash()"
+    }
+    function CrashMiddle() {
+     ErrorMessage("Super Diamond Emulator Does Not Support CrashMiddle()")
+     return "ERROR: Super Diamond App Emulator does not support CrashMiddle()"
+    }
+    function CrashEnd() {
+     ErrorMessage("Super Diamond Emulator Does Not Support CrashEnd()")
+     return "ERROR: Super Diamond App Emulator does not support CrashEnd()"
+    }
+    function CrashAct(error) {
+     ErrorMessage("Super Diamond Emulator Does Not Support CrashAct()")
+     return "ERROR: Super Diamond App Emulator does not support CrashAct()"
+    }
+  </script>
 <iframe width="100%" height="100%" id="appIframe"></iframe>
 <script id="osjs">
     if(localStorage.getItem("clockSpeed") == null || localStorage.getItem("clockSpeed") == "") {
@@ -71,6 +120,49 @@ function getCookie(cname) {
        localStorage.setItem("StartupProgram", appName)
        startupProgram = appName
       }
+
+     function ReinstallOS() {
+      ErrorMessage("Super Diamond Emulator Does Not Support ReinstallOS()")
+      return "ERROR: Super Diamond App Emulator does not support ReinstallOS()"
+    }
+
+    function ReinstallOS2() {
+     ErrorMessage("Super Diamond Emulator Does Not Support ReinstallOS2()")
+     return "ERROR: Super Diamond App Emulator does not support ReinstallOS2()"
+    }
+    
+    function OSReinstall() {
+       ErrorMessage("Super Diamond Emulator Does Not Support OSReinstall()")
+       return "ERROR: Super Diamond App Emulator does not support OSReinstall()"
+    }
+    
+    function ReinstallOSProtected() {
+       ErrorMessage("Super Diamond Emulator Does Not Support ReinstallOSProtected()")
+       return "ERROR: Super Diamond App Emulator does not support ReinstallOSProtected()"
+    }
+          
+    function Repair() {
+       ErrorMessage("Super Diamond Emulator Does Not Support Repair()")
+       return "ERROR: Super Diamond App Emulator does not support Repair()"
+    }
+    function RepairRepaired() {
+       ErrorMessage("Super Diamond Emulator Does Not Support RepairRepaired()")
+       return "ERROR: Super Diamond App Emulator does not support RepairRepaired()"
+    }
+ 
+    function ShutDown() {
+       ErrorMessage("Super Diamond Emulator Does Not Support ShutDown()")
+       return "ERROR: Super Diamond App Emulator does not support ShutDown()"
+    }
+    function off() {
+       ErrorMessage("Super Diamond Emulator Does Not Support off()")
+       return "ERROR: Super Diamond App Emulator does not support off()"
+    }
+    
+    function setPassword(pass) {
+     localStorage.setItem("Password", pass)
+     Password = pass
+    }
 
       function importJS(url, saveInDisc) {
        var script = document.createElement("script")
