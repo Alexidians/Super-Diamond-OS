@@ -8,8 +8,8 @@
         if (e.origin !== "https://alexidians.github.io") {
             return
         }
-        const EmulatorSuperDiamondApp = JSON.parse(e.data)
-        document.getElementById("appIframe").src = EmulatorSuperDiamondApp.url
+        const url = e.data
+        document.getElementById("appIframe").src = url
     })
 </script>
 <iframe width="100%" height="100%" id="appIframe"></iframe>
