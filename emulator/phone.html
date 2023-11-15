@@ -1,0 +1,21 @@
+<html>
+<head></head>
+<body>
+<p><input type="text" placeholder="Enter Url" id="urlInput"></input> <button onclick="emulate()">Emulate</button></p>
+<script>
+  function emulate() {
+   var url = document.getElementById("urlInput")
+   var app = popup("phone_files/window.html", "Emulated Super Diamond App (Phone)")
+   app.postMessage(url, "*")
+  }
+  
+  function popup(mylink, windowname) { 
+    if (! window.focus)return true;
+    var href;
+    if (typeof(mylink) == 'string') href=mylink;
+    else href=mylink.href; 
+    return window.open(href, windowname, 'width=600,height=500,scrollbars=yes'); 
+  }
+</script>
+</body>
+</html>
