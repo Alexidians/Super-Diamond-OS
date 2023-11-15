@@ -4,7 +4,7 @@
 <p><input type="text" placeholder="Enter Url" id="urlInput"></input> <button onclick="emulate()">Emulate</button></p>
 <script>
   function emulate() {
-   var url = document.getElementById("urlInput")
+   var url = document.getElementById("urlInput").value
    var app = popup("phone_files/window.html", "Emulated Super Diamond App (Phone)")
    app.postMessage(url, "*")
   }
