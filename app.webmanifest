@@ -1,0 +1,15 @@
+{
+  "name": "Super Diamond OS",
+  "short_name": "Super Diamond OS",
+  "theme_color": "blue",
+  "start_url": "https://alexidians.github.io/Super-Diamond-OS/index.html",
+  "id": "SuperDiamondOS",
+  "display": "standalone",
+  "icons": [
+     {
+        "src": "https://alexidians.github.io/Super-Diamond-OS/superdiamond.png",
+        "type": "image/png",
+        "sizes": "512x512"
+     }
+   ]
+}
