@@ -51,13 +51,30 @@ const CACHE_DATA = [
   '/Super Diamond OS_files/home.html',
   '/Super Diamond OS_files/inputs.html',
   '/Super Diamond OS_files/lock.png',
-  '/Super Diamond OS_files/notification.html'
+  '/Super Diamond OS_files/notification.html',
+  '/Super Diamond OS_files/wifi.png',
+  '/Super Diamond OS_files/internetMenu.html',
+  '/Super Diamond OS_files/Virtual-Machine.html',
+  '/404.html',
+  '/404.md',
+  '/ceo.gif',
+  '/app.webmanifest',
+  '/service-worker.js',
+  '/super-diamond-os_web-client.js'
 ];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       return cache.addAll(CACHE_DATA);
+    })
+  );
+});
+
+self.addEventListener('fetch', (event) => {
+  event.respondWith(
+    caches.match(event.request).then((response) => {
+      return response || fetch(event.request);
     })
   );
 });
