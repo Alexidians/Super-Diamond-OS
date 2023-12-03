@@ -473,6 +473,7 @@ function loadRAMFromHibernation() {
             App.id = item.id;
             App.textContent = item.content;
             appsDiv.appendChild(App);
+            makeDraggable(App)
         });
     }
     localStorage.setItem('washibernated', 'false');
