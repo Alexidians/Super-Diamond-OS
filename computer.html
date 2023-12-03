@@ -443,15 +443,15 @@ function hibernate() {
 
     // Save the array to local storage
     localStorage.setItem('AppRAM', JSON.stringify(appsArray));
-    localStorage.setItem('ishibernated', 'true');
+    localStorage.setItem('washibernated', 'true');
     ShutDown()
 }
 
 function loadRAMFromHibernation() {
     const AppRAM = localStorage.getItem('AppRAM');
-    const isHibernated = localStorage.getItem('ishibernated');
+    const wasHibernated = localStorage.getItem('washibernated');
 
-    if (storedElements && isHibernated === 'true') {
+    if (wasHibernated === 'true') {
         const AppArray = JSON.parse(AppRAM);
         const appsDiv = document.getElementById('Apps');
 
@@ -466,7 +466,7 @@ function loadRAMFromHibernation() {
             appsDiv.appendChild(newElement);
         });
     }
-    localStorage.setItem('ishibernated', 'false');
+    localStorage.setItem('washibernated', 'false');
 }
 
 
