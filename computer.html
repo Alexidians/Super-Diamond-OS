@@ -437,7 +437,7 @@ function hibernate() {
     Array.from(appsDiv.children).forEach(element => {
         appsArray.push({
             id: element.id,
-            content: element.textContent
+            content: element.innerHTML
         });
     });
 
@@ -471,7 +471,7 @@ function loadRAMFromHibernation() {
             App.style.left = "100px";
             App.style.cursor = "move";
             App.id = item.id;
-            App.textContent = item.content;
+            App.innerHTML = item.content;
             appsDiv.appendChild(App);
             makeDraggable(App)
         });
