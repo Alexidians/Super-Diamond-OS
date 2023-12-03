@@ -472,8 +472,8 @@ function loadRAMFromHibernation() {
             App.style.top = "100px";
             App.style.left = "100px";
             App.style.cursor = "move";
-            App.id = item.id;
-            App.innerHTML = item.content;
+            App.id = application.id;
+            App.innerHTML = application.content;
             appsDiv.appendChild(App);
             makeDraggable(App)
             const scripts = App.querySelectorAll('script');
