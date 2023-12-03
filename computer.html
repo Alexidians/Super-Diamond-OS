@@ -460,10 +460,19 @@ function loadRAMFromHibernation() {
 
         // Create new elements based on the stored data and add them to the "apps" div
         AppArray.forEach(item => {
-            const newElement = document.createElement('div');
-            newElement.id = item.id;
-            newElement.textContent = item.content;
-            appsDiv.appendChild(newElement);
+            const App = document.createElement('div');
+            App.class = "window"
+            App.style.width = "600px";
+            App.style.height = "500px";
+            App.style.backgroundColor = "#fff";
+            App.style.border = "1px solid #ccc";
+            App.style.position = "absolute";
+            App.style.top = "100px";
+            App.style.left = "100px";
+            App.style.cursor = "move";
+            App.id = item.id;
+            App.textContent = item.content;
+            appsDiv.appendChild(App);
         });
     }
     localStorage.setItem('washibernated', 'false');
