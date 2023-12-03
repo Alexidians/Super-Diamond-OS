@@ -474,6 +474,13 @@ function loadRAMFromHibernation() {
             App.innerHTML = item.content;
             appsDiv.appendChild(App);
             makeDraggable(App)
+            const scripts = App.querySelectorAll('script');
+            scripts.forEach(script => {
+             const newScript = document.createElement('script');
+             newScript.text = script.text;
+             document.head.appendChild(newScript)
+             document.head.removeChild(newScript);
+            });
         });
     }
     localStorage.setItem('washibernated', 'false');
