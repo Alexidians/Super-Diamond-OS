@@ -315,16 +315,16 @@ function hideNotification() {
        <p>Welcome Back</p>
      </div>
 
-     <div class="window" id="Contact">
+     <div class="window" id="Contact" style="width: 600px; height: 500px;">
        <h3>Contact</h3>
        <a onclick="Contact('Mail')">Mail super_diamond_community@inbox.lv</a>
      </div>
      
-     <div class="window" id="Games">
+     <div class="window" id="Games" style="width: 600px; height: 500px;">
        <h3>Games</h3>
        <a onclick="OpenApp('Feed The Cat&')">Feed The Cat</a>
      </div>
-      <div class="window">
+      <div class="window" id="battery" style="width: 600px; height: 500px;">
        <h3>Battery</h3>
        <div id="batteryProgress">
         <div id="batteryBar" style="width: 100%; background-color: green;">100%</div>
@@ -434,10 +434,12 @@ function hibernate() {
     const appsDiv = document.getElementById('Apps');
     const appsArray = [];
     
-    Array.from(appsDiv.children).forEach(element => {
+    Array.from(appsDiv.children).forEach(application => {
         appsArray.push({
-            id: element.id,
-            content: element.innerHTML
+            id: application.id,
+            content: application.innerHTML,
+            windowWidth: application.style.width,
+            windowHeight: application.style.height
         });
     });
 
@@ -459,11 +461,11 @@ function loadRAMFromHibernation() {
         appsDiv.innerHTML = '';
 
         // Create new elements based on the stored data and add them to the "apps" div
-        AppArray.forEach(item => {
+        AppArray.forEach(application => {
             const App = document.createElement('div');
-            App.class = "window"
-            App.style.width = "600px";
-            App.style.height = "500px";
+            App.class = "window";
+            App.style.width = application.windowWidth;
+            App.style.height = application.windowHeight;
             App.style.backgroundColor = "#fff";
             App.style.border = "1px solid #ccc";
             App.style.position = "absolute";
