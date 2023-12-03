@@ -400,7 +400,7 @@ function startBattery() {
     <div id="OS Message" style="width: 600px; height: 500px; background-color: rgb(255, 255, 255); border: 1px solid rgb(204, 204, 204); position: absolute; top: 1131px; left: 2115px; cursor: move;"><h3>OS Message</h3><p>(Super Diamond Anti-Virus) All System Apps Have All Permissions You will be Save from Detected Viruses</p></div></div>
     <div class="taskbar" id="taskbar">
       <p><iframe id="homeMenu" width="500" height="700" src="Super Diamond OS_files/home.html" style="display: none"></iframe></p>
-      <p><img src="superdiamond.png" width="50" height="50" onclick="openHomeMenu()"><img src="Super Diamond OS_files/update.png" style="display: none" id="updateButton" width="50" height="50" onclick="update()"><button onclick="CreateAppShortcut()">Create App Shortcut</button><img height="50" width="50" src="./Super Diamond OS_files/repair-hammer.png" onclick="Repair()"><img height="50" width="50" src="./Super Diamond OS_files/lock.png" onclick="lock()"><img height="50" width="50" src="./Super Diamond OS_files/power-button.png" onclick="ShutDown()"><input type="text" class="taskbarSearch"><img height="50" width="50" src="./Super Diamond OS_files/arrow-right.png" onclick="TaskBarSearch()"><img height="50" width="50" src="./Super Diamond OS_files/Task Manager.png" onclick="OpenApp(&#39;Task Manager&#39;)"><img height="50" width="50" src="./Super Diamond OS_files/SuperDiamond.png" onclick="OpenApp(&#39;Super Diamond Notepad&#39;)"><img height="50" width="50" src="./Super Diamond OS_files/youtube.png" onclick="OpenApp(&#39;Youtube&#39;)"><button onclick="ShutDownApp(&#39;Task Manager&#39;)">Shut Down Task Mng</button><a onclick="alert(getTime())" id="timeText">13:36:33</a> <iframe src="Super Diamond OS_files/notification.html" style="display: none" width="300" height="150" id="notification"></iframe></p>
+      <p><img src="superdiamond.png" width="50" height="50" onclick="openHomeMenu()"><img src="Super Diamond OS_files/update.png" style="display: none" id="updateButton" width="50" height="50" onclick="update()"><button onclick="CreateAppShortcut()">Create App Shortcut</button><img height="50" width="50" src="./Super Diamond OS_files/repair-hammer.png" onclick="Repair()"><img height="50" width="50" src="./Super Diamond OS_files/lock.png" onclick="lock()"><img height="50" width="50" src="./Super Diamond OS_files/power-button.png" onclick="ShutDown()"><input type="text" class="taskbarSearch"><img height="50" width="50" src="./Super Diamond OS_files/arrow-right.png" onclick="TaskBarSearch()"><img height="50" width="50" src="./Super Diamond OS_files/Task Manager.png" onclick="OpenApp(&#39;Task Manager&#39;)"><img height="50" width="50" src="./Super Diamond OS_files/SuperDiamond.png" onclick="OpenApp(&#39;Super Diamond Notepad&#39;)"><img height="50" width="50" src="./Super Diamond OS_files/youtube.png" onclick="OpenApp(&#39;Youtube&#39;)"> <img height="50" width="50" src="Super Diamond OS_files/hibernate.png" onclick="hibernate()"></img> <button onclick="ShutDownApp(&#39;Task Manager&#39;)">Shut Down Task Mng</button><a onclick="alert(getTime())" id="timeText">13:36:33</a> <iframe src="Super Diamond OS_files/notification.html" style="display: none" width="300" height="150" id="notification"></iframe></p>
     </div>
 </div>
   <script>
@@ -429,6 +429,49 @@ function startBattery() {
     }
   </script>
   <script async="" src="./Super Diamond OS_files/embed.js.lejupielāde"></script>
+  <script>
+function hibernate() {
+    const appsDiv = document.getElementById('Apps');
+    const appsArray = [];
+    
+    Array.from(appsDiv.children).forEach(element => {
+        appsArray.push({
+            id: element.id,
+            content: element.textContent
+        });
+    });
+
+    // Save the array to local storage
+    localStorage.setItem('AppRAM', JSON.stringify(appsArray));
+    localStorage.setItem('ishibernated', 'true');
+    ShutDown()
+}
+
+function loadRAMFromHibernation() {
+    const AppRAM = localStorage.getItem('AppRAM');
+    const isHibernated = localStorage.getItem('ishibernated');
+
+    if (storedElements && isHibernated === 'true') {
+        const AppArray = JSON.parse(AppRAM);
+        const appsDiv = document.getElementById('Apps');
+
+        // Clear existing content in case there are any
+        appsDiv.innerHTML = '';
+
+        // Create new elements based on the stored data and add them to the "apps" div
+        AppArray.forEach(item => {
+            const newElement = document.createElement('div');
+            newElement.id = item.id;
+            newElement.textContent = item.content;
+            appsDiv.appendChild(newElement);
+        });
+    }
+    localStorage.setItem('ishibernated', 'false');
+}
+
+
+window.addEventListener('load', loadRAMFromHibernation);
+</script>
    <script id="osjs">
     if(localStorage.getItem("JSPlugins") !== null) {
      var JSPlugins = localStorage.getItem("JSPlugins").split(",")
@@ -1721,7 +1764,6 @@ function closeFullscreen(elem) {
      document.getElementById("desktop").remove()
      var gif = document.createElement("img")
      gif.id = "ShutDownGif"
-     gif.src = "http://thediamondclan.atwebpages.com/shuting-down.gif"
      gif.width = "2280"
      gif.height = "1500"
      document.body.appendChild(gif)
