@@ -80,6 +80,54 @@ function chargingMessage() {
  setTimeout(eval, 3000, "msg.style.display = 'none'")
 }
 </script>
+  <RAM id="RAM" style="display: none;">
+   <TextRAM id="TextRAM">
+    <data name="StartedUp" value="true"></data>
+   </TextRAM>
+   <ScriptRAM id="ScriptRAM">
+    <script>console.log("Super Diamond OS Started Up Sucesfully!")</script>
+   </ScriptRAM>
+  </RAM>
+<script>
+const RAM = {
+ TextRAM: {
+  setValue: function(name, value) {
+   var shouldCreateNew = true
+   Array.from(document.getElementById('TextRAM').children).forEach(data => {
+    if(data.getAttribute("name") == name) {
+     shouldCreateNew = false
+     data.setAttribute("value", value)
+    }
+   });
+   if(shouldCreateNew) {
+    var Elem = document.createElement("data")
+    Elem.setAttribute("name", name)
+    Elem.setAttribute("name", value)
+   }
+  },
+  getValue: function(name) {
+   var doesNotExsist = true
+   Array.from(document.getElementById('TextRAM').children).forEach(data => {
+    if(data.getAttribute("name") == name) {
+     doesNotExsist = false
+     return data.getAttribute("value");
+    }
+   });
+   if(doesNotExsist) {
+    console.error("Text by name " + name + " does not exsist in TextRAM. letting pass with undefined")
+    return undefined;
+   }
+  }
+ },
+ ScriptRAM: {
+  execute: function(code) {
+   var Elem = document.createElement("script")
+   Elem.innerHTML = code
+   document.getElementById('ScriptRAM').appendChild(Elem)
+  }
+ }
+}
+</script>
 <script>
    if(localStorage.getItem("JSPlugins") !== null) {
      var JSPlugins = localStorage.getItem("JSPlugins").split(",")
