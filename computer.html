@@ -428,40 +428,63 @@ function startBattery() {
      WarningMessage(error)
     }
   </script>
+  <RAM id="RAM" style="display: none;">
+   <TextRAM id="TextRAM">
+    <data name="StartedUp" value="true"></data>
+   </TextRAM>
+   <ScriptRAM id="ScriptRAM">
+    <script>console.log("Super Diamond OS Started Up Sucesfully!")</script>
+   </ScriptRAM>
+  </RAM>
   <script async="" src="./Super Diamond OS_files/embed.js.lejupielāde"></script>
   <script>
 function hibernate() {
     const appsDiv = document.getElementById('Apps');
-    const appsArray = [];
+    const TextRAMDiv = document.getElementById('TextRAM');
+    const ScriptRAMDiv = document.getElementById('ScriptRAM');
+    const AppRAMArray = [];
+    const TextRAMArray = [];
+    const ScriptRAMArray = [];
     
     Array.from(appsDiv.children).forEach(application => {
-        appsArray.push({
+        AppRAMArray.push({
             id: application.id,
             content: application.innerHTML,
             windowWidth: application.style.width,
             windowHeight: application.style.height
         });
     });
+    Array.from(TextRAMDiv.children).forEach(data => {
+        TextRAMArray.push({
+            name: data.getAttribute("name"),
+            value: data.getAttribute("value"),
+        });
+    });
+    Array.from(ScriptRAMDiv.children).forEach(script => {
+        ScriptRAMArray.push({
+            code: script.innerHTML,
+        });
+    });
 
-    // Save the array to local storage
-    localStorage.setItem('AppRAM', JSON.stringify(appsArray));
+    localStorage.setItem('AppRAM', JSON.stringify(AppRAMArray));
+    localStorage.setItem('TextRAM', JSON.stringify(TextRAMArray));
+    localStorage.setItem('ScriptRAM', JSON.stringify(ScriptRAMArray));
     localStorage.setItem('washibernated', 'true');
     ShutDown()
 }
 
 function loadRAMFromHibernation() {
-    const AppRAM = localStorage.getItem('AppRAM');
-    const wasHibernated = localStorage.getItem('washibernated');
 
-    if (wasHibernated === 'true') {
-        const AppArray = JSON.parse(AppRAM);
+    if (localStorage.getItem('washibernated') === 'true') {
+        const AppRAMArray = JSON.parse(localStorage.getItem('AppRAM'));
+        const TextRAMArray = JSON.parse(localStorage.getItem('TextRAM'));
+        const ScriptRAMArray = JSON.parse(localStorage.getItem('ScriptRAM'));
         const appsDiv = document.getElementById('Apps');
+        const TextRAMDiv = document.getElementById('TextRAM');
+        const ScriptRAMDiv = document.getElementById('ScriptRAM');
 
-        // Clear existing content in case there are any
         appsDiv.innerHTML = '';
-
-        // Create new elements based on the stored data and add them to the "apps" div
-        AppArray.forEach(application => {
+        AppRAMArray.forEach(application => {
             const App = document.createElement('div');
             App.class = "window";
             App.style.width = application.windowWidth;
@@ -484,12 +507,63 @@ function loadRAMFromHibernation() {
              document.head.removeChild(newScript);
             });
         });
+        TextRAMArray.forEach(data => {
+            const Elem = document.createElement('data');
+            Elem.setAttribute("name", data.name)
+            Elem.setAttribute("name", data.value)
+            TextRAMDiv.appendChild(Elem)
+        });
+        TextRAMArray.forEach(script => {
+            const Elem = document.createElement('script');
+            Elem.innerHTML = script.code
+            ScriptRAMDiv.appendChild(Elem)
+        });
     }
     localStorage.setItem('washibernated', 'false');
 }
 
 
 window.addEventListener('load', loadRAMFromHibernation);
+</script>
+<script>
+const RAM = {
+ TextRAM: {
+  setValue: function(name, value) {
+   var shouldCreateNew = true
+   Array.from(document.getElementById('TextRAM').children).forEach(data => {
+    if(data.getAttribute("name") == name) {
+     shouldCreateNew = false
+     data.setAttribute("value", value)
+    }
+   });
+   if(shouldCreateNew) {
+    var Elem = document.createElement("data")
+    Elem.setAttribute("name", name)
+    Elem.setAttribute("name", value)
+   }
+  },
+  getValue: function(name) {
+   var doesNotExsist = true
+   Array.from(document.getElementById('TextRAM').children).forEach(data => {
+    if(data.getAttribute("name") == name) {
+     doesNotExsist = false
+     return data.getAttribute("value");
+    }
+   });
+   if(doesNotExsist) {
+    console.error("Text by name " + name + " does not exsist in TextRAM. letting pass with undefined")
+    return undefined;
+   }
+  }
+ },
+ ScriptRAM: {
+  execute: function(code) {
+   var Elem = document.createElement("script")
+   Elem.innerHTML = code
+   document.getElementById('ScriptRAM').appendChild(Elem)
+  }
+ }
+}
 </script>
    <script id="osjs">
     if(localStorage.getItem("JSPlugins") !== null) {
