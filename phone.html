@@ -108,6 +108,7 @@ const RAM = {
     var Elem = document.createElement("data")
     Elem.setAttribute("name", name)
     Elem.setAttribute("name", value)
+    document.getElementById("TextRAM").appendChild(Elem)
    }
   },
   getValue: function(name) {
@@ -115,13 +116,14 @@ const RAM = {
    Array.from(document.getElementById('TextRAM').children).forEach(data => {
     if(data.getAttribute("name") == name) {
      doesNotExsist = false
-     return data.getAttribute("value");
+     var value = data.getAttribute("value");
     }
    });
    if(doesNotExsist) {
     console.error("Text by name " + name + " does not exsist in TextRAM. letting pass with undefined")
-    return undefined;
+    var value = undefined;
    }
+   return value;
   }
  },
  ScriptRAM: {
