@@ -467,7 +467,7 @@ function hibernate() {
     });
     Array.from(ScriptRAMDiv.children).forEach(script => {
         ScriptRAMArray.push({
-            code: script.innerHTML,
+            code: script.text,
         });
     });
 
@@ -488,7 +488,7 @@ function loadRAMFromHibernation() {
         const TextRAMDiv = document.getElementById('TextRAM');
         const ScriptRAMDiv = document.getElementById('ScriptRAM');
 
-        appsDiv.innerHTML = '';
+        appsDiv.innerHTML = ""
         AppRAMArray.forEach(application => {
             const App = document.createElement('div');
             App.class = "window";
@@ -512,13 +512,17 @@ function loadRAMFromHibernation() {
              document.head.removeChild(newScript);
             });
         });
+
+        TextRAMDiv.innerHTML = ""
         TextRAMArray.forEach(data => {
             const Elem = document.createElement('data');
             Elem.setAttribute("name", data.name)
-            Elem.setAttribute("name", data.value)
+            Elem.setAttribute("value", data.value)
             TextRAMDiv.appendChild(Elem)
         });
-        TextRAMArray.forEach(script => {
+
+        ScriptRAMDiv.innerHTML = ""
+        ScriptRAMArray.forEach(script => {
             const Elem = document.createElement('script');
             Elem.innerHTML = script.code
             ScriptRAMDiv.appendChild(Elem)
@@ -544,7 +548,7 @@ const RAM = {
    if(shouldCreateNew) {
     var Elem = document.createElement("data")
     Elem.setAttribute("name", name)
-    Elem.setAttribute("name", value)
+    Elem.setAttribute("value", value)
     document.getElementById("TextRAM").appendChild(Elem)
    }
   },
