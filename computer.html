@@ -623,8 +623,26 @@ const RAM = {
      background = "SuperDiamond.png"
      backgroundIsImage = "true"
     }
-    if(confirm("Would You Like To Login With Windows Hello?")) {
-    async function verifyCredentialWithServer(credential) {
+async function loginWithWebAuthn() {
+  try {
+    const credential = await navigator.credentials.create({
+      publicKey: {
+        // Configuration options for WebAuthn
+      },
+    });
+
+    // Send the credential to the server for verification
+    await verifyCredentialWithServer(credential);
+
+    // Handle successful authentication
+    console.log('Authentication successful!');
+  } catch (error) {
+    // Handle authentication failure
+    console.error(error);
+  }
+}
+
+async function verifyCredentialWithServer(credential) {
   try {
     const response = await fetch('/verifyCredential', {
       method: 'POST',
@@ -647,40 +665,8 @@ const RAM = {
     console.error('Verification error:', error);
   }
 }
-            try {
-        const OSName = "Super Diamond OS"
-
-        const credential = await navigator.credentials.create({
-          publicKey: {
-            challenge: new Uint8Array(32),
-            userVerification: 'preferred',
-            authenticatorSelection: {
-              authenticatorAttachment: 'platform',
-            },
-            rp: {
-              name: 'Super Diamond OS',
-            },
-            user: {
-              id: new Uint8Array(16),
-              name: OSName,
-              displayName: OSName,
-            },
-            pubKeyCredParams: [
-              { type: 'public-key', alg: -7 },
-            ],
-          },
-        });
-
-        // Send the credential to the server for verification
-        await verifyCredentialWithServer(credential);
-
-        // Handle successful authentication
-        console.log('Authentication successful!');
-      } catch (error) {
-        // Handle authentication failure
-        console.error(error);
-      }
-    });
+    if(confirm("Would You Like To Login With Windows Hello?")) {
+     loginWithWebAuthn();
     }
    else {
     if(Password == "null") {
