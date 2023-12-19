@@ -639,7 +639,7 @@ async function loginWithWebAuthn() {
         pubKeyCredParams: [
          { type: 'public-key', alg: -7 }, // ES256 algorithm, you may choose a different one
         ],
-     };
+     }
     });
 
     // Send the credential to the server for verification
