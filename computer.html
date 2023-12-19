@@ -642,7 +642,7 @@ async function loginWithWebAuthn() {
      }
     });
 
-    if (credential) {
+    if (credential !== null) {
       await verifyCredentialWithServer(credential);
       alert('WebAuthn authentication successful!');
     } else {
