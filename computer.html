@@ -643,8 +643,8 @@ async function loginWithWebAuthn() {
      }
     });
 
-    if (credential !== null) {
-      await verifyCredentialWithServer(credential);
+    if(credentials && credentials.response && credentials.response.attestationObject) {
+      //await verifyCredentialWithServer(credential);
       alert('WebAuthn authentication successful!');
     } else {
       alert('You Must Be Logged In To Access The OS');
@@ -652,7 +652,7 @@ async function loginWithWebAuthn() {
     }
    }
    catch(err) {
-    alert("An Error Accoured With Authentication. May Be Due to cancelation")
+    alert("An Error Accoured With WebAuthn Authentication. you may try using the OS Login instead of WebAuthn")
     location.replace(location.href)
    }    
 }
