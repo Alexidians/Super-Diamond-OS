@@ -625,22 +625,28 @@ const RAM = {
     }
     if(confirm("Would You Like To Login With Windows Hello?")) {
     async function verifyCredentialWithServer(credential) {
-      // Make a POST request to the server for verification
-      const response = await fetch('/verifyCredential', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ credential }),
-      });
+  try {
+    const response = await fetch('/verifyCredential', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ credential }),
+    });
 
-      // Check the server response for authentication success or failure
-      const result = await response.json();
+    const result = await response.json();
 
-      if (!result.success) {
-        throw new Error('Server verification failed');
-      }
-     }
+    if (!result.success) {
+      throw new Error('Server verification failed');
+    }
+
+    // Handle success
+    console.log('Verification successful!');
+  } catch (error) {
+    // Handle any errors during the verification process
+    console.error('Verification error:', error);
+  }
+}
             try {
         const OSName = "Super Diamond OS"
 
