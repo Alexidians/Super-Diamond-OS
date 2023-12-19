@@ -643,7 +643,6 @@ async function loginWithWebAuthn() {
 }
 
 async function verifyCredentialWithServer(credential) {
-  try {
     const response = await fetch('/verifyCredential', {
       method: 'POST',
       headers: {
@@ -660,10 +659,6 @@ async function verifyCredentialWithServer(credential) {
 
     // Handle success
     console.log('Verification successful!');
-  } catch (error) {
-    // Handle any errors during the verification process
-    console.error('Verification error:', error);
-  }
 }
     if(confirm("Would You Like To Login With Windows Hello?")) {
      loginWithWebAuthn();
