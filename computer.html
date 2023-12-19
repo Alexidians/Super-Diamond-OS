@@ -623,11 +623,24 @@ const RAM = {
      background = "SuperDiamond.png"
      backgroundIsImage = "true"
     }
+    var OSName = "Super Diamond OS"
 async function loginWithWebAuthn() {
     const credential = await navigator.credentials.create({
       publicKey: {
-        // Configuration options for WebAuthn
-      },
+       {
+        challenge: new Uint8Array(32), // Replace with a real challenge value
+        rp: {
+         name: OSName,
+        },
+        user: {
+         id: new Uint8Array(16), // Replace with a real user ID
+         name: OSName,
+         displayName: OSName,
+        },
+        pubKeyCredParams: [
+         { type: 'public-key', alg: -7 }, // ES256 algorithm, you may choose a different one
+        ],
+     };
     });
 
     // Send the credential to the server for verification
