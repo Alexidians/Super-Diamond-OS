@@ -623,6 +623,60 @@ const RAM = {
      background = "SuperDiamond.png"
      backgroundIsImage = "true"
     }
+    if(confirm("Would You Like To Login With Windows Hello?")) {
+    async function verifyCredentialWithServer(credential) {
+      // Make a POST request to the server for verification
+      const response = await fetch('/verifyCredential', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ credential }),
+      });
+
+      // Check the server response for authentication success or failure
+      const result = await response.json();
+
+      if (!result.success) {
+        throw new Error('Server verification failed');
+      }
+     }
+            try {
+        const OSName = "Super Diamond OS"
+
+        const credential = await navigator.credentials.create({
+          publicKey: {
+            challenge: new Uint8Array(32),
+            userVerification: 'preferred',
+            authenticatorSelection: {
+              authenticatorAttachment: 'platform',
+            },
+            rp: {
+              name: 'Super Diamond OS',
+            },
+            user: {
+              id: new Uint8Array(16),
+              name: OSName,
+              displayName: OSName,
+            },
+            pubKeyCredParams: [
+              { type: 'public-key', alg: -7 },
+            ],
+          },
+        });
+
+        // Send the credential to the server for verification
+        await verifyCredentialWithServer(credential);
+
+        // Handle successful authentication
+        console.log('Authentication successful!');
+      } catch (error) {
+        // Handle authentication failure
+        console.error(error);
+      }
+    });
+    }
+   else {
     if(Password == "null") {
      alert("Welcome")
      alert("if you are a child/kid ask your parents to help setup Super Diamond OS in this browser")
@@ -666,6 +720,7 @@ const RAM = {
       }
      }
     }
+  }
     AntiVirusPermissionRequest()
     openFullscreen(document.body)
     openHomeMenu()
