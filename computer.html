@@ -624,7 +624,6 @@ const RAM = {
      backgroundIsImage = "true"
     }
 async function loginWithWebAuthn() {
-  try {
     const credential = await navigator.credentials.create({
       publicKey: {
         // Configuration options for WebAuthn
@@ -636,10 +635,6 @@ async function loginWithWebAuthn() {
 
     // Handle successful authentication
     console.log('Authentication successful!');
-  } catch (error) {
-    // Handle authentication failure
-    console.error(error);
-  }
 }
 
 async function verifyCredentialWithServer(credential) {
