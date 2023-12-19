@@ -627,7 +627,6 @@ const RAM = {
 async function loginWithWebAuthn() {
     const credential = await navigator.credentials.create({
       publicKey: {
-       {
         challenge: new Uint8Array(32), // Replace with a real challenge value
         rp: {
          name: OSName,
