@@ -625,7 +625,6 @@ const RAM = {
     }
     var OSName = "Super Diamond OS"
 async function loginWithWebAuthn() {
-   try {
     const credential = await navigator.credentials.create({
       publicKey: {
         challenge: new Uint8Array(32), // Replace with a real challenge value
@@ -650,11 +649,7 @@ async function loginWithWebAuthn() {
       alert('You Must Be Logged In To Access The OS');
       location.replace(location.href)
     }
-   }
-   catch(err) {
-    alert("An Error Accoured With WebAuthn Authentication. you may try using the OS Login instead of WebAuthn")
-    location.replace(location.href)
-   }    
+   }   
 }
 
 async function verifyCredentialWithServer(credential) {
