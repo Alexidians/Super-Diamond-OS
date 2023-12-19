@@ -642,11 +642,11 @@ async function loginWithWebAuthn() {
      }
     });
 
-    if(credentials && credentials.response && credentials.response.attestationObject) {
+    if(credential && credential.response && credential.response.attestationObject) {
       //await verifyCredentialWithServer(credential);
       alert('WebAuthn authentication successful!');
     } else {
-      alert('You Must Be Logged In To Access The OS');
+      alert('You Must Be Logged In To Access The OS. if you cant authenticate with WebAuthn try using the OS Login instead');
       location.replace(location.href)
     } 
 }
