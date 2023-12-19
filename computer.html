@@ -642,8 +642,13 @@ async function loginWithWebAuthn() {
      }
     });
 
-    // Send the credential to the server for verification
-    await verifyCredentialWithServer(credential);
+    if (credential) {
+      await verifyCredentialWithServer(credential);
+      alert('WebAuthn authentication successful!');
+    } else {
+      alert('You Must Be Logged In To Access The OS');
+      location.replace(location.href)
+    }
 
     // Handle successful authentication
     console.log('Authentication successful!');
