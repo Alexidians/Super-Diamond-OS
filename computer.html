@@ -648,7 +648,11 @@ async function loginWithWebAuthn() {
     } else {
       alert('You Must Be Logged In To Access The OS. if you cant authenticate with WebAuthn try using the OS Login instead');
       location.replace(location.href)
-    } 
+    }
+   catch(err) {
+    alert('An Error Accoured While Authentication. may be due to cancelation. if you contant some moderators. give them this text "' + err + '"')
+    location.replace(location.href)
+   }
 }
 
 async function verifyCredentialWithServer(credential) {
