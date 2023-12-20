@@ -743,7 +743,7 @@ async function verifyCredentialWithServer(credential) {
       throw new Error('Server verification failed');
     }
 }
-switch(prompt("How Would You Like To Login? The Options are: Super Diamond OS, WebAuthn")) {
+switch(prompt("How Would You Like To Login? The Options are: Super Diamond OS, WebAuthn, 2FA")) {
    default:
     alert("Invalid Login Method")
     location.replace(location.href)
