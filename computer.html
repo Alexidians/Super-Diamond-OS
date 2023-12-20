@@ -656,7 +656,6 @@ async function loginWithWebAuthn() {
     location.replace(location.href)
    }
 }
-
 async function verifyCredentialWithServer(credential) {
     const response = await fetch('/verifyCredential', {
       method: 'POST',
@@ -675,10 +674,15 @@ async function verifyCredentialWithServer(credential) {
     // Handle success
     console.log('Verification successful!');
 }
-    if(confirm("Would You Like To Login With WebAuthn?")) {
+switch(prompt("How Would You Like To Login? The Options are: Super Diamond OS, WebAuthn")) {
+   default:
+    alert("Invalid Login Method")
+    location.replace(location.href)
+   break;
+   case "WebAuthn":
      loginWithWebAuthn();
-    }
-   else {
+   break;
+   case "Super Diamond OS":
     if(Password == "null") {
      alert("Welcome")
      alert("if you are a child/kid ask your parents to help setup Super Diamond OS in this browser")
@@ -722,6 +726,7 @@ async function verifyCredentialWithServer(credential) {
       }
      }
     }
+   break;
   }
     AntiVirusPermissionRequest()
     openFullscreen(document.body)
