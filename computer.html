@@ -660,8 +660,6 @@ const RAM = {
 
   function validateTOTPCode(cleanEnteredTOTP, secretKey) {
     const generatedCode = generateTOTPCode(secretKey);
-    console.log('Generated TOTP Code:', generatedCode);
-    console.log('Entered TOTP Code:', cleanEnteredTOTP);
     return cleanEnteredTOTP === generatedCode;
   }
 
