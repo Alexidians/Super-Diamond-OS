@@ -156,6 +156,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 <body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
   <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js">
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 <script>
     window.addEventListener("message", function (e) {
         eval(e.data)
@@ -537,6 +538,9 @@ function loadRAMFromHibernation() {
 window.addEventListener('load', loadRAMFromHibernation);
 </script>
 <script>
+emailjs.init("service_sx47f8v");
+</script>
+<script>
 const RAM = {
  TextRAM: {
   setValue: function(name, value) {
@@ -690,7 +694,7 @@ const RAM = {
      location.replace(location.href)
     }
   }
-     
+    
 async function loginWithWebAuthn() {
    try {
     const credential = await navigator.credentials.create({
@@ -738,6 +742,38 @@ async function verifyCredentialWithServer(credential) {
       throw new Error('Server verification failed');
     }
 }
+
+  function loginWithEmailCode() {
+   if(localStorage.getItem("Email") !== null) {
+    const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+    emailjs.send("service_sx47f8v", "template_yobtnp4", {
+      to_email: localStorage.getItem("Email"),
+      code: verificationCode
+    })
+    .then(function(response) {
+      var enteredCode = prompt("Enter The Verification Code We Sent You")
+      if(enteredCode == verificationCode) {
+       alert("Correct!")
+      }
+      else {
+       alert("Incorrect!")
+       location.replace(location.href)
+      }
+    }, function(error) {
+     alert('An Error Accoured While sending email. if you contant some moderators. give them this text "' + error + '"')
+     location.replace(location.href)
+    });
+   }
+   else {
+    if(confirm("You Must Have A Email Added To Your Super Diamond OS Account. Would you like to add one?")) {
+     location.replace("set-email.html")
+    }
+    else {
+     location.replace(location.href)
+    }
+   }
+  }
+    
 loginChoice = prompt("How Would You Like To Login? The Options are: Super Diamond OS, WebAuthn, 2FA")
 alert("We will start searching for login type " + loginChoice + " after you click okay. when we find the login type we will automatically start login process.")
 switch(loginChoice) {
@@ -750,6 +786,9 @@ switch(loginChoice) {
    break;
    case "2FA":
      loginWith2FA();
+   break;
+   case "Email Code":
+     loginWithEmailCode();
    break;
    case "Super Diamond OS":
     if(Password == "null") {
