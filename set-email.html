@@ -1,0 +1,35 @@
+<html>
+<head>
+<title>Set Super Diamond OS Email</title>
+</head>
+<body>
+<h1>Set Super Diamond OS Email</h1>
+<p><input id="newEmailInput" type="email"></input> <button onclick="setEmail()">Set Email</button></p>
+<script>
+  emailjs.init("service_sx47f8v");
+
+  // Function to send verification code
+  function sendVerificationCode() {
+    // Generate a random verification code (you can use a library for this)
+    const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+
+    // Use the send method to send an email
+    emailjs.send("service_sx47f8v", "template_o4nfxph", {
+      to_email: document.getElementById("newEmailInput").value,
+      code: verificationCode,
+    })
+    .then(function(response) {
+      if(prompt("Enter Verification Code") == verificationCode) {
+       localStorage.setItem("Email", document.getElementById("newEmailInput").value)
+       alert("Correct!")
+      }
+      else {
+       alert("Incorrect!")
+      }
+    }, function(error) {
+      alert("Failed To Send Verification Email: " + error)
+    });
+  }
+</script>
+</body>
+</html>
