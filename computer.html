@@ -666,7 +666,6 @@ const RAM = {
   // Authenticate the user with TOTP
   function loginWith2FA() {
     try {
-    const enteredTOTP = prompt('Enter your 6-digit authentication code from Super Diamond OS Authenticator');
     const secretKey = getTOTPSecretKeyFromStorage();
 
     if (secretKey == null) {
@@ -680,6 +679,7 @@ const RAM = {
     }
     
     const isValid = validateTOTPCode(enteredTOTP, secretKey);
+    const enteredTOTP = prompt('Enter your 6-digit authentication code from Super Diamond OS Authenticator');
 
 
     if (isValid) {
