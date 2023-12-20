@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html id="htmloshtml"><head>
   <title>Super Diamond OS</title>
 <meta property="og:title" content="Super Diamond OS">
@@ -667,7 +667,6 @@ const RAM = {
   function loginWith2FA() {
     try {
     const enteredTOTP = prompt('Enter your 6-digit authentication code from Super Diamond OS Authenticator');
-    const cleanEnteredTOTP = enteredTOTP.replace(/\s/g, '');
     const secretKey = getTOTPSecretKeyFromStorage();
 
     if (!secretKey) {
@@ -691,7 +690,6 @@ const RAM = {
     }
     }
     catch(err) {
-     alert(enteredTOTP)
      alert('An Error Accoured While Authenticating. if you contant some moderators. give them this text "' + err + '"')
      location.replace(location.href)
     }
