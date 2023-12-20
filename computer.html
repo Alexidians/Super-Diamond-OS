@@ -673,12 +673,13 @@ const RAM = {
     const secretKey = getTOTPSecretKeyFromStorage();
 
     if (!secretKey) {
-      if(confirm('Please register your TOTP secret key first. would you like to do that? for security reasons. you will have to login with Super Diamond OS')) {
+      if(confirm('Please register your TOTP secret key first. would you like to do that? for security reasons. you will have to login with Super Diamond OS. if redirect fails. change page to 2FA-setup.html')) {
        location.replace("2FA-setup.html")
       }
       else {
        location.replace(location.href)
       }
+      return;
     }
 
     const isValid = validateTOTPCode(cleanEnteredTOTP, secretKey);
