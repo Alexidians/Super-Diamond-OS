@@ -624,6 +624,77 @@ const RAM = {
      backgroundIsImage = "true"
     }
     var OSName = "Super Diamond OS"
+
+  // Retrieve the TOTP secret key from local storage
+  function getTOTPSecretKeyFromStorage() {
+    return localStorage.getItem('totp_secret_key');
+  }
+
+  // Generate a TOTP code using the secret key
+  function generateTOTPCode(secretKey) {
+    const shaObj = new jsSHA('SHA-1', 'TEXT');
+    const time = Math.floor(Date.now() / 1000 / 30); // Time in 30-second intervals
+    const timeHex = (Array(16).join('0') + time.toString(16)).slice(-16); // Padded to 16 characters
+    const key = base32Decode(secretKey);
+    shaObj.setHMACKey(key, 'BYTES');
+    shaObj.update(timeHex);
+    const hmac = shaObj.getHMAC('HEX');
+    const offset = parseInt(hmac.slice(-1), 16) & 0x0f;
+    const code = (parseInt(hmac.slice(offset * 2, offset * 2 + 8), 16) & 0x7fffffff) % 1000000;
+    return ('000000' + code).slice(-6); // Padded to 6 digits
+  }
+
+  // Base32 decoding function
+  function base32Decode(str) {
+    const base32Chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+    let decoded = '';
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charAt(i).toUpperCase();
+      const index = base32Chars.indexOf(char);
+      decoded += index.toString(2).padStart(5, '0');
+    }
+    return String.fromCharCode(...decoded.match(/.{1,8}/g).map(byte => parseInt(byte, 2)));
+  }
+
+  function validateTOTPCode(cleanEnteredTOTP, secretKey) {
+    const generatedCode = generateTOTPCode(secretKey);
+    console.log('Generated TOTP Code:', generatedCode);
+    console.log('Entered TOTP Code:', cleanEnteredTOTP);
+    return cleanEnteredTOTP === generatedCode;
+  }
+
+  // Authenticate the user with TOTP
+  function loginWith2FA() {
+    try {
+    const enteredTOTP = prompt('Enter your 6-digit authentication code from Super Diamond OS Authenticator');
+    const cleanEnteredTOTP = enteredTOTP.replace(/\s/g, '');
+    const secretKey = getTOTPSecretKeyFromStorage();
+
+    if (!secretKey) {
+      if(confirm('Please register your TOTP secret key first. would you like to do that? for security reasons. you will have to login with Super Diamond OS')) {
+       location.replace("2FA-setup.html")
+      }
+      else {
+       location.replace(location.href)
+      }
+    }
+
+    const isValid = validateTOTPCode(cleanEnteredTOTP, secretKey);
+
+
+    if (isValid) {
+      alert('Authentication successful!');
+    } else {
+      alert('Wrong Code. Authentication Failed');
+      location.replace(location.href)
+    }
+    }
+    catch(err) {
+     alert('An Error Accoured While Authenticating. if you contant some moderators. give them this text "' + err + '"')
+     location.replace(location.href)
+    }
+  }
+     
 async function loginWithWebAuthn() {
    try {
     const credential = await navigator.credentials.create({
@@ -681,6 +752,9 @@ switch(prompt("How Would You Like To Login? The Options are: Super Diamond OS, W
    break;
    case "WebAuthn":
      loginWithWebAuthn();
+   break;
+   case "2FA":
+     loginWith2FA();
    break;
    case "Super Diamond OS":
     if(Password == "null") {
