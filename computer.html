@@ -667,7 +667,6 @@ const RAM = {
   function loginWith2FA() {
     try {
     const secretKey = getTOTPSecretKeyFromStorage();
-
     if (secretKey == null) {
       if(confirm('Please register your TOTP secret key first. would you like to do that? for security reasons. you will have to login with Super Diamond OS. if redirect fails. change page to 2FA-setup.html')) {
        location.replace("2FA-setup.html")
@@ -677,11 +676,8 @@ const RAM = {
       }
       return;
     }
-    
-    const isValid = validateTOTPCode(enteredTOTP, secretKey);
     const enteredTOTP = prompt('Enter your 6-digit authentication code from Super Diamond OS Authenticator');
-
-
+    const isValid = validateTOTPCode(enteredTOTP, secretKey);
     if (isValid) {
       alert('Authentication successful!');
     } else {
