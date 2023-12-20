@@ -37,7 +37,7 @@
 
   function updateCodeText() {
     const secretKey = localStorage.getItem("SuperDiamondOSAuthenticator_TOTP_KEY");
-    if (secretKey) {
+    if (secretKey !== null) {
       document.getElementById("code").innerHTML = generateTOTPCode(secretKey);
     } else {
       document.getElementById("code").innerHTML = "Secret Key not found!";
