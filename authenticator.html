@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Super Diamond OS Authenticator</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
+  <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js">
+</head>
+<body>
+
+<h1>Super Diamond OS Authenticator</h1>
+<p id="code"></p>
+<script>
+   function generateTOTPCode(secretKey) {
+    const shaObj = new jsSHA('SHA-1', 'TEXT');
+    const time = Math.floor(Date.now() / 1000 / 30); // Time in 30-second intervals
+    const timeHex = (Array(16).join('0') + time.toString(16)).slice(-16); // Padded to 16 characters
+    const key = base32Decode(secretKey);
+    shaObj.setHMACKey(key, 'BYTES');
+    shaObj.update(timeHex);
+    const hmac = shaObj.getHMAC('HEX');
+    const offset = parseInt(hmac.slice(-1), 16) & 0x0f;
+    const code = (parseInt(hmac.slice(offset * 2, offset * 2 + 8), 16) & 0x7fffffff) % 1000000;
+    return ('000000' + code).slice(-6); // Padded to 6 digits
+   }
+
+   function base32Decode(str) {
+    const base32Chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+    let decoded = '';
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charAt(i).toUpperCase();
+      const index = base32Chars.indexOf(char);
+      decoded += index.toString(2).padStart(5, '0');
+    }
+    return String.fromCharCode(...decoded.match(/.{1,8}/g).map(byte => parseInt(byte, 2)));
+  }
+
+  function updateCodeText() {
+   document.getElementById("code").innerHTML = generateTOTPCode(localStorage.getItem("SuperDiamondOSAuthenticator_TOTP_KEY"))
+  }
+  setInterval(updateCodeText, 0)
+</script>
+</body>
+</html>
