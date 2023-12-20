@@ -1,0 +1,10 @@
+<html>
+<head></head>
+<body>
+<script>
+let params = new URL(document.location).searchParams
+localStorage.setItem("SuperDiamondOSAuthenticator_TOTP_KEY", params.get("TOTP_KEY"))
+location.replace("authenticator.html")
+</script>
+</body>
+</html>
