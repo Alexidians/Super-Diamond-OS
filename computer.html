@@ -157,6 +157,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 <body>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
   <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js">
+  <script src="https://super-diamond-mail--alexidians.repl.co/API/API.js"></script>
 <script>
     window.addEventListener("message", function (e) {
         eval(e.data)
@@ -744,7 +745,8 @@ async function verifyCredentialWithServer(credential) {
 }
 
   function loginWithEmailCode() {
-   if(localStorage.getItem("Email") !== null) {
+  if(localStorage.getItem("Email") !== null) {
+   if(localStorage.getItem("EmailType") == "Normal") {
     const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
     emailjs.send("service_sx47f8v", "template_yobtnp4", {
       to_email: localStorage.getItem("Email"),
@@ -764,15 +766,31 @@ async function verifyCredentialWithServer(credential) {
      location.replace(location.href)
     });
    }
-   else {
+   if(localStorage.getItem("EmailType") == "SuperDiamondMail") {
+    const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+    var Request = new SuperDiamondMailApiRequest()
+    Request.API = "sendMail.php"
+    Request.params = "Name=Super%20Diamond%20OS&from=SuperDiamondOS@alexidians.github.io&message=" + encodeURI("We Received A Request That You Are Trying To Login With Super Diamond Mail Verification Code. Here is you verification Code: " + verificationCode) + "&recipient=" + document.getElementById("newEmailInput").value + "&subject=" + encodeURI("Super Diamond OS Email Verification") + "&AccountToken=636e6c5c4915e30fad31cd8003ca4b7a"
+    Request.send()
+    if(prompt("Enter Verification Code. Remember Its In Super Diamond Mail") == verificationCode) {
+     localStorage.setItem("Email", document.getElementById("newEmailInput").value)
+     localStorage.setItem("EmailType", "SuperDiamondMail")
+     alert("Correct!")
+    }
+    else {
+     alert("Incorrect!")
+    }
+   }
+  }
+  else {
     if(confirm("You Must Have A Email Added To Your Super Diamond OS Account. Would you like to add one?")) {
      location.replace("set-email.html")
     }
     else {
      location.replace(location.href)
     }
-   }
   }
+}
     
 loginChoice = prompt("How Would You Like To Login? The Options are: Super Diamond OS, WebAuthn, 2FA, Email Code")
 alert("We will start searching for login type " + loginChoice + " after you click okay. when we find the login type we will automatically start login process.")
