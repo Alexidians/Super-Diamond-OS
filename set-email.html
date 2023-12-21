@@ -7,6 +7,51 @@
 <h1>Set Super Diamond OS Email</h1>
 <p><input id="newEmailInput" type="email"></input> <button onclick="setEmail()">Set Email</button></p>
 <script>
+    Password = localStorage.getItem("Password")
+    if(Password == "null") {
+     alert("Welcome")
+     alert("if you are a child/kid ask your parents to help setup Super Diamond OS in this browser")
+     alert("Setup Note: Every Browser on Every Device has the has different Data saved/n if you are a parent setting this up for kids a account needs to be created for all of your kids/n important: if you are using a browser with restricted website access for kids it can be bypassed with our browser that uses iframes or other apps that have iframes to not allowed websites")
+     alert("Before you go. Lets Setup your Device")
+     Setup()
+    } else {
+     if(Password == null) {
+      alert("Welcome")
+      alert("if you are a child/kid ask your parents to help setup Super Diamond OS in this browser")
+      alert("Setup Note: Every Browser on Every Device has the has different Data saved/n if you are a parent setting this up for kids a account needs to be created for all of your kids/n important: if you are using a browser with restricted website access for kids it can be bypassed with our browser that uses iframes or other apps that have iframes to not allowed websites")
+      alert("Before you go. Lets Setup your Device")
+      Setup()
+     } else {
+      if(Password == "Recover") {
+       alert("Welcome")
+       alert("if you are a child/kid ask your parents to help setup Super Diamond OS in this browser")
+       alert("Setup Note: Every Browser on Every Device has the has different Data saved/n if you are a parent setting this up for kids a account needs to be created for all of your kids/n important: if you are using a browser with restricted website access for kids it can be bypassed with our browser that uses iframes or other apps that have iframes to not allowed websites")
+       alert("Before you go. Lets Setup your Device")
+       Setup()
+      } else {
+       if(getCookie("loggedIn") == "itis") {
+        alert("Welcome Back")
+       }
+       else {
+       var LoginEnteredPass = prompt("Enter Password To Continue")
+       if(LoginEnteredPass == Password) {
+        alert("Welcome Back")
+        setCookie("loggedIn", "itis", 1)
+       } else {
+        if(LoginEnteredPass == "Recover") {
+         alert("The Recovery Feature might not be added but it currently is not here/n If you need to recover/reset your password Contact us at super_diamond_community@inbox.lv")
+         open("mailto:super_diamond_community@inbox.lv")
+         location.replace(location.href)
+        } else {
+         alert("Incorrect Password")
+         location.replace(location.href)
+        }
+       }
+       }
+      }
+     }
+    }
+  
   emailjs.init("9EOT4CjiLi7_ipO_l");
 
   // Function to send verification code
