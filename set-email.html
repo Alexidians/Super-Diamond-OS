@@ -4,8 +4,9 @@
 <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
 </head>
 <body>
+<script src="https://super-diamond-mail--alexidians.repl.co/API/API.js"></script>
 <h1>Set Super Diamond OS Email</h1>
-<p><input id="newEmailInput" type="email"></input> <button onclick="setEmail()">Set Email</button></p>
+<p><input id="newEmailInput" type="email"></input> <button onclick="setEmail()">Set Email</button> <button onclick="setEmailAsSuperDiamondMail()">Set Email As Super Diamond Mail</button></p>
 <script>
     Password = localStorage.getItem("Password")
     if(Password == "null") {
@@ -65,8 +66,9 @@
       code: verificationCode,
     })
     .then(function(response) {
-      if(prompt("Enter Verification Code") == verificationCode) {
+      if(prompt("Enter Verification Code. There is a 99% chance it ended up in your spam folder as the frontend email sending service can't authenticate the address") == verificationCode) {
        localStorage.setItem("Email", document.getElementById("newEmailInput").value)
+       localStorage.setItem("EmailType", "Normal")
        alert("Correct!")
       }
       else {
@@ -75,6 +77,23 @@
     }, function(error) {
       alert("Failed To Send Verification Email: " + error)
     });
+  }
+    
+  function setEmailAsSuperDiamondMail() {
+    // Generate a random verification code (you can use a library for this)
+    const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
+    var Request = new SuperDiamondMailApiRequest()
+    Request.API = "sendMail.php"
+    Request.params = "Name=Super%20Diamond%20OS&from=SuperDiamondOS@alexidians.github.io&message=" + encodeURI("We Received A Request That You Are Trying To Set Your Email As Super Diamond Mail. Here is you verification Code: " + verificationCode) + "&recipient=" + document.getElementById("newEmailInput").value + "&subject=" + encodeURI("Super Diamond OS Email Verification") + "&AccountToken=636e6c5c4915e30fad31cd8003ca4b7a"
+    Request.send()
+    if(prompt("Enter Verification Code") == verificationCode) {
+     localStorage.setItem("Email", document.getElementById("newEmailInput").value)
+     localStorage.setItem("EmailType", "SuperDiamondMail")
+     alert("Correct!")
+    }
+    else {
+     alert("Incorrect!")
+    }
   }
 </script>
 </body>
