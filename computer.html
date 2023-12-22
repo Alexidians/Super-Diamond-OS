@@ -774,17 +774,16 @@ async function verifyCredentialWithServer(credential) {
      name: "Super Diamond OS",
      from: "SuperDiamondOS@alexidians.github.io",
      message: "We Received A Request That You Are Trying To Login With Super Diamond Mail Verification Code. Here is you verification Code: " + verificationCode,
-     recipient: document.getElementById("newEmailInput").value,
+     recipient: localStorage.getItem("Email"),
      subject: "Super Diamond OS Email Verification",
      APIToken="636e6c5c4915e30fad31cd8003ca4b7a"
     }
     if(prompt("Enter Verification Code. Remember Its In Super Diamond Mail") == verificationCode) {
-     localStorage.setItem("Email", document.getElementById("newEmailInput").value)
-     localStorage.setItem("EmailType", "SuperDiamondMail")
      alert("Correct!")
     }
     else {
      alert("Incorrect!")
+     location.replace(location.href)
     }
    }
   }
