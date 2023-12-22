@@ -92,6 +92,7 @@
      subject: "Super Diamond OS Email Verification",
      APIToken: "636e6c5c4915e30fad31cd8003ca4b7a"
     }
+    Request.send()
     if(prompt("Enter Verification Code. Remember Its In Super Diamond Mail") == verificationCode) {
      localStorage.setItem("Email", document.getElementById("newEmailInput").value)
      localStorage.setItem("EmailType", "SuperDiamondMail")
