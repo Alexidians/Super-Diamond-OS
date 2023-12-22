@@ -770,8 +770,14 @@ async function verifyCredentialWithServer(credential) {
     const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
     var Request = new SuperDiamondMailApiRequest()
     Request.API = new SuperDiamondMailApi("sendMail")
-    Request.params = "Name=Super%20Diamond%20OS&from=SuperDiamondOS@alexidians.github.io&message=" + encodeURI("We Received A Request That You Are Trying To Login With Super Diamond Mail Verification Code. Here is you verification Code: " + verificationCode) + "&recipient=" + document.getElementById("newEmailInput").value + "&subject=" + encodeURI("Super Diamond OS Email Verification") + "&AccountToken=636e6c5c4915e30fad31cd8003ca4b7a"
-    Request.send()
+    Request.params = {
+     name: "Super Diamond OS",
+     from: "SuperDiamondOS@alexidians.github.io",
+     message: "We Received A Request That You Are Trying To Login With Super Diamond Mail Verification Code. Here is you verification Code: " + verificationCode,
+     recipient: document.getElementById("newEmailInput").value,
+     subject: "Super Diamond OS Email Verification",
+     APIToken="636e6c5c4915e30fad31cd8003ca4b7a"
+    }
     if(prompt("Enter Verification Code. Remember Its In Super Diamond Mail") == verificationCode) {
      localStorage.setItem("Email", document.getElementById("newEmailInput").value)
      localStorage.setItem("EmailType", "SuperDiamondMail")
