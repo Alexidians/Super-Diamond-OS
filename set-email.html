@@ -83,6 +83,8 @@
     // Generate a random verification code (you can use a library for this)
     const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
     var Request = new SuperDiamondMailApiRequest()
+    Request.log_response = true
+    Request.log_request = true
     Request.API = new SuperDiamondMailApi("sendMail")
     Request.params = {
      name: "Super Diamond OS",
