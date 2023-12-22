@@ -769,8 +769,6 @@ async function verifyCredentialWithServer(credential) {
    if(localStorage.getItem("EmailType") == "SuperDiamondMail") {
     const verificationCode = Math.floor(100000 + Math.random() * 900000).toString();
     var Request = new SuperDiamondMailApiRequest()
-    Request.log_response = true
-    Request.log_request = true
     Request.API = new SuperDiamondMailApi("sendMail")
     Request.params = {
      name: "Super Diamond OS",
