@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>Super Diamond OS Bluescreen</title>
+</head>
+<body>
+<style>
+body {
+ background-color: blue;
+}
+</style>
+<h1>Super Diamond OS Crashed</h1>
+<p>Super Diamond OS detected A Fatal Error And Has Been Shutdown</p>
+<p>Please Wait While We Restart Super Diamond OS.</p>
+<p id="errorInfo">We Have Saved Info About The Fatal Error And it can be viewed after Restart or here:</p>
+<p>message: <code id="message"></code></p>
+<p>source: <code id="source"></code></p>
+<p>lineno: <code id="lineno"></code></p>
+<p>colno: <code id="colno"></code></p>
+<p>error: <code id="error"></code></p>
+<script>
+const params = new URL(location.href).searchParams;
+var crashInfo = {
+ message: params.get("message"),
+ source: params.get("source"),
+ lineno: params.get("lineno"),
+ colno: params.get("colno"),
+ error: params.get("error")
+}
+try {
+ localStorage.setItem("lastCrashInfo", JSON.stringify(crashInfo))
+}
+catch(err) {
+ document.getElementById("errorInfo").innerHTML = "We Failed To Save Info About The Fatal Error And It Cannot Be Viewed After Restart. the Error Info Is:"
+}
+document.getElementById("message").innerHTML = crashInfo.message
+document.getElementById("source").innerHTML = crashInfo.source
+document.getElementById("lineno").innerHTML = crashInfo.lineno
+document.getElementById("colno").innerHTML = crashInfo.colno
+document.getElementById("error").innerHTML = crashInfo.error
+setTimeout(startRestart, 10000)
+function startRestart() {
+ location.replace("index.html")
+}
+</script>
+</body>
+</html>
