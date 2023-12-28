@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>Super Diamond OS last Crash Info</title>
+</head>
+<body>
+<style>
+body {
+ background-color: blue;
+}
+</style>
+<h1>Super Diamond OS last Crash Info</h1>
+<p>here is saved Info About The Last Super Diamond OS Crash:</p>
+<p>message: <code id="message"></code></p>
+<p>source: <code id="source"></code></p>
+<p>lineno: <code id="lineno"></code></p>
+<p>colno: <code id="colno"></code></p>
+<p>error: <code id="error"></code></p>
+<script>
+var crashInfo = JSON.parse("lastCrashInfo")
+document.getElementById("message").innerHTML = crashInfo.message
+document.getElementById("source").innerHTML = crashInfo.source
+document.getElementById("lineno").innerHTML = crashInfo.lineno
+document.getElementById("colno").innerHTML = crashInfo.colno
+document.getElementById("error").innerHTML = crashInfo.error
+</script>
+</body>
+</html>
