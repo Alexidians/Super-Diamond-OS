@@ -412,31 +412,7 @@ function startBattery() {
       <p><img src="superdiamond.png" width="50" height="50" onclick="openHomeMenu()"><img src="Super Diamond OS_files/update.png" style="display: none" id="updateButton" width="50" height="50" onclick="update()"><button onclick="CreateAppShortcut()">Create App Shortcut</button><img height="50" width="50" src="./Super Diamond OS_files/repair-hammer.png" onclick="Repair()"><img height="50" width="50" src="./Super Diamond OS_files/lock.png" onclick="lock()"><img height="50" width="50" src="./Super Diamond OS_files/power-button.png" onclick="ShutDown()"><input type="text" class="taskbarSearch"><img height="50" width="50" src="./Super Diamond OS_files/arrow-right.png" onclick="TaskBarSearch()"><img height="50" width="50" src="./Super Diamond OS_files/Task Manager.png" onclick="OpenApp(&#39;Task Manager&#39;)"><img height="50" width="50" src="./Super Diamond OS_files/SuperDiamond.png" onclick="OpenApp(&#39;Super Diamond Notepad&#39;)"><img height="50" width="50" src="./Super Diamond OS_files/youtube.png" onclick="OpenApp(&#39;Youtube&#39;)"> <img height="50" width="50" src="Super Diamond OS_files/hibernate.png" onclick="hibernate()"></img> <button onclick="ShutDownApp(&#39;Task Manager&#39;)">Shut Down Task Mng</button><a onclick="alert(getTime())" id="timeText">13:36:33</a> <iframe src="Super Diamond OS_files/notification.html" style="display: none" width="300" height="150" id="notification"></iframe></p>
     </div>
 </div>
-  <script>
-    function Crash(crash) {
-     crashInterval = setInterval(CrashAct, 0, crash)
-     setTimeout(CrashMiddle, 5000)
-    }
-    function CrashMiddle() {
-     clearInterval(crashInterval)
-     document.getElementById("desktop").remove()
-     var png = document.createElement("img")
-     png.src = "pc-error.png"
-     png.width = "2280"
-     png.height = "1500"
-     png.id = "CrashPng"
-     document.body.appendChild(png)
-     setTimeout(CrashEnd, 10000)
-    }
-    function CrashEnd() {
-     document.getElementById("CrashPng").remove()
-     document.body.style.backgroundColor = "black";
-    }
-    function CrashAct(error) {
-     ErrorMessage(error)
-     WarningMessage(error)
-    }
-  </script>
+  <script src="system/process/crash.js"></script>
   <RAM id="RAM" style="display: none;">
    <TextRAM id="TextRAM">
     <data name="StartedUp" value="true"></data>
