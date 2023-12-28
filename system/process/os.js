@@ -510,6 +510,19 @@ window.onclick = function(event) {
       document.getElementById("Apps").appendChild(App)
       makeDraggable(App)
      }
+     if(AppName == "Nyan Cat: Lost In Space") {
+      App.id = "Nyan Cat: Lost In Space"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Nyan Cat: Lost In Space"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.src = "https://www.gameflare.com/embed/nyan-cat-lost-in-space/"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
      if(AppName == "Super Diamond Browser") {
       App.id = "Super Diamond Browser"
       var AppFrame = document.createElement("iframe")
