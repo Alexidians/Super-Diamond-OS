@@ -276,7 +276,7 @@ switch(loginChoice) {
    break;
   }
     AntiVirusPermissionRequest()
-    openFullscreen(document.body)
+    //openFullscreen(document.body)
     openHomeMenu()
 
 function setCookie(cname,cvalue,exdays) {
