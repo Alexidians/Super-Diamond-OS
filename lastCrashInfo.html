@@ -16,7 +16,7 @@ body {
 <p>colno: <code id="colno"></code></p>
 <p>error: <code id="error"></code></p>
 <script>
-var crashInfo = JSON.parse("lastCrashInfo")
+var crashInfo = JSON.parse(localStorage.getItem("lastCrashInfo"))
 document.getElementById("message").innerHTML = crashInfo.message
 document.getElementById("source").innerHTML = crashInfo.source
 document.getElementById("lineno").innerHTML = crashInfo.lineno
