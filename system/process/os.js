@@ -483,6 +483,27 @@ window.onclick = function(event) {
        charging = isCharging
       }
 
+    function openSuperDAppUpload() {
+     document.getElementById('SuperDAppUpload').click();
+    }
+
+    document.getElementById('SuperDAppUpload').addEventListener('change', handleFileSelect);
+
+    function handleSuperDAppUpload(event) {
+        const file = event.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onload = function (e) {
+                const fileContent = e.target.result;
+                execSuperDApp(fileContent);
+            };
+
+            reader.readAsText(file);
+        }
+    }
+
     function OpenApp(AppName) {
      var App = document.createElement("div")
      var AppTitle = document.createElement("h3")
