@@ -487,7 +487,7 @@ window.onclick = function(event) {
      document.getElementById('SuperDAppUpload').click();
     }
 
-    document.getElementById('SuperDAppUpload').addEventListener('change', handleFileSelect);
+    document.getElementById('SuperDAppUpload').addEventListener('change', handleSuperDAppUpload);
 
     function handleSuperDAppUpload(event) {
         const file = event.target.files[0];
