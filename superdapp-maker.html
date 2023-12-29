@@ -1,0 +1,65 @@
+<html>
+<head>
+<title>SuperDApp Maker</title>
+</head>
+<body>
+<p>App Name</p>
+<p><input id="name" type="text"></input></p>
+<p>Startup Code (Leave Empty If None)</p>
+<p><input id="code" type="text"></input></p>
+<p>Has Window</p>
+<select id="window.exsists">
+  <option value="true">true</option>
+  <option value="false">false</option>
+</select>
+<p>Window Type (Required If Has Window)</p>
+<select id="window.type">
+  <option value="html">html</option>
+  <option value="iframe">iframe</option>
+</select>
+<p>Window Url (Required If Has Window And Window Type Is iframe)</p>
+<p><input id="window.url" type="text" placeholder="https://example.com"></input></p>
+<p>Window HTML (Required If Has Window And Window Type Is html)</p>
+<p><textarea id="window.html" rows="100" cols="100"></textarea></p>
+<button onclick="create()">Create</button>
+<script>
+function download(filename, text) {
+    var pom = document.createElement('a');
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    pom.setAttribute('download', filename);
+
+    if (document.createEvent) {
+        var event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        pom.dispatchEvent(event);
+    }
+    else {
+        pom.click();
+    }
+}
+
+function getBolleanFromString(text) {
+ if(text == "true") {
+  return true;
+ }
+ else {
+  return false;
+ }
+}
+  
+function create() {
+ var Manifest = {
+  name: document.getElementById("name").value,
+  code: document.getElementById("code").value,
+  window: {
+   exsists: getBolleanFromString(document.getElementById("window.exsists").value),
+   type: document.getElementById("window.type").value,
+   url: document.getElementById("window.url").value,
+   html: document.getElementById("window.html").value
+  }
+ }
+ download(manifest.name + ".SuperDApp", btoa(JSON.stringify(Manifest)))
+}
+</script>
+</body>
+</html>
