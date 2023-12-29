@@ -158,33 +158,12 @@ body {font-family: Arial, Helvetica, sans-serif;}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.0.2/sha.js"></script>
   <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js">
   <script src="https://super-diamond-mail--alexidians.repl.co/API/API.js"></script>
-<script>
-    window.addEventListener("message", function (e) {
-        eval(e.data)
-    })
-</script>
+<script src="system/process/app-code-executor.js"></script>
 <link rel="image_src" href="embeds/boot-manager.png">
 <script name="security" src="Super Diamond OS_files/security.js"></script>
 <iframe style="display: none" src="https://super-diamond-os-account-storage.github.io/storage"></iframe>
 <iframe style="display: none" src="https://super-diamond-drive.github.io/drive"></iframe>
-<script>
-var version = 36
-var newestVersion = version
-var AutomaticUpdateCheckInterval = setInterval(AutomaticUpdateCheck, 1000)
-function AutomaticUpdateCheck() {
- var checkerApi = document.createElement("script")
- checkerApi.src = "Super Diamond OS_files/updateCheckerApi.js"
- document.body.appendChild(checkerApi)
- checkerApi.remove()
- if(version < newestVersion) {
-  clearInterval(AutomaticUpdateCheckInterval)
-  document.getElementById("updateButton").style.display = "block"
-  if(confirm("We Detected a newer Version of Super Diamond OS would you like to update")) {
-   update()
-  }
- }
-}
-</script>
+<script src="system/process/update.js"></script>
   <div id="updateScreen" style="display:none; background-color:blue">
    <center><h1>Updating...</h1></center>
    <div id="updateProgress">
