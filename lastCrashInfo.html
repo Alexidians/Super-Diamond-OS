@@ -14,6 +14,7 @@ body {
 <p>source: <code id="source"></code></p>
 <p>lineno: <code id="lineno"></code></p>
 <p>colno: <code id="colno"></code></p>
+<p>stack: <code id="stack"></code></p>
 <p>error: <code id="error"></code></p>
 <script>
 var crashInfo = JSON.parse(localStorage.getItem("lastCrashInfo"))
@@ -21,6 +22,7 @@ document.getElementById("message").innerHTML = crashInfo.message
 document.getElementById("source").innerHTML = crashInfo.source
 document.getElementById("lineno").innerHTML = crashInfo.lineno
 document.getElementById("colno").innerHTML = crashInfo.colno
+document.getElementById("stack").innerHTML = crashInfo.stack
 document.getElementById("error").innerHTML = crashInfo.error
 </script>
 </body>
