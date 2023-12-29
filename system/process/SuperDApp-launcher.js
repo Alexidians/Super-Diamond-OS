@@ -17,7 +17,6 @@ function execSuperDApp(content) {
   if(manifest.window.type == "iframe") {
    var AppFrame = document.createElement("iframe")
    AppTitle.InnerHTML = manifest.name
-   AppTitle.appendChild(AppTitleTextNode)
    App.appendChild(AppTitle)
    App.appendChild(AppFrame)
    AppFrame.src = manifest.window.url
@@ -29,7 +28,6 @@ function execSuperDApp(content) {
   if(manifest.window.type == "html") {
    var AppFrame = document.createElement("iframe")
    AppTitle.InnerHTML = manifest.name
-   AppTitle.appendChild(AppTitleTextNode)
    App.appendChild(AppTitle)
    App.appendChild(AppFrame)
    AppFrame.srcdoc = manifest.window.html
