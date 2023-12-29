@@ -222,9 +222,10 @@ function update() {
 <script src="system/process/geolocation.js"></script>
 <script src="system/process/notefication.js"></script>
 <script src="system/process/SuperDApp-launcher.js"></script>
+<input type="file" id="SuperDAppUpload" accept=".SuperDApp" style="display: none;" />
    <div id="right-click-target">
     <div class="right-click-menu" id="menu">
-      <div class="right-click-menu-item" onclick="CustomApp()">Custom App (Dangerous)</div>
+      <div class="right-click-menu-item" onclick="CustomApp()">Custom App</div>
       <div class="right-click-menu-item" onclick="DataViewProtected()">Data (Private)</div>
       <div class="right-click-menu-item" onclick="protectedConsole()">Dev Console (developer only)</div>
       <div class="right-click-menu-item" onclick="changeBackground()">Change Background</div>
@@ -232,7 +233,7 @@ function update() {
       <div class="right-click-menu-item" onclick="setStartupProgram(prompt('Enter Program Name'))">Set Startup Program</div>
       <div class="right-click-menu-item" onclick="alert(importPlugin(prompt('Enter Plugin File Url'),prompt('Enter File Extension. we need it to know how to import the plugin for you')))">Add Plugin</div>
       <div class="right-click-menu-item" onclick="print()">Print Screen</div>
-      <div class="right-click-menu-item" onclick="openSuperDAppUpload()">Open SuperDApp</div>
+      <div class="right-click-menu-item" onclick="openSuperDAppUpload()">Open SuperDApp (Open Only Trusted!)</div>
     </div>
   </div>
     <div id="AppShortcuts">
