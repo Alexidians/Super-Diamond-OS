@@ -6,13 +6,21 @@
         });
       }
 
-      async setSystemItem(key, value) {
-        try {
-          await this.system.put({ key, value });
-        } catch (error) {
-          console.error('Error setting system item:', error);
+      async setSystemItem(key, value) => {
+       try {
+        const existingItem = await db.system.where({ key }).first();
+
+        if (existingItem) {
+         console.log(`System item '${key}' already exists. Updating value to: ${value}`);
+         await db.system.update(existingItem.id, { value });
+        } else {
+         await db.system.add({ key, value });
+         console.log(`System item '${key}' set to: ${value}`);
         }
-      }
+       } catch (error) {
+        console.error('Error setting system item:', error);
+       }
+      };
 
       async getSystemItem(key) {
         try {
