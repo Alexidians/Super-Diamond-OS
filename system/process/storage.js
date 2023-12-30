@@ -10,11 +10,9 @@
        try {
         const existingItem = await db.system.where({ key }).first();
         if (existingItem) {
-         console.log(`System item '${key}' already exists. Updating value to: ${value}`);
          await this.system.update(existingItem.id, { value });
         } else {
          await this.system.add({ key, value });
-         console.log(`System item '${key}' set to: ${value}`);
         }
        } catch (error) {
         console.error('Error setting system item:', error);
