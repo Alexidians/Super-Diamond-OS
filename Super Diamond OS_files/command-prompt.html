@@ -43,6 +43,9 @@ h6 {
 </div>
 <p class="cmd_input"><input id="commandInput"></input> <button onclick="run()">Run</button></p>
 <script>
+function debugMode() {
+ parent.location.replace("debug-mode.html")
+}
 var OSWindow = parent
 const ComputerApps = {
  ById: function(id) {
