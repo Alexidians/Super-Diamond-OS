@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>Super Diamond OS Debug Mode</title>
+</head>
+<body>
+<style>
+body {
+ background-color: blue;
+}
+h3 {
+ color: white;
+}
+h3:hover {
+ color: black;
+}
+</style>
+<div id="toolSelect">
+ <center><h1>Super Diamond OS Debug Mode</h1></center>
+ <p><h3 onclick="dataEdit()">Data Edit</h3></p>
+</div>
+<div id="dataEdit" style="display: none;">
+ <p><button onclick="back('dataEdit')">Back</button></p>
+ <p><center><h1>Data Editor</h1></center></p>
+ <p><button onclick="localStorage.setItem(prompt('Enter Name Of Data To Set'), prompt('Enter New Value Of Data To Set'))">Set Data</button> <button onclick="alert(localStorage.getItem(prompt('Enter Name Of Data To View'))">View Data</button> <button onclick="localStorage.removeItem(prompt('Enter Name Of Data To Delete'))">Delete Data</button></p>
+</div>
+<script>
+function back(toolId) {
+ document.getElementById(toolId).style.display = "none";
+ document.getElementById("toolSelect").style.display = "block";
+}
+function dataEdit() {
+ document.getElementById("dataEdit").style.display = "block";
+ document.getElementById("toolSelect").style.display = "none";
+}
+</script>
+</body>
+</html>
