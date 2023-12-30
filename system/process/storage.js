@@ -8,7 +8,7 @@
 
       async setSystemItem(key, value) {
        try {
-        const existingItem = await db.system.where({ key }).first();
+        const existingItem = await this.system.where({ key }).first();
         if (existingItem) {
          await this.system.update(existingItem.id, { value });
         } else {
