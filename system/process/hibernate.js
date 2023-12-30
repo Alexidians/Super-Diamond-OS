@@ -26,19 +26,19 @@ function hibernate() {
         });
     });
 
-    localStorage.setItem('AppRAM', JSON.stringify(AppRAMArray));
-    localStorage.setItem('TextRAM', JSON.stringify(TextRAMArray));
-    localStorage.setItem('ScriptRAM', JSON.stringify(ScriptRAMArray));
-    localStorage.setItem('washibernated', 'true');
+    setSystemItem('AppRAM', JSON.stringify(AppRAMArray));
+    setSystemItem('TextRAM', JSON.stringify(TextRAMArray));
+    setSystemItem('ScriptRAM', JSON.stringify(ScriptRAMArray));
+    setSystemItem('washibernated', 'true');
     ShutDown()
 }
 
 function loadRAMFromHibernation() {
 
     if (localStorage.getItem('washibernated') === 'true') {
-        const AppRAMArray = JSON.parse(localStorage.getItem('AppRAM'));
-        const TextRAMArray = JSON.parse(localStorage.getItem('TextRAM'));
-        const ScriptRAMArray = JSON.parse(localStorage.getItem('ScriptRAM'));
+        const AppRAMArray = JSON.parse(getSystemItem('AppRAM'));
+        const TextRAMArray = JSON.parse(getSystemItem('TextRAM'));
+        const ScriptRAMArray = JSON.parse(getSystemItem('ScriptRAM'));
         const appsDiv = document.getElementById('Apps');
         const TextRAMDiv = document.getElementById('TextRAM');
         const ScriptRAMDiv = document.getElementById('ScriptRAM');
@@ -83,7 +83,7 @@ function loadRAMFromHibernation() {
             ScriptRAMDiv.appendChild(Elem)
         });
     }
-    localStorage.setItem('washibernated', 'false');
+    setSystemItem('washibernated', 'false');
 }
 
 
