@@ -40,6 +40,11 @@ document.getElementById("lineno").innerHTML = crashInfo.lineno
 document.getElementById("colno").innerHTML = crashInfo.colno
 document.getElementById("stack").innerHTML = crashInfo.stack
 document.getElementById("error").innerHTML = crashInfo.error
+window.addEventListener("keydown", (event) => {
+  if(event.code == "KeyD") {
+    location.replace("debug-mode.html")
+  }
+});
 setTimeout(startRestart, 10000)
 function startRestart() {
  location.replace("index.html")
