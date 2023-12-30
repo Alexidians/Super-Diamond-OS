@@ -9,7 +9,6 @@
       async setSystemItem(key, value) {
         try {
           await this.system.put({ key, value });
-          console.log(`System item '${key}' set to: ${value}`);
         } catch (error) {
           console.error('Error setting system item:', error);
         }
@@ -28,7 +27,6 @@
       async deleteSystemItem(key) {
         try {
           await this.system.where({ key }).delete();
-          console.log(`System item '${key}' deleted.`);
         } catch (error) {
           console.error('Error deleting system item:', error);
         }
