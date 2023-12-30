@@ -35,4 +35,13 @@
       }
     }
 
-    const SDStorage = new SuperDiamondOSDatabase();
+    const SDStorageDB = new SuperDiamondOSDatabase();
+    async function deleteSystemItem(key) => {
+      await SDStorageDB.deleteSystemItem(key);
+    };
+    async function getSystemItem(key) => {
+      return await SDStorageDB.getSystemItem(key);
+    };
+    async function setSystemItem(key, value) => {
+      await SDStorageDB.setSystemItem(key, value);
+    };
