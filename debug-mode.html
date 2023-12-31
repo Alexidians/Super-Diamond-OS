@@ -43,20 +43,23 @@ h3:hover {
         function downloadRestorePoint() {
             const items = getRestorePointItems();
             const jsonContent = JSON.stringify(items);
-            const blob = new Blob(btoa(jsonContent), { type: '' });
-            const url = URL.createObjectURL(blob);
-
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = '.SuperDiamondOSRestorePoint';
-            document.body.appendChild(a);
-            a.click();
-
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
+            download(btoa(jsonContent), ".SuperDiamondOSRestorePoint")
         }
+     
+        function download(filename, text) {
+         var pom = document.createElement('a');
+         pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+         pom.setAttribute('download', filename);
 
-        // Function to get specific localStorage items
+         if (document.createEvent) {
+          var event = document.createEvent('MouseEvents');
+          event.initEvent('click', true, true);
+          pom.dispatchEvent(event);
+         }
+         else {
+          pom.click();
+         }
+         
         function getRestorePointItems() {
             const items = [];
             specialItems.forEach(key => {
