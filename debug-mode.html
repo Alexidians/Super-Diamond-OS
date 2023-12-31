@@ -18,11 +18,81 @@ h3:hover {
  <center><h1>Super Diamond OS Debug Mode</h1></center>
  <p><h3 onclick="location.replace('index.html')">Restart</h3></p>
  <p><h3 onclick="dataEdit()">Data Edit</h3></p>
+ <p><h3 onclick="RestorePoints()">Restore Points</h3></p>
 </div>
 <div id="dataEdit" style="display: none;">
  <p><button onclick="back('dataEdit')">Back</button></p>
  <p><center><h1>Data Editor</h1></center></p>
- <p><button onclick="localStorage.setItem(prompt('Enter Name Of Data To Set'), prompt('Enter New Value Of Data To Set'))">Set Data</button> <button onclick="alert(localStorage.getItem(prompt('Enter Name Of Data To View'))">View Data</button> <button onclick="localStorage.removeItem(prompt('Enter Name Of Data To Delete'))">Delete Data</button></p>
+ <p><button onclick="localStorage.setItem(prompt('Enter Name Of Data To Set'), prompt('Enter New Value Of Data To Set'))">Set Data</button> <button onclick="alert(localStorage.getItem(prompt('Enter Name Of Data To View')))">View Data</button> <button onclick="localStorage.removeItem(prompt('Enter Name Of Data To Delete'))">Delete Data</button></p>
+</div>
+<div id="RestorePoints" style="display: none;">
+    <p><button onclick="back('RestorePoints')">Back</button></p>
+    <center><h1>Restore Points</h1></center>
+
+    <!-- Button to download specific localStorage items as JSON file -->
+    <button onclick="downloadRestorePoint()">Download Restore Point</button>
+    <p> or </p>
+    <p>Upload Restore Point</p>
+    <input type="file" id="fileInput" onchange="uploadRestorePoint()" accept=".SuperDiamondOSRestorePoint">
+
+    <script>
+        // Array containing keys of specific localStorage items
+        const specialItems = ['totp_secret_key', 'Password', 'Bookmarks', 'background', 'Email', 'lastCrashInfo', 'Password', 'TextRAM', 'MemoryUsage', 'startupProgram', 'UrlHistory', 'clockSpeed', 'AppRAM', 'ScriptRAM', 'washibernated', 'backgroundIsImage'];
+
+        // Function to download specific localStorage items as a JSON file
+        function downloadRestorePoint() {
+            const items = getRestorePointItems();
+            const jsonContent = JSON.stringify(items);
+            const blob = new Blob(btoa(jsonContent), { type: '' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = '.SuperDiamondOSRestorePoint';
+            document.body.appendChild(a);
+            a.click();
+
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Function to get specific localStorage items
+        function getRestorePointItems() {
+            const items = [];
+            specialItems.forEach(key => {
+                const value = localStorage.getItem(key);
+                if (value !== null) {
+                    items.push({ key, value });
+                }
+            });
+            return items;
+        }
+
+        // Function to upload a JSON file and add its content to localStorage
+        function uploadRestorePoint() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const content = e.target.result;
+                    const data = JSON.parse(content);
+
+                    // Add only the items from the uploaded JSON that match the special keys
+                    data.forEach(item => {
+                        if (specialItems.includes(item.key)) {
+                            localStorage.setItem(item.key, item.value);
+                        }
+                    });
+
+                    alert('System Restored Sucesfully. Restart Will Apply Changes!');
+                };
+
+                reader.readAsText(file);
+            }
+        }
+    </script>
 </div>
 <script>
 function back(toolId) {
@@ -31,6 +101,10 @@ function back(toolId) {
 }
 function dataEdit() {
  document.getElementById("dataEdit").style.display = "block";
+ document.getElementById("toolSelect").style.display = "none";
+}
+function RestorePoints() {
+ document.getElementById("RestorePoints").style.display = "block";
  document.getElementById("toolSelect").style.display = "none";
 }
 </script>
