@@ -77,7 +77,7 @@ h3:hover {
                 const reader = new FileReader();
                 reader.onload = function (e) {
                     const content = e.target.result;
-                    const data = JSON.parse(content);
+                    const data = JSON.parse(atob(content));
 
                     // Add only the items from the uploaded JSON that match the special keys
                     data.forEach(item => {
