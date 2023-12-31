@@ -43,7 +43,7 @@ h3:hover {
     function downloadRestorePoint() {
         const items = getRestorePointItems();
         const jsonContent = JSON.stringify(items);
-        download(btoa(jsonContent), ".SuperDiamondOSRestorePoint");
+        download(".SuperDiamondOSRestorePoint", btoa(jsonContent));
     }
 
     function download(filename, text) {
