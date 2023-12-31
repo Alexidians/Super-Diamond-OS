@@ -35,67 +35,67 @@ h3:hover {
     <p>Upload Restore Point</p>
     <input type="file" id="fileInput" onchange="uploadRestorePoint()" accept=".SuperDiamondOSRestorePoint">
 
-    <script>
-        // Array containing keys of specific localStorage items
-        const specialItems = ['totp_secret_key', 'Password', 'Bookmarks', 'background', 'Email', 'lastCrashInfo', 'Password', 'TextRAM', 'MemoryUsage', 'startupProgram', 'UrlHistory', 'clockSpeed', 'AppRAM', 'ScriptRAM', 'washibernated', 'backgroundIsImage'];
+<script>
+    // Array containing keys of specific localStorage items
+    const specialItems = ['totp_secret_key', 'Password', 'Bookmarks', 'background', 'Email', 'lastCrashInfo', 'Password', 'TextRAM', 'MemoryUsage', 'startupProgram', 'UrlHistory', 'clockSpeed', 'AppRAM', 'ScriptRAM', 'washibernated', 'backgroundIsImage'];
 
-        // Function to download specific localStorage items as a JSON file
-        function downloadRestorePoint() {
-            const items = getRestorePointItems();
-            const jsonContent = JSON.stringify(items);
-            download(btoa(jsonContent), ".SuperDiamondOSRestorePoint")
+    // Function to download specific localStorage items as a JSON file
+    function downloadRestorePoint() {
+        const items = getRestorePointItems();
+        const jsonContent = JSON.stringify(items);
+        download(btoa(jsonContent), ".SuperDiamondOSRestorePoint");
+    }
+
+    function download(filename, text) {
+        var pom = document.createElement('a');
+        pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+        pom.setAttribute('download', filename);
+
+        if (document.createEvent) {
+            var event = document.createEvent('MouseEvents');
+            event.initEvent('click', true, true);
+            pom.dispatchEvent(event);
+        } else {
+            pom.click();
         }
-     
-        function download(filename, text) {
-         var pom = document.createElement('a');
-         pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-         pom.setAttribute('download', filename);
+    }
 
-         if (document.createEvent) {
-          var event = document.createEvent('MouseEvents');
-          event.initEvent('click', true, true);
-          pom.dispatchEvent(event);
-         }
-         else {
-          pom.click();
-         }
-         
-        function getRestorePointItems() {
-            const items = [];
-            specialItems.forEach(key => {
-                const value = localStorage.getItem(key);
-                if (value !== null) {
-                    items.push({ key, value });
-                }
-            });
-            return items;
-        }
-
-        // Function to upload a JSON file and add its content to localStorage
-        function uploadRestorePoint() {
-            const fileInput = document.getElementById('fileInput');
-            const file = fileInput.files[0];
-
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    const content = e.target.result;
-                    const data = JSON.parse(atob(content));
-
-                    // Add only the items from the uploaded JSON that match the special keys
-                    data.forEach(item => {
-                        if (specialItems.includes(item.key)) {
-                            localStorage.setItem(item.key, item.value);
-                        }
-                    });
-
-                    alert('System Restored Sucesfully. Restart Will Apply Changes!');
-                };
-
-                reader.readAsText(file);
+    function getRestorePointItems() {
+        const items = [];
+        specialItems.forEach(key => {
+            const value = localStorage.getItem(key);
+            if (value !== null) {
+                items.push({ key, value });
             }
+        });
+        return items;
+    }
+
+    // Function to upload a JSON file and add its content to localStorage
+    function uploadRestorePoint() {
+        const fileInput = document.getElementById('fileInput');
+        const file = fileInput.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                const content = e.target.result;
+                const data = JSON.parse(atob(content));
+
+                // Add only the items from the uploaded JSON that match the special keys
+                data.forEach(item => {
+                    if (specialItems.includes(item.key)) {
+                        localStorage.setItem(item.key, item.value);
+                    }
+                });
+
+                alert('System Restored Successfully. Restart Will Apply Changes!');
+            };
+
+            reader.readAsText(file);
         }
-    </script>
+    }
+</script>
 </div>
 <script>
 function back(toolId) {
