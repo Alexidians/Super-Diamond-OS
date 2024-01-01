@@ -1,3 +1,0 @@
-var graphics = {
- error: undefined;
-}
