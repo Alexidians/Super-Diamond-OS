@@ -1620,19 +1620,19 @@ function sendRequest(url, data) {
 function hardwareDelay() {
   var quality = localStorage.getItem("hardwareQuality")
   if(quality == null) {
-   localStorage.setItem("hardwareQuality", Number.MAX_SAFE_INTEGER)
+   localStorage.setItem("hardwareQuality", "" + Number.MAX_SAFE_INTEGER + "")
    quality = "" + Number.MAX_SAFE_INTEGER + ""
   }
   quality = parseInt(quality)
-  var duration = 5000 / quality
+  var duration = 7000 / quality
   const start = Date.now();
   while (Date.now() - start < duration) {
    //empty loop to freeze code so hardware delay applies
   }
-  alert("Simulated lag complete!");
+  setTimeout(hardwareDelay, 2000)
 }
 
-setInterval(hardwareDelay, 2000)
+hardwareDelay()
     // Make all windows draggable
     const windows = document.querySelectorAll(".window");
     windows.forEach(window => {
