@@ -1617,22 +1617,23 @@ function sendRequest(url, data) {
  wind.postMessage(data, "*")
 }
 
-function hardwareDelay() {
-  var quality = localStorage.getItem("hardwareQuality")
-  if(quality == null) {
-   localStorage.setItem("hardwareQuality", "" + Number.MAX_SAFE_INTEGER + "")
-   quality = "" + Number.MAX_SAFE_INTEGER + ""
+function GPUDelay() {
+  var speed = localStorage.getItem("GPUspeed")
+  if(speed == null) {
+   localStorage.setItem("GPUspeed", "" + Number.MAX_SAFE_INTEGER + "")
+   localStorage.setItem("GPUname", "Super Diamond OS Default " + Number.MAX_SAFE_INTEGER + " GPU")
+   speed = "" + Number.MAX_SAFE_INTEGER + ""
   }
-  quality = parseInt(quality)
-  var duration = 7000 / quality
+  speed = parseInt(quality)
+  var duration = 7000 / speed
   const start = Date.now();
   while (Date.now() - start < duration) {
-   //empty loop to freeze code so hardware delay applies
+   //empty loop to freeze code so GPU delay applies
   }
-  setTimeout(hardwareDelay, 2000)
+  setTimeout(GPUDelay, 2000)
 }
 
-hardwareDelay()
+GPUDelay()
     // Make all windows draggable
     const windows = document.querySelectorAll(".window");
     windows.forEach(window => {
