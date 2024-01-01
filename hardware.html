@@ -1,0 +1,29 @@
+<html>
+<head>
+<title>Super Diamond OS Hardware</title>
+</head>
+<body>
+<p><h1>Super Diamond OS Hardware</h1></p>
+<p><h2>GPU:</h2></p>
+<input id="GPUUpload" type="file" accept=".SuperDiamondOSGPU"></input>
+<button onclick="setGPU()">Set</button>
+<p>Current Speed: <code id="GPUSpeed"></code></p>
+<p>Current GPU: <code id="GPUName"></code></p>
+<script>
+document.getElementById("GPUSpeed").innerHTML = localStorage.getItem("GPUSpeed")
+document.getElementById("GPUName").innerHTML = localStorage.getItem("GPUName")
+function setGPU() {
+  const reader = new FileReader()
+  reader.onload = updateGPU;
+  reader.readAsText(document.getElementById("GPUUpload").files[0])
+}
+
+function updateGPU(event) {
+  var GPU = JSON.parse(atob(event.target.result))
+  localStorage.setItem("GPUSpeed", GPU.speed)
+  localStorage.setItem("GPUName", GPU.name)
+  alert("GPU Changed Sucesfully!")
+}
+</script>
+</body>
+</html>
