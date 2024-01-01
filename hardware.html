@@ -10,8 +10,8 @@
 <p>Current Speed: <code id="GPUSpeed"></code></p>
 <p>Current GPU: <code id="GPUName"></code></p>
 <script>
-document.getElementById("GPUSpeed").innerHTML = localStorage.getItem("GPUSpeed")
-document.getElementById("GPUName").innerHTML = localStorage.getItem("GPUName")
+document.getElementById("GPUSpeed").innerHTML = localStorage.getItem("GPUspeed")
+document.getElementById("GPUName").innerHTML = localStorage.getItem("GPUname")
 function setGPU() {
   const reader = new FileReader()
   reader.onload = updateGPU;
@@ -20,8 +20,8 @@ function setGPU() {
 
 function updateGPU(event) {
   var GPU = JSON.parse(atob(event.target.result))
-  localStorage.setItem("GPUSpeed", GPU.speed)
-  localStorage.setItem("GPUName", GPU.name)
+  localStorage.setItem("GPUspeed", GPU.speed)
+  localStorage.setItem("GPUname", GPU.name)
   alert("GPU Changed Sucesfully!")
 }
 </script>
