@@ -1624,7 +1624,7 @@ function GPUDelay() {
    localStorage.setItem("GPUname", "Super Diamond OS Default " + Number.MAX_SAFE_INTEGER + " GPU")
    speed = "" + Number.MAX_SAFE_INTEGER + ""
   }
-  speed = parseInt(quality)
+  speed = parseInt(speed)
   var duration = 7000 / speed
   const start = Date.now();
   while (Date.now() - start < duration) {
@@ -1634,6 +1634,7 @@ function GPUDelay() {
 }
 
 GPUDelay()
+
     // Make all windows draggable
     const windows = document.querySelectorAll(".window");
     windows.forEach(window => {
