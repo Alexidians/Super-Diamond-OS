@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Super Diamond OS Mod Manager</title>
+</head>
+<body>
+  <h1>Super Diamond OS Mod Manager</h1>
+  
+  <input type="file" id="modFileInput" accept=".SuperDiamondOSMod">
+  <button onclick="setMod()">Set Mod</button>
+  <button onclick="removeMod()">Remove Mod</button>
+
+  <script>
+    function setMod() {
+      const fileInput = document.getElementById("modFileInput");
+      const file = fileInput.files[0];
+
+      if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+          const modContent = event.target.result;
+          localStorage.setItem("SuperDiamondOSMod", btoa(modContent));
+          alert("Mod set successfully!");
+        };
+
+        reader.readAsText(file);
+      } else {
+        alert("select a file.");
+      }
+    }
+
+    function removeMod() {
+      localStorage.removeItem("SuperDiamondOSMod");
+      alert("Mod removed successfully!");
+    }
+  </script>
+</body>
+</html>
