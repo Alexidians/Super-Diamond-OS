@@ -3,7 +3,10 @@ Mod = {
  LoadEventTick: function() {
   if(Mod.LoadProgress.AppExecutor && Mod.LoadProgress.Code && Mod.LoadProgress.Config) {
    clearInterval(Mod.LoadEventTickT)
-   eval(Mod.manifset.events.load)
+   try {
+    eval(Mod.manifset.events.load)
+   }
+   catch(err) {}
   }
  },
  loadAppExecutor: function() {
