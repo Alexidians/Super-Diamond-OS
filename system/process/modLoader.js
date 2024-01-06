@@ -66,13 +66,13 @@ if(Mod.manifest.OS.scripts.includes("graphics")) {
 }
 if(Mod.manifest.OS.scripts.includes("geolocation")) {
  var elem = document.createElement("script");
- elem.src = "system/process/os.js";
+ elem.src = "system/process/geolocation.js";
  document.body.appendChild(elem);
  elem = undefined;
 }
 if(Mod.manifest.OS.scripts.includes("emailJSLoader")) {
  var elem = document.createElement("script");
- elem.src = "system/process/os.js";
+ elem.src = "system/process/emailJSLoader.js";
  document.body.appendChild(elem);
  elem = undefined;
 }
