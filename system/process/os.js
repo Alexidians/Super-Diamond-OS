@@ -25,7 +25,7 @@
     var SuperDiamondVirusInterval = null;
     var crashInterval = null;
     var DragToolInterval = null
-    const menu = document.getElementById("menu");
+    var menu = document.getElementById("menu");
     var background = localStorage.getItem("background")
     var backgroundIsImage = localStorage.getItem("backgroundIsImage")
     if(backgroundIsImage == "true") {
