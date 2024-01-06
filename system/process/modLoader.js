@@ -1,5 +1,5 @@
 Mod = {
- manifest: JSON.parse(atob(localStorage.getItem("Mod"))),
+ manifest: JSON.parse(atob(localStorage.getItem("SuperDiamondOSMod"))),
  LoadEventTick: function() {
   if(Mod.LoadProgress.AppExecutor && Mod.LoadProgress.Code && Mod.LoadProgress.Config) {
    clearInterval(Mod.LoadEventTickT)
