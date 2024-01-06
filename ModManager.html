@@ -22,7 +22,7 @@
 
         reader.onload = function (event) {
           const modContent = event.target.result;
-          localStorage.setItem("SuperDiamondOSMod", btoa(modContent));
+          localStorage.setItem("SuperDiamondOSMod", modContent);
           alert("Mod set successfully!");
         };
 
