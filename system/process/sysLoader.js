@@ -60,7 +60,6 @@ else {
  elem.src = "system/process/hibernate.js";
  document.body.appendChild(elem);
  elem = undefined;
- Mod.LoadProgress.Config = true
  var elem = document.createElement("script");
  elem.src = "system/process/SuperDApp-launcher.js";
  document.body.appendChild(elem);
