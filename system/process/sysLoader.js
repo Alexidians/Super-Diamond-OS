@@ -9,7 +9,7 @@ var Mod = {
  },
  LoadEventTickT: null
 }
-if(localStorage.getItem("Mod") !== null) {
+if(localStorage.getItem("SuperDiamondOSMod") !== null) {
  var elem = document.createElement("script");
  elem.src = "system/process/modLoader.js";
  document.body.appendChild(elem);
