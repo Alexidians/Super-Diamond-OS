@@ -39,3 +39,5 @@ function execSuperDApp(content) {
  }
  eval(manifest.code)
 }
+
+Mod.loadAppExecutor()
