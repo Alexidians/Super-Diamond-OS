@@ -66,8 +66,8 @@ var elem = document.createElement("script");
 elem.src = "system/process/SuperDApp-launcher.js";
 document.body.appendChild(elem);
 elem = undefined;
-}
 var elem = document.createElement("script");
 elem.src = "system/process/SuperDApp-launcher.js";
 document.body.appendChild(elem);
 elem = undefined;
+}
