@@ -44,6 +44,9 @@
      background = "SuperDiamond.png"
      backgroundIsImage = "true"
     }
+    if(localStorage.getItem("Password") == null) {
+     location.replace("computer-setup.html")
+    }
     if(getCookie("loggedIn") !== "itis") {
      location.replace("computer-login.html")
     }
