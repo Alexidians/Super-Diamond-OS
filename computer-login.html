@@ -59,9 +59,10 @@
     const isValid = validateTOTPCode(enteredTOTP, secretKey);
     if (isValid) {
       alert('Authentication successful!');
+      setCookie("loggedIn", "itis", 1)
+      location.replace("computer.html")
     } else {
       alert('Wrong Code. Authentication Failed');
-      location.replace(location.href)
     }
     }
     catch(err) {
@@ -91,15 +92,14 @@ async function loginWithWebAuthn() {
 
     if(credential && credential.response && credential.response.attestationObject) {
       //await verifyCredentialWithServer(credential);
-      alert('WebAuthn authentication successful!');
+      setCookie("loggedIn", "itis", 1)
+      location.replace("computer.html")
     } else {
       alert('You Must Be Logged In To Access The OS. if you cant authenticate with WebAuthn try using the OS Login instead');
-      location.replace(location.href)
     }
    }
    catch(err) {
     alert('An Error Accoured While Authentication. may be due to cancelation. if you contant some moderators. give them this text "' + err + '"')
-    location.replace(location.href)
    }
 }
 async function verifyCredentialWithServer(credential) {
@@ -130,14 +130,14 @@ async function verifyCredentialWithServer(credential) {
       var enteredCode = prompt("Enter The Verification Code We Sent You")
       if(enteredCode == verificationCode) {
        alert("Correct!")
+       setCookie("loggedIn", "itis", 1)
+       location.replace("computer.html")
       }
       else {
        alert("Incorrect!")
-       location.replace(location.href)
       }
     }, function(error) {
      alert('An Error Accoured While sending email. if you contant some moderators. give them this text "' + error + '"')
-     location.replace(location.href)
     });
    }
    if(localStorage.getItem("EmailType") == "SuperDiamondMail") {
@@ -154,9 +154,9 @@ async function verifyCredentialWithServer(credential) {
     }
     Request.send()
     if(prompt("Enter Verification Code. Remember Its In Super Diamond Mail") == verificationCode) {
-     localStorage.setItem("Email", document.getElementById("newEmailInput").value)
-     localStorage.setItem("EmailType", "SuperDiamondMail")
      alert("Correct!")
+     setCookie("loggedIn", "itis", 1)
+     location.replace("computer.html")
     }
     else {
      alert("Incorrect!")
@@ -167,13 +167,22 @@ async function verifyCredentialWithServer(credential) {
     if(confirm("You Must Have A Email Added To Your Super Diamond OS Account. Would you like to add one?")) {
      location.replace("set-email.html")
     }
-    else {
-     location.replace(location.href)
-    }
   }
 }
-    
-loginChoice = prompt("How Would You Like To Login? The Options are: Super Diamond OS, WebAuthn, 2FA, Email Code")
+
+function loginWithSuperDiamondOS() {
+       var LoginEnteredPass = prompt("Enter Password To Login")
+       if(LoginEnteredPass == Password) {
+        setCookie("loggedIn", "itis", 1)
+        location.replace("computer.html")
+       } else {
+         alert("Incorrect Password")
+        }
+       }
+      }
+     }
+}
+function loginWith(loginChoice) {
 alert("We will start searching for login type " + loginChoice + " after you click okay. when we find the login type we will automatically start login process.")
 switch(loginChoice) {
    default:
@@ -190,44 +199,17 @@ switch(loginChoice) {
      loginWithEmailCode();
    break;
    case "Super Diamond OS":
-    if(Password == "null") {
-     alert("Welcome")
-     alert("if you are a child/kid ask your parents to help setup Super Diamond OS in this browser")
-     alert("Setup Note: Every Browser on Every Device has the has different Data saved/n if you are a parent setting this up for kids a account needs to be created for all of your kids/n important: if you are using a browser with restricted website access for kids it can be bypassed with our browser that uses iframes or other apps that have iframes to not allowed websites")
-     alert("Before you go. Lets Setup your Device")
-     Setup()
-    } else {
-     if(Password == null) {
-      alert("Welcome")
-      alert("if you are a child/kid ask your parents to help setup Super Diamond OS in this browser")
-      alert("Setup Note: Every Browser on Every Device has the has different Data saved/n if you are a parent setting this up for kids a account needs to be created for all of your kids/n important: if you are using a browser with restricted website access for kids it can be bypassed with our browser that uses iframes or other apps that have iframes to not allowed websites")
-      alert("Before you go. Lets Setup your Device")
-      Setup()
-     } else {
-       if(getCookie("loggedIn") == "itis") {
-        alert("Welcome Back")
-       }
-       else {
-       var LoginEnteredPass = prompt("Enter Password To Continue")
-       if(LoginEnteredPass == Password) {
-        alert("Welcome Back")
-        setCookie("loggedIn", "itis", 1)
-       } else {
-         alert("Incorrect Password")
-         location.replace(location.href)
-        }
-       }
-      }
-     }
-    }
+     loginWithSuperDiamondOS()
    break;
   }
+ }
 </script>
 <div id="home">
 <center><h1>How Would You Like To Login</h1></center>
 <p onclick="loginWith('Super Diamond OS')">Super Diamond OS</p>
 <p onclick="loginWith('WebAuthn')">WebAuthn</p>
 <p onclick="loginWith('2FA')">2FA</p>
+<p onclick="loginWith('Email Code')">Email Code</p>
 </div>
 </body>
 </html>
