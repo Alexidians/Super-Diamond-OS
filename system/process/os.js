@@ -44,6 +44,9 @@
      background = "SuperDiamond.png"
      backgroundIsImage = "true"
     }
+    if(getCookie("loggedIn") !== "itis") {
+     location.replace("computer-login.html")
+    }
     AntiVirusPermissionRequest()
     //openFullscreen(document.body)
     openHomeMenu()
