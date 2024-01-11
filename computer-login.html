@@ -171,7 +171,7 @@ async function verifyCredentialWithServer(credential) {
 
 function loginWithSuperDiamondOS() {
        var LoginEnteredPass = prompt("Enter Password To Login")
-       if(LoginEnteredPass == Password) {
+       if(LoginEnteredPass == localStorage.getItem("Password")) {
         setCookie("loggedIn", "itis", 1)
         location.replace("computer.html")
        } else {
