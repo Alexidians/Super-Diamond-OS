@@ -66,25 +66,24 @@
   // Authenticate the user with TOTP
   function loginWith2FA() {
     try {
-    const secretKey = getTOTPSecretKeyFromStorage();
-    if (secretKey == null) {
-      if(confirm('Please register your TOTP secret key first. would you like to do that? for security reasons. you will have to login with Super Diamond OS. if redirect fails. change page to 2FA-setup.html')) {
-       location.replace("2FA-setup.html")
+      const secretKey = getTOTPSecretKeyFromStorage();
+      if (secretKey == null) {
+        if (confirm('Please register your TOTP secret key first. Would you like to do that? For security reasons, you will have to log in with Super Diamond OS. If the redirect fails, change the page to 2FA-setup.html')) {
+          location.replace("2FA-setup.html");
+        }
+        return;
       }
-      return;
-    }
-    const enteredTOTP = prompt('Enter your 6-digit authentication code from Super Diamond OS Authenticator');
-    const isValid = validateTOTPCode(enteredTOTP, secretKey);
-    if (isValid) {
-      alert('Authentication successful!');
-      setCookie("loggedIn", "itis", 1)
-      location.replace("computer.html")
-    } else {
-      alert('Wrong Code. Authentication Failed');
-    }
-    }
-    catch(err) {
-     alert('An Error Accoured While Authenticating. if you contant some moderators. give them this text "' + err + '"')
+      const enteredTOTP = prompt('Enter your 6-digit authentication code from Super Diamond OS Authenticator');
+      const isValid = validateTOTPCode(enteredTOTP, secretKey);
+      if (isValid) {
+        alert('Authentication successful!');
+        setCookie("loggedIn", "itis", 1);
+        location.replace("computer.html");
+      } else {
+        alert('Wrong Code. Authentication Failed');
+      }
+    } catch (err) {
+      alert('An Error Occurred While Authenticating. If you contact some moderators, give them this text: "' + err + '"');
     }
   }
     
