@@ -10,6 +10,9 @@
 <script src="https://alexidians.github.io/Super-Diamond-OS/super-diamond-os_web-client.js"></script>
 <script src="system/process/emailJSLoader.js"></script>
 <script>
+    var FirebaseLogin = {
+     github: new firebase.auth.GithubAuthProvider();
+    }
     var OSName = "Super Diamond OS"
 
   // Retrieve the TOTP secret key from local storage
@@ -181,6 +184,41 @@ function loginWithSuperDiamondOS() {
          alert("Incorrect Password")
        }
 }
+
+async function loginWithFirebaseGithub() {
+  try {
+    const result = await firebase.auth().signInWithPopup(FirebaseLogin.github);
+    const user = result.user;
+    if(localStorage.getItem("FirebaseGithubEmail") !== null) {
+     if(localStorage.getItem("FirebaseGithubEmail") == user.email) {
+      if(confirm("Don't Forget To Log Out! Would you like to open the Authorized OAuth Apps On Github Settings so you can log out later?")) {
+       open("https://github.com/settings/applications")
+      }
+      setCookie("loggedIn", "itis", 1)
+      location.replace("computer.html")
+     else {
+      alert("Authentication Failed: Incorrect Account")
+     }
+    }
+    else {
+     if(confirm("Don't Forget To Log Out! Would you like to open the Authorized OAuth Apps On Github Settings so you can log out later?")) {
+      open("https://github.com/settings/applications")
+     }
+     localStorage.getItem("FirebaseGithubEmail", user.email)
+     setCookie("loggedIn", "itis", 1)
+     location.replace("computer.html")
+    }
+  } catch (error) {
+    // Check if the error corresponds to user cancellation
+    if (error.code === 'auth/popup-closed-by-user') {
+      alert('Authentication Failed: Authentication Popup Window Closed');
+    } else if(error.code === 'auth/user-cancelled') {
+      alert("Authentication Failed: Authentication Cancelled")
+    } else {
+     alert('Authentication Failed: Authentication Error:', error.message);
+    }
+  }
+
 function loginWith(loginChoice) {
 switch(loginChoice) {
    default:
@@ -199,6 +237,9 @@ switch(loginChoice) {
    case "Super Diamond OS":
      loginWithSuperDiamondOS()
    break;
+   case "Firebase (Github)":
+     loginWithFirebaseGithub()
+   break;
   }
  }
 
@@ -215,6 +256,7 @@ function setCookie(cname,cvalue,exdays) {
 <p onclick="loginWith('WebAuthn')">WebAuthn</p>
 <p onclick="loginWith('2FA')">2FA</p>
 <p onclick="loginWith('Email Code')">Email Code</p>
+<p onclick="loginWith('Firebase (Github)')">Firebase (Github)</p>
 </div>
 </body>
 </html>
