@@ -27,7 +27,7 @@
     github: new firebase.auth.GithubAuthProvider()
   };
   var OSName = "Super Diamond OS";
-
+  
   function getTOTPSecretKeyFromStorage() {
     return localStorage.getItem('totp_secret_key');
   }
@@ -221,6 +221,8 @@ async function loginWithFirebaseGithub() {
         alert('Authentication Failed: Authentication Popup Window Closed');
       } else if (error.code === 'auth/user-cancelled') {
         alert("Authentication Failed: Authentication Cancelled");
+      } else if (error.code === 'auth/operation-not-allowed') {
+        alert("Authentication Failed: Authentication Disabled. Sorry for any inconvenience caused.");
       } else {
         alert('Authentication Failed: Authentication Error: ' + error.message);
       }
