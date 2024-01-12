@@ -195,37 +195,35 @@ function loginWithSuperDiamondOS() {
 }
 
 async function loginWithFirebaseGithub() {
-  try {
-    const result = await firebase.auth().signInWithPopup(FirebaseLogin.github);
-    const user = result.user;
-    if(localStorage.getItem("FirebaseGithubEmail") !== null) {
-     if(localStorage.getItem("FirebaseGithubEmail") == user.email) {
-      if(confirm("Don't Forget To Log Out! Would you like to open the Authorized OAuth Apps On Github Settings so you can log out later?")) {
-       open("https://github.com/settings/applications")
+    try {
+      const result = await firebase.auth().signInWithPopup(FirebaseLogin.github);
+      const user = result.user;
+      if (localStorage.getItem("FirebaseGithubEmail") !== null) {
+        if (localStorage.getItem("FirebaseGithubEmail") == user.email) {
+          if (confirm("Don't Forget To Log Out! Would you like to open the Authorized OAuth Apps On Github Settings so you can log out later?")) {
+            open("https://github.com/settings/applications");
+          }
+          setCookie("loggedIn", "itis", 1);
+          location.replace("computer.html");
+        } else {
+          alert("Authentication Failed: Incorrect Account");
+        }
+      } else {
+        if (confirm("Don't Forget To Log Out! Would you like to open the Authorized OAuth Apps On Github Settings so you can log out later?")) {
+          open("https://github.com/settings/applications");
+        }
+        localStorage.getItem("FirebaseGithubEmail", user.email);
+        setCookie("loggedIn", "itis", 1);
+        location.replace("computer.html");
       }
-      setCookie("loggedIn", "itis", 1)
-      location.replace("computer.html")
-     }
-     else {
-      alert("Authentication Failed: Incorrect Account")
-     }
-    }
-    else {
-     if(confirm("Don't Forget To Log Out! Would you like to open the Authorized OAuth Apps On Github Settings so you can log out later?")) {
-      open("https://github.com/settings/applications")
-     }
-     localStorage.getItem("FirebaseGithubEmail", user.email)
-     setCookie("loggedIn", "itis", 1)
-     location.replace("computer.html")
-    }
-  } catch (error) {
-    // Check if the error corresponds to user cancellation
-    if (error.code === 'auth/popup-closed-by-user') {
-      alert('Authentication Failed: Authentication Popup Window Closed');
-    } else if(error.code === 'auth/user-cancelled') {
-      alert("Authentication Failed: Authentication Cancelled")
-    } else {
-     alert('Authentication Failed: Authentication Error:', error.message);
+    } catch (error) {
+      if (error.code === 'auth/popup-closed-by-user') {
+        alert('Authentication Failed: Authentication Popup Window Closed');
+      } else if (error.code === 'auth/user-cancelled') {
+        alert("Authentication Failed: Authentication Cancelled");
+      } else {
+        alert('Authentication Failed: Authentication Error: ' + error.message);
+      }
     }
   }
 
