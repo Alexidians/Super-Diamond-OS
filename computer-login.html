@@ -10,6 +10,16 @@
 <script src="https://alexidians.github.io/Super-Diamond-OS/super-diamond-os_web-client.js"></script>
 <script src="system/process/emailJSLoader.js"></script>
 <script>
+    const firebaseConfig = {
+     apiKey: "AIzaSyBUoE2YSYx52EFcbs3EiLkSQhd2UnRforY",
+     authDomain: "super-diamond-os-auth.firebaseapp.com",
+     projectId: "super-diamond-os-auth",
+     storageBucket: "super-diamond-os-auth.appspot.com",
+     messagingSenderId: "228430277433",
+     appId: "1:228430277433:web:453422ee0029b3cf37d6e8",
+     measurementId: "G-3G1NQFF2DZ"
+    };
+    firebase.initializeApp(firebaseConfig);
     var FirebaseLogin = {
      github: new firebase.auth.GithubAuthProvider();
     }
