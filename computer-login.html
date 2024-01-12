@@ -12,41 +12,39 @@
 <script src="https://www.gstatic.com/firebasejs/9.4.0/firebase-auth-compat.js"></script>
 <script src="system/process/emailJSLoader.js"></script>
 <script>
-    const firebaseConfig = {
-     apiKey: "AIzaSyBUoE2YSYx52EFcbs3EiLkSQhd2UnRforY",
-     authDomain: "super-diamond-os-auth.firebaseapp.com",
-     projectId: "super-diamond-os-auth",
-     storageBucket: "super-diamond-os-auth.appspot.com",
-     messagingSenderId: "228430277433",
-     appId: "1:228430277433:web:453422ee0029b3cf37d6e8",
-     measurementId: "G-3G1NQFF2DZ"
-    };
-    firebase.initializeApp(firebaseConfig);
-    var FirebaseLogin = {
-     github: new firebase.auth.GithubAuthProvider()
-    }
-    var OSName = "Super Diamond OS"
+  const firebaseConfig = {
+    apiKey: "AIzaSyBUoE2YSYx52EFcbs3EiLkSQhd2UnRforY",
+    authDomain: "super-diamond-os-auth.firebaseapp.com",
+    projectId: "super-diamond-os-auth",
+    storageBucket: "super-diamond-os-auth.appspot.com",
+    messagingSenderId: "228430277433",
+    appId: "1:228430277433:web:453422ee0029b3cf37d6e8",
+    measurementId: "G-3G1NQFF2DZ"
+  };
 
-  // Retrieve the TOTP secret key from local storage
+  firebase.initializeApp(firebaseConfig);
+  var FirebaseLogin = {
+    github: new firebase.auth.GithubAuthProvider()
+  };
+  var OSName = "Super Diamond OS";
+
   function getTOTPSecretKeyFromStorage() {
     return localStorage.getItem('totp_secret_key');
   }
 
-  // Generate a TOTP code using the secret key
   function generateTOTPCode(secretKey) {
     const shaObj = new jsSHA('SHA-1', 'TEXT');
-    const time = Math.floor(Date.now() / 1000 / 30); // Time in 30-second intervals
-    const timeHex = (Array(16).join('0') + time.toString(16)).slice(-16); // Padded to 16 characters
+    const time = Math.floor(Date.now() / 1000 / 30);
+    const timeHex = (Array(16).join('0') + time.toString(16)).slice(-16);
     const key = base32Decode(secretKey);
     shaObj.setHMACKey(key, 'BYTES');
     shaObj.update(timeHex);
     const hmac = shaObj.getHMAC('HEX');
     const offset = parseInt(hmac.slice(-1), 16) & 0x0f;
     const code = (parseInt(hmac.slice(offset * 2, offset * 2 + 8), 16) & 0x7fffffff) % 1000000;
-    return ('000000' + code).slice(-6); // Padded to 6 digits
+    return ('000000' + code).slice(-6);
   }
 
-  // Base32 decoding function
   function base32Decode(str) {
     const base32Chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
     let decoded = '';
