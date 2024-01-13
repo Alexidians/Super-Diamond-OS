@@ -44,12 +44,14 @@
      background = "SuperDiamond.png"
      backgroundIsImage = "true"
     }
-    if(localStorage.getItem("Password") == null) {
+    if(localStorage.getItem("Password") !== null) {
+     if(getCookie("loggedIn") !== "itis") {
+      location.replace("computer-login.html")
+     }
+    } else {
      location.replace("computer-setup.html")
     }
-    if(getCookie("loggedIn") !== "itis") {
-     location.replace("computer-login.html")
-    }
+
     AntiVirusPermissionRequest()
     //openFullscreen(document.body)
     openHomeMenu()
