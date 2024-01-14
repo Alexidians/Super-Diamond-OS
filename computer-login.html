@@ -218,13 +218,15 @@ async function loginWithFirebaseGithub() {
       }
     } catch (error) {
       if (error.code === 'auth/popup-closed-by-user') {
-        alert('Authentication Failed: Authentication Popup Window Closed');
+         alert('Authentication Failed: Authentication Popup Window Closed');
       } else if (error.code === 'auth/user-cancelled') {
-        alert("Authentication Failed: Authentication Cancelled");
+         alert("Authentication Failed: Authentication Cancelled");
       } else if (error.code === 'auth/operation-not-allowed') {
-        alert("Authentication Failed: Authentication Disabled. Sorry for any inconvenience caused.");
+         alert("Authentication Failed: Authentication Disabled. Sorry for any inconvenience caused.");
+      } else if (error.code === 'auth/cancelled-popup-request') {
+         alert("Authentication Failed: Failed To Open Authentication Popup");
       } else {
-        alert('Authentication Failed: Authentication Error: ' + error.message);
+         alert('Authentication Failed: Authentication Error: ' + error.message);
       }
     }
   }
