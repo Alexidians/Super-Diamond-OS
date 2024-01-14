@@ -23,8 +23,8 @@ body {
 </head>
 <body>
 <script>
-if(localStorage.getItem("Password") == null || localStorage.getItem("Password") == "Recovery" || localStorage.getItem("Password") == "null") {
- document.getElementById("activateOption").style.display = "block"
+if(localStorage.getItem("Password") !== null) {
+ document.getElementById("activateOption").style.display = "none"
 }
 </script>
 <script src="https://alexidians.github.io/Super-Diamond-OS/super-diamond-os_web-client.js"></script>
@@ -44,7 +44,7 @@ if(localStorage.getItem("Password") == null || localStorage.getItem("Password") 
 <iframe style="display: none" src="set-email.html"></iframe>
 <iframe style="display: none" src="scan-for-malware.html"></iframe>
 <iframe style="display: none" src="superdapp-maker.html"></iframe>
-<p style="display: none" class="option" id="activateOption" onclick="location.replace('activation.html')">Active Super Diamond OS<p>
+<p class="option" id="activateOption" onclick="location.replace('activation.html')">Active Super Diamond OS<p>
 <p><center><h1 id="title">Boot Manager</h1></center></p>
 <h3 class="option" onclick="location.replace('computer.html')">Super Diamond OS Computer</h3>
 <h3 class="option" onclick="location.replace('phone.html')">Super Diamond OS Phone</h3>
