@@ -162,7 +162,7 @@ async function verifyCredentialWithServer(credential) {
      name: "Super Diamond OS",
      from: "SuperDiamondOS@alexidians.github.io",
      message: "We Received A Request That You Are Trying To Login With Super Diamond Mail Verification Code. Here is you verification Code: " + verificationCode,
-     recipient: document.getElementById("newEmailInput").value,
+     recipient: localStorage.getItem("Email"),
      subject: "Super Diamond OS Email Verification",
      APIToken: "yB01kKebt6p7IOOlqWiwl6IATSsSsQoiZhCiJJHiOh9uukgSDgn8VeRrwfMAZxxV"
     }
