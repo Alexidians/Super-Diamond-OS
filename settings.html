@@ -3,11 +3,12 @@
 <iframe id="extensionsDiscDownload" style="display: none" src="https://super-diamond-browser-extensions.github.io/manager/discDownload.html"></iframe>
 <iframe id="extensionsImport" style="display: none" src="https://super-diamond-browser-extensions.github.io/manager/discImport.html"></iframe>
 <script>
-if(localStorage.getItem("Password") !== null || localStorage.getItem("Password") !== "Recovery" || localStorage.getItem("Password") !== "null") {
+if(localStorage.getItem("Password") == null || localStorage.getItem("Password") == "Recovery" || localStorage.getItem("Password") == "null") {
  alert("Active Super Diamond OS First!")
  location.replace("index.html")
 }
 </script>
+<script src="system/process/countly.js"></script>
 <h1>Settings</h1>
 <h2>Disc</h2>
 <button>Download Discs</button>
