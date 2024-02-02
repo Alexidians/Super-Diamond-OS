@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Recording App</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        #videoFeed {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+        #startButton, #stopButton {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<video id="videoFeed" playsinline muted></video>
+<button id="startButton">Start Recording</button>
+<button id="stopButton" disabled>Stop Recording</button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const videoFeed = document.getElementById('videoFeed');
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        let mediaRecorder;
+        let chunks = [];
+
+        // Check if the browser supports the getUserMedia API
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true, audio: true })
+                .then(function (stream) {
+                    // Set the video source to the user's camera stream
+                    videoFeed.srcObject = stream;
+
+                    // Play the video to enable the preview
+                    videoFeed.play().catch(function (error) {
+                        console.error('Error playing video:', error);
+                    });
+
+                    // Initialize the MediaRecorder with the video stream
+                    mediaRecorder = new MediaRecorder(stream);
+
+                    // Event listener for when data is available
+                    mediaRecorder.ondataavailable = function (event) {
+                        if (event.data.size > 0) {
+                            chunks.push(event.data);
+                        }
+                    };
+
+                    // Event listener for when recording stops
+                    mediaRecorder.onstop = function () {
+                        // Combine the recorded chunks into a Blob
+                        const recordedBlob = new Blob(chunks, { type: 'video/webm' });
+
+                        // Reset chunks array for future recordings
+                        chunks = [];
+
+                        // Create a download link for the recorded video
+                        const downloadLink = document.createElement('a');
+                        downloadLink.href = URL.createObjectURL(recordedBlob);
+                        downloadLink.download = 'recorded_video.webm';
+
+                        // Simulate a click on the download link to trigger the download
+                        document.body.appendChild(downloadLink);
+                        downloadLink.click();
+                        document.body.removeChild(downloadLink);
+                    };
+                })
+                .catch(function (error) {
+                    console.error('Error accessing camera:', error);
+                });
+        }
+
+        // Start recording when the "Start Recording" button is clicked
+        startButton.addEventListener('click', function () {
+            mediaRecorder.start();
+            startButton.disabled = true;
+            stopButton.disabled = false;
+        });
+
+        // Stop recording when the "Stop Recording" button is clicked
+        stopButton.addEventListener('click', function () {
+            mediaRecorder.stop();
+            startButton.disabled = false;
+            stopButton.disabled = true;
+        });
+    });
+</script>
+
+</body>
+</html>
