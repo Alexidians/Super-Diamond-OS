@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Recorder</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        #startButton, #stopButton {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<button id="startButton">Start Recording</button>
+<button id="stopButton" disabled>Stop Recording</button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        let mediaRecorder;
+        let audioChunks = [];
+
+        // Check if the browser supports the getUserMedia API
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ audio: true })
+                .then(function (stream) {
+                    // Initialize the MediaRecorder with the audio stream
+                    mediaRecorder = new MediaRecorder(stream);
+
+                    // Event listener for when data is available
+                    mediaRecorder.ondataavailable = function (event) {
+                        if (event.data.size > 0) {
+                            audioChunks.push(event.data);
+                        }
+                    };
+
+                    // Event listener for when recording stops
+                    mediaRecorder.onstop = function () {
+                        // Combine the recorded audio chunks into a Blob
+                        const audioBlob = new Blob(audioChunks, { type: 'audio/wav' });
+
+                        // Reset audioChunks array for future recordings
+                        audioChunks = [];
+
+                        // Create a download link for the recorded audio
+                        const downloadLink = document.createElement('a');
+                        downloadLink.href = URL.createObjectURL(audioBlob);
+                        downloadLink.download = 'recorded_audio.wav';  // Change the file extension to .mp3 if needed
+
+                        // Simulate a click on the download link to trigger the download
+                        document.body.appendChild(downloadLink);
+                        downloadLink.click();
+                        document.body.removeChild(downloadLink);
+                    };
+                })
+                .catch(function (error) {
+                    console.error('Error accessing microphone:', error);
+                });
+        }
+
+        // Start recording when the "Start Recording" button is clicked
+        startButton.addEventListener('click', function () {
+            mediaRecorder.start();
+            startButton.disabled = true;
+            stopButton.disabled = false;
+        });
+
+        // Stop recording when the "Stop Recording" button is clicked
+        stopButton.addEventListener('click', function () {
+            mediaRecorder.stop();
+            startButton.disabled = false;
+            stopButton.disabled = true;
+        });
+    });
+</script>
+
+</body>
+</html>
