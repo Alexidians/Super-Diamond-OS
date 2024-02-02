@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Camera App</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        #cameraFeed {
+            max-width: 100%;
+            height: auto;
+        }
+        #captureButton {
+            margin-top: 20px;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<video id="cameraFeed" autoplay></video>
+<button id="captureButton">Capture Photo</button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const cameraFeed = document.getElementById('cameraFeed');
+        const captureButton = document.getElementById('captureButton');
+
+        // Check if the browser supports the getUserMedia API
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function (stream) {
+                    // Set the video source to the user's camera stream
+                    cameraFeed.srcObject = stream;
+                })
+                .catch(function (error) {
+                    console.error('Error accessing camera:', error);
+                });
+        }
+
+        // Capture photo when the button is clicked
+        captureButton.addEventListener('click', function () {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+
+            // Set canvas dimensions to match the video feed
+            canvas.width = cameraFeed.videoWidth;
+            canvas.height = cameraFeed.videoHeight;
+
+            // Draw the current video frame onto the canvas
+            context.drawImage(cameraFeed, 0, 0, canvas.width, canvas.height);
+
+            // Convert the canvas content to a data URL (base64 encoded)
+            const imageDataUrl = canvas.toDataURL('image/png');
+
+            // Create a download link for the captured image
+            const downloadLink = document.createElement('a');
+            downloadLink.href = imageDataUrl;
+            downloadLink.download = 'SuperDiamondOSPHoto.png';
+
+            // Simulate a click on the download link to trigger the download
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+        });
+    });
+</script>
+
+</body>
+</html>
