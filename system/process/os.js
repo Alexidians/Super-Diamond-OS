@@ -336,6 +336,20 @@ window.onclick = function(event) {
       document.getElementById("Apps").appendChild(App)
       makeDraggable(App)
      }
+     if(AppName == "Audio Recorder") {
+      App.id = "Audio Recorder"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "Audio Recorder"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "Super Diamond OS_files/audio-recorder.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
      if(AppName == "Nyan Cat: Lost In Space") {
       App.id = "Nyan Cat: Lost In Space"
       var AppFrame = document.createElement("iframe")
