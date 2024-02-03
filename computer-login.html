@@ -236,7 +236,7 @@ async function loginWithFirebaseGithub() {
   }
   
   function loginWithFirebaseGoogle() {
-        firebase.auth().signInWithPopup(googleAuthProvider)
+        firebase.auth().signInWithPopup(FirebaseLogin.google)
             .then((result) => {
                 // User signed in successfully
                 const user = result.user;
