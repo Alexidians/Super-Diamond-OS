@@ -242,6 +242,9 @@ async function loginWithFirebaseGithub() {
                 const user = result.user;
                 if(localStorage.getItem("FirebaseGoogleEmail") !== null) {
                  if(localStorage.getItem("FirebaseGoogleEmail") == user.email) {
+                  if (confirm("Don't Forget To Log Out! Would you like to open the Google Signed in Apps On Google Settings so you can log out later?")) {
+                   open("https://myaccount.google.com/connections");
+                  }
                    setCookie("loggedIn", "itis", 1);
                    location.replace("computer.html");
                  }
@@ -250,6 +253,9 @@ async function loginWithFirebaseGithub() {
                  }
                 }
                 else {
+                  if (confirm("Don't Forget To Log Out! Would you like to open the Google Signed in Apps On Google Settings so you can log out later?")) {
+                   open("https://myaccount.google.com/connections");
+                  }
                  localStorage.setItem("FirebaseGoogleEmail", user.email)
                  setCookie("loggedIn", "itis", 1);
                  location.replace("computer.html");
