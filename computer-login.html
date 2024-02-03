@@ -27,7 +27,8 @@
 
   firebase.initializeApp(firebaseConfig);
   var FirebaseLogin = {
-    github: new firebase.auth.GithubAuthProvider()
+    github: new firebase.auth.GithubAuthProvider(),
+    google: new firebase.auth.GoogleAuthProvider()
   };
   var OSName = "Super Diamond OS";
   
@@ -233,7 +234,41 @@ async function loginWithFirebaseGithub() {
       }
     }
   }
-
+  
+  function loginWithFirebaseGoogle() {
+        firebase.auth().signInWithPopup(googleAuthProvider)
+            .then((result) => {
+                // User signed in successfully
+                const user = result.user;
+                if(localStorage.getItem("FirebaseGoogleEmail") !== null) {
+                 if(localStorage.getItem("FirebaseGoogleEmail") == user.email) {
+                   setCookie("loggedIn", "itis", 1);
+                   location.replace("computer.html");
+                 }
+                 else {
+                   alert("Incorrect Account!")
+                 }
+                }
+                else {
+                 localStorage.setItem("FirebaseGoogleEmail", user.email)
+                 setCookie("loggedIn", "itis", 1);
+                 location.replace("computer.html");
+                }
+            })
+            .catch((error) => {
+if (error.code === 'auth/popup-closed-by-user') {
+         alert('Authentication Failed: Authentication Popup Window Closed');
+      } else if (error.code === 'auth/user-cancelled') {
+         alert("Authentication Failed: Authentication Cancelled");
+      } else if (error.code === 'auth/operation-not-allowed') {
+         alert("Authentication Failed: Authentication Disabled. Sorry for any inconvenience caused.");
+      } else if (error.code === 'auth/cancelled-popup-request') {
+         alert("Authentication Failed: Failed To Open Authentication Popup");
+      } else {
+         alert('Authentication Failed: Authentication Error: ' + error.message);
+      }
+            });
+    }
 function loginWith(loginChoice) {
 switch(loginChoice) {
    default:
@@ -255,6 +290,9 @@ switch(loginChoice) {
    case "Firebase (Github)":
      loginWithFirebaseGithub()
    break;
+   case "Firebase (Google)":
+     loginWithFirebaseGoogle()
+   break;
   }
  }
 
@@ -272,6 +310,7 @@ function setCookie(cname,cvalue,exdays) {
 <p onclick="loginWith('2FA')">2FA</p>
 <p onclick="loginWith('Email Code')">Email Code</p>
 <p onclick="loginWith('Firebase (Github)')">Firebase (Github)</p>
+<p onclick="loginWith('Firebase (Google)')">Firebase (Google)</p>
 </div>
 </body>
 </html>
