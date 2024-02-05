@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Diamond File System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .drives-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .drive {
+            padding: 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+        }
+
+        #file-list {
+            margin-top: 20px;
+        }
+
+        .directory {
+            color: blue;
+            margin-left: 20px;
+        }
+
+        .show-contents {
+            margin-left: 10px;
+        }
+
+        .expand-collapse {
+            margin-right: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="drives-container" id="drives-container">
+    <div class="drive" onclick="openDrive()">Open Drive</div>
+    <div class="drive" onclick="NewDrive()">Create Drive</div>
+</div>
+
+<div id="file-list">
+    <!-- File list will be displayed here -->
+</div>
+
+<script>
+    let pickedFile;
+    // Initialize drives from localStorage or use default
+    let drives = {};
+
+    // Initialize current drive
+    let currentDrive = null;
+
+    // Display initial file list
+    updateFileList();
+function NewDrive() {
+ download("NewDrive.SuperDDrive", "MTIzLDM0LDY1LDU4LDQ3LDM0LDU4LDkxLDkzLDEyNQ==")
+}  
+
+function download(filename, text) {
+    var pom = document.createElement('a');
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    pom.setAttribute('download', filename);
+
+    if (document.createEvent) {
+        var event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        pom.dispatchEvent(event);
+    }
+    else {
+        pom.click();
+    }
+}
+
+// Function to convert a string to an array of character codes
+function charcode(str) {
+  return Array.from(str, char => char.charCodeAt(0));
+}
+
+// Function to convert an array of character codes back to a string
+function uncharcode(codes) {
+  return eval("String.fromCharCode(" + codes + ")")
+}
+
+function downloadFile() {
+    try {
+        const fileName = prompt("Enter Name Of File To Download");
+        const foundFile = drives[currentDrive].find(file => file.name === fileName && file.type === 'file');
+
+        if (foundFile) {
+            download(foundFile.name, foundFile.content)
+        } else {
+            alert("could not download file cause the file was not found (this dosent work with folders)")
+        }
+    } catch (error) {
+        console.error(error.message);
+    }
+}
+
+async function uploadFile() {
+    try {
+        const [fileHandle] = await window.showOpenFilePicker();
+        const file = await fileHandle.getFile();
+        const fileText = await file.text();
+
+        // Extract file name from the file handle
+        const fileName = fileHandle.name;
+
+        // Check if the file name already exists in the current drive
+        if (drives[currentDrive].some(file => file.name === fileName)) {
+            alert('File Name In Use');
+            return;
+        }
+
+        const newFile = { name: fileName, content: fileText, type: 'file' };
+        drives[currentDrive].push(newFile);
+        updateFileList();
+        saveDrivesToFile();
+    } catch (error) {
+        console.error('Error adding file to drive:', error);
+    }
+}
+
+// Call the function
+addFileToDrive();
+
+
+    async function openDrive() {
+    const [fileHandle] = await window.showOpenFilePicker({
+        types: [{
+            description: 'Super Diamond Drive (.SuperDDrive)',
+            accept: {
+                'text/plain': ['.SuperDDrive'],
+            },
+        }],
+    });
+        pickedFile = fileHandle;
+        const file = await pickedFile.getFile();
+        const fileText = await file.text();
+        console.debug(atob(fileText))
+        console.debug("[" + atob(fileText) + "]")
+        console.debug(uncharcode("[" + atob(fileText) + "]"))
+        drives = JSON.parse(uncharcode(atob(fileText)));
+        currentDrive = Object.keys(drives)[0]; // Set currentDrive to the first drive
+        updateFileList();
+    }
+
+    async function saveDrivesToFile() {
+        if (!pickedFile) {
+            const [fileHandle] = await window.showSaveFilePicker();
+            pickedFile = fileHandle;
+        }
+
+        const drivesBlob = new Blob([btoa(charcode(JSON.stringify(drives)).toString())], { type: 'application/json' });
+        const writableStream = await pickedFile.createWritable();
+        await writableStream.write(drivesBlob);
+        await writableStream.close();
+    }
+
+    function editFile(fileName) {
+        let content = prompt(`Edit content of ${fileName}:`, drives[currentDrive].find(item => item.name === fileName).content);
+        if (content !== null) {
+            const file = drives[currentDrive].find(item => item.name === fileName);
+            if (file) {
+                file.content = content;
+                updateFileList();
+                saveDrivesToFile();
+            }
+        }
+    }
+
+    function updateFileList() {
+        let fileList = document.getElementById('file-list');
+        fileList.innerHTML = `<h3>Files and Directories in ${currentDrive}</h3>`;
+
+        displayTreeStructure(drives[currentDrive], fileList);
+
+        // Display drives
+        let drivesContainer = document.getElementById('drives-container');
+        drivesContainer.innerHTML = '';
+
+        /*for (let drive in drives) {
+            drivesContainer.innerHTML += `<div class="drive" onclick="switchDrive('${drive}')">${drive}</div>`;
+        }*/
+    }
+
+    function displayTreeStructure(items, parentElement) {
+        for (let item of items) {
+            if (item.type === "directory") {
+                let directoryElement = document.createElement('div');
+                directoryElement.className = 'directory';
+
+                let expandCollapseButton = document.createElement('span');
+                expandCollapseButton.className = 'expand-collapse';
+                expandCollapseButton.textContent = item.showContents ? '-' : '+';
+                expandCollapseButton.onclick = () => toggleContents(directoryElement, expandCollapseButton, item);
+
+                let directoryName = document.createElement('span');
+                directoryName.textContent = item.name;
+
+                let checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.className = 'show-contents';
+                checkbox.checked = item.showContents;
+                checkbox.disabled = item.showContents;
+                checkbox.onchange = () => toggleContents(directoryElement, expandCollapseButton, item);
+
+                directoryElement.appendChild(expandCollapseButton);
+                directoryElement.appendChild(checkbox);
+                directoryElement.appendChild(directoryName);
+                parentElement.appendChild(directoryElement);
+
+                if (item.showContents) {
+                    let subDirectoryElement = document.createElement('div');
+                    parentElement.appendChild(subDirectoryElement);
+                    displayTreeStructure(item.files, subDirectoryElement);
+                }
+            } else {
+                let fileElement = document.createElement('div');
+                fileElement.textContent = item.name;
+                parentElement.appendChild(fileElement);
+            }
+        }
+    }
+
+    function toggleContents(directoryElement, expandCollapseButton, directory) {
+        directory.showContents = !directory.showContents;
+        expandCollapseButton.textContent = directory.showContents ? '-' : '+';
+
+        let checkbox = directoryElement.querySelector('.show-contents');
+        checkbox.checked = directory.showContents;
+        checkbox.disabled = directory.showContents;
+
+        updateFileList();
+    }
+    
+
+// Modify the functions to use saveDrivesToFile:
+
+    function addFile() {
+        let fileName = prompt('Enter file name:');
+        if (fileName) {
+            drives[currentDrive].push({ name: fileName, content: '', type: "file"});
+            updateFileList();
+            saveDrivesToFile();
+        }
+    }
+
+    function deleteFile() {
+        let fileName = prompt('Enter file name to delete:');
+        if (fileName) {
+            drives[currentDrive] = drives[currentDrive].filter(file => file.name !== fileName);
+            updateFileList();
+            saveDrivesToFile();
+        }
+    }
+
+function createDirectory() {
+    let directoryName = prompt('Enter directory name:');
+    if (directoryName) {
+        let newDirectory = { name: directoryName, files: [], showContents: false, type: "directory"};
+        drives[currentDrive].push(newDirectory);
+        updateFileList();
+        saveDrivesToFile();
+    }
+}
+
+function renameFile() {
+    let oldFileName = prompt('Enter current file name:');
+    if (oldFileName) {
+        let newFileName = prompt('Enter new file name:');
+        let index = drives[currentDrive].indexOf(oldFileName);
+        if (index !== -1 && newFileName) {
+            drives[currentDrive][index] = newFileName;
+            updateFileList();
+            saveDrivesToFile();
+        }
+    }
+}
+
+function deleteDirectory() {
+    let directoryName = prompt('Enter directory name to delete:');
+    if (directoryName) {
+        drives[currentDrive] = drives[currentDrive].filter(item => {
+            if (typeof item === 'object') {
+                return item.name !== directoryName;
+            } else {
+                return item !== directoryName;
+            }
+        });
+        updateFileList();
+        saveDrivesToFile();
+    }
+}
+
+function renameDirectory() {
+    let oldDirectoryName = prompt('Enter current directory name:');
+    if (oldDirectoryName) {
+        let newDirectoryName = prompt('Enter new directory name:');
+        let directory = drives[currentDrive].find(item => {
+            return typeof item === 'object' && item.name === oldDirectoryName;
+        });
+        if (directory && newDirectoryName) {
+            directory.name = newDirectoryName;
+            updateFileList();
+            saveDrivesToFile();
+        }
+    }
+}
+
+function moveFile() {
+    let fileName = prompt('Enter file name to move:');
+    if (fileName) {
+        let newDirectoryName = prompt('Enter target directory name:');
+        let fileIndex = drives[currentDrive].indexOf(fileName);
+        let directory = drives[currentDrive].find(item => {
+            return typeof item === 'object' && item.name === newDirectoryName;
+        });
+
+        if (fileIndex !== -1 && directory) {
+            directory.files.push(fileName);
+            drives[currentDrive].splice(fileIndex, 1);
+            updateFileList();
+            saveDrivesToFile();
+        }
+    }
+}
+
+</script>
+
+<button onclick="addFile()">Add File</button>
+<button onclick="deleteFile()">Delete File</button>
+<button onclick="createDirectory()">Create Directory</button>
+<button onclick="renameFile()">Rename File</button>
+<button onclick="deleteDirectory()">Delete Directory</button>
+<button onclick="renameDirectory()">Rename Directory</button>
+<button onclick="moveFile()">Move File</button>
+<button onclick="editFile(prompt('Enter file name to edit'))">Edit File</button>
+<button onclick="downloadFile()">Download File</button>
+<button onclick="uploadFile()">Upload File</button>
+</body>
+</html>
