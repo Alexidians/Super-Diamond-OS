@@ -308,6 +308,20 @@ window.onclick = function(event) {
       document.getElementById("Apps").appendChild(App)
       makeDraggable(App)
      }
+     if(AppName == "File System") {
+      App.id = "File System"
+      var AppFrame = document.createElement("iframe")
+      AppTitle.InnerHTML = "File System"
+      AppTitle.appendChild(AppTitleTextNode)
+      App.appendChild(AppTitle)
+      App.appendChild(AppFrame)
+      AppFrame.id = "Browser"
+      AppFrame.src = "fs.html"
+      AppFrame.width = "600"
+      AppFrame.height = "500"
+      document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
+     }
      if(AppName == "Camera") {
       App.id = "Camera"
       var AppFrame = document.createElement("iframe")
