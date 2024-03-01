@@ -1,3 +1,5 @@
+LogWriteInfo("Starting Task: system/process/RAM.js")
+LogWriteInfo("Initalizing RAM Control...")
 const RAM = {
  TextRAM: {
   setValue: function(name, value) {
@@ -38,3 +40,5 @@ const RAM = {
   }
  }
 }
+LogWriteInfo("RAM Control initalized")
+LogWriteInfo("Listening For RAM data change requests")
