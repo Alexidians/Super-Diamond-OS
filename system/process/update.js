@@ -1,29 +1,23 @@
 LogWriteInfo("Starting Task: system/process/update.js")
-var AutomaticUpdateCheckInterval = null
-var version = null
-LogWriteInfo("Getting Current Version")
-var checkerApi = document.createElement("script")
-checkerApi.src = "Super Diamond OS_files/updateCheckerApi.js"
-document.body.appendChild(checkerApi)
-checkerApi.remove()
-setTimeout(1000, function() {
- LogWriteInfo("initalizing version and newestVersion")
- version = newestVersion
+LogWriteInfo("initalizing version and newestVersion")
+var resp = await fetch("Super Diamond OS_files/updateCheckerApi.js")
+var code = await resp.text()
+eval(code)
+var version = newestVersion
 LogWriteInfo("Initalizing AutomaticUpdateCheck")
 function AutomaticUpdateCheck() {
- checkerApi = document.createElement("script")
+ var checkerApi = document.createElement("script")
  checkerApi.src = "Super Diamond OS_files/updateCheckerApi.js"
  document.body.appendChild(checkerApi)
  checkerApi.remove()
  if(version < newestVersion) {
   clearInterval(AutomaticUpdateCheckInterval)
-  document.getElementById("updateButton").style.display = "inline"
+  document.getElementById("updateButton").style.display = "block"
   if(confirm("We Detected a newer Version of Super Diamond OS would you like to update")) {
    update()
   }
  }
 }
 LogWriteInfo("Initalizing Automatic Update Checker")
-AutomaticUpdateCheckInterval = setInterval(AutomaticUpdateCheck, 1000)
+var AutomaticUpdateCheckInterval = setInterval(AutomaticUpdateCheck, 1000)
 LogWriteInfo("Automatic Update Checker has been started. automatic warnings for updates will be sent")
-})
