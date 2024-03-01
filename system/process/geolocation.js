@@ -1,5 +1,5 @@
 LogWriteInfo("Starting Task: system/process/geolocation.js")
-logWriteInfo("Initalizing Coordinate updater")
+LogWriteInfo("Initalizing Coordinate updater")
 function updateCoords() {
   navigator.permissions.query({ name: "geolocation" }).then((result) => {
     if (result.state === "granted") {
@@ -16,7 +16,7 @@ function updateCoords() {
     }
   });
 }
-logWriteInfo("Coordinate updater initalized")
-logWriteInfo("initalizing automatic coordinate updater")
+LogWriteInfo("Coordinate updater initalized")
+LogWriteInfo("initalizing automatic coordinate updater")
 setInterval(updateCoords, 0)
-logWriteInfo("automatic coordinate updater initalized")
+LogWriteInfo("automatic coordinate updater initalized")
