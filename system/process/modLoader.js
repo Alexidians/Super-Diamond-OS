@@ -1,3 +1,5 @@
+LogWriteInfo("Starting Task: system/process/modLoader.js")
+LogWriteInfo("Initalizing Mod Object")
 Mod = {
  manifest: JSON.parse(atob(localStorage.getItem("SuperDiamondOSMod"))),
  LoadEventTick: function() {
@@ -22,9 +24,12 @@ Mod = {
  },
  LoadEventTickT: null
 }
+LogWriteInfo("Initalizing Mod Load Event Tick")
 Mod.LoadEventTickT = setInterval(Mod.LoadEventTick, 1)
+LogWriteInfo("Executing Mod Code")
 eval(Mod.manifest.code);
 Mod.LoadProgress.Code = true
+LogWriteInfo("Executing Mod Included System Componements")
 if(Mod.manifest.OS.scripts.includes("crash")) {
  var elem = document.createElement("script");
  elem.src = "system/process/crash.js";
@@ -92,7 +97,9 @@ if(Mod.manifest.OS.scripts.includes("hibernate")) {
  elem = undefined;
 }
 Mod.LoadProgress.Config = true
+LogWriteInfo("Loading Custom SuperDApp Launcher (if any or default)")
 var elem = document.createElement("script");
 elem.src = "system/process/SuperDApp-launcher.js";
 document.body.appendChild(elem);
 elem = undefined;
+LogWriteInfo("Terminating Task: system/process/modLoader.js")
