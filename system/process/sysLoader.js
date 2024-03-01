@@ -1,6 +1,5 @@
 var log = ""
-let logFileHandle
-var writable
+let logFileHandle = null
 async function chooseLogFile() {
   try {
     [logFileHandle] = await window.showOpenFilePicker();
@@ -8,25 +7,34 @@ async function chooseLogFile() {
     console.error('Error:', err);
     return;
   }
-  writable = await fileHandle.createWritable();
 
   LogWriteInfo("Sucesfully Updated The Log File to write")
 }
-
+function writeLogToFile() {
+ if(logFileHandle !== null) {
+  const writable = logFileHandle.createWritable()
+  writable.write(log)
+  writable.close()
+ }
+}
 function LogWriteWarn(text) {
  log = log + "[WARN] " + text + "\n"
+ writeLogToFile()
 }
 LogWriteWarn("Log Warning ([WARN]) has been initalized.")
 function LogWriteInfo(text) {
  log = log + "[INFO] " + text + "\n"
+ writeLogToFile()
 }
 LogWriteInfo("Log Info ([INFO]) has been initalized.")
 function LogWriteERR(text) {
  log = log + "[ERR] " + text + "\n"
+ writeLogToFile()
 }
 LogWriteInfo("Log Error ([ERR]) has been initalized.")
 function LogWriteFatalERR(text) {
  log = log + "[Fatal_ERR] " + text + "\n"
+ writeLogToFile()  
 }
 LogWriteInfo("Log Fatal Error ([FATAL_ERR]) has been initalized.")
 LogWriteInfo("Starting Task: system/process/sysLoader.js")
