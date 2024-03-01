@@ -1,3 +1,22 @@
+var log = ""
+function LogWriteWarn(text) {
+ log = log + "[WARN] " + text + "\n"
+}
+LogWriteWarn("Log Warning ([WARN]) has been initalized.")
+function LogWriteInfo(text) {
+ log = log + "[INFO] " + text + "\n"
+}
+LogWriteInfo("Log Info ([INFO]) has been initalized.")
+function LogWriteERR(text) {
+ log = log + "[ERR] " + text + "\n"
+}
+LogWriteInfo("Log Error ([ERR]) has been initalized.")
+function LogWriteFatalERR(text) {
+ log = log + "[Fatal_ERR] " + text + "\n"
+}
+LogWriteInfo("Log Fatal Error ([FATAL_ERR]) has been initalized.")
+LogWriteInfo("Starting Task: system/process/sysLoader.js")
+LogWriteInfo("Initalizing Empty Mod")
 var Mod = {
  manifest: {},
  LoadEventTick: function() {},
@@ -9,13 +28,17 @@ var Mod = {
  },
  LoadEventTickT: null
 }
+LogWriteInfo("Checking For Mods")
+LogWriteInfo("Reading local/localStorage/SuperDiamondOSMod")
 if(localStorage.getItem("SuperDiamondOSMod") !== null) {
+ LogWriteInfo("Mods Found. starting task system/process/modLoader.js")
  var elem = document.createElement("script");
  elem.src = "system/process/modLoader.js";
  document.body.appendChild(elem);
  elem = undefined;
 }
 else {
+ LogWriteInfo("No Mods Found. Starting Vanilla Super Diamond OS")
  var elem = document.createElement("script");
  elem.src = "system/process/crash.js";
  document.body.appendChild(elem);
@@ -65,3 +88,4 @@ else {
  document.body.appendChild(elem);
  elem = undefined;
 }
+LogWriteInfo("Terminating Task: system/process/sysLoader.js")
