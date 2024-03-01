@@ -1,7 +1,11 @@
 LogWriteInfo("Starting Task: system/process/update.js")
+LogWriteInfo("Getting Current Version")
+var checkerApi = document.createElement("script")
+checkerApi.src = "Super Diamond OS_files/updateCheckerApi.js"
+document.body.appendChild(checkerApi)
+checkerApi.remove()
 LogWriteInfo("initalizing version and newestVersion")
-var version = 36
-var newestVersion = version
+var version = newestVersion
 LogWriteInfo("Initalizing AutomaticUpdateCheck")
 function AutomaticUpdateCheck() {
  var checkerApi = document.createElement("script")
