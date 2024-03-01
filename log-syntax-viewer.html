@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Super Diamond OS Log Syntax Viewer</title>
+<style>
+    .warn { color: #FFA500; } /* Orange */
+    .info { color: #6495ED; } /* Cornflower blue */
+    .err { color: red; font-size: 1.1em; } /* Increase font size */
+    .fatal-err { color: red; font-weight: bold; }
+</style>
+</head>
+<body>
+
+<h2>Upload a Auper Diamond OS .log File</h2>
+<form id="uploadForm">
+    <input type="file" id="fileInput" accept=".log" />
+    <button type="submit">Upload</button>
+</form>
+
+<div id="logContent"></div>
+
+<script>
+document.getElementById('uploadForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var file = document.getElementById('fileInput').files[0];
+    if (file) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            var lines = e.target.result.split('\n');
+            var logContent = document.getElementById('logContent');
+            logContent.innerHTML = ''; // Clear previous content
+            lines.forEach(function(line) {
+                if (line.trim().length > 0) {
+                    var p = document.createElement('p');
+                    var msgType = getMessageType(line);
+                    p.textContent = line;
+                    p.classList.add(msgType);
+                    logContent.appendChild(p);
+                }
+            });
+        };
+        reader.readAsText(file);
+    }
+});
+
+function getMessageType(line) {
+    if (line.startsWith('[FATAL_ERR]')) {
+        return 'fatal-err';
+    } else if (line.startsWith('[ERR]')) {
+        return 'err';
+    } else if (line.startsWith('[WARN]')) {
+        return 'warn';
+    } else if (line.startsWith('[INFO]')) {
+        return 'info';
+    } else {
+        return ''; // Default style
+    }
+}
+</script>
+
+</body>
+</html>
