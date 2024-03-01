@@ -106,7 +106,7 @@ function getCookie(cname) {
    }
 
 window.onclick = function(event) {
-  if (event.target !== document.getElementById("homeMenu") && document.getElementById("homeMenu").style.display == "block") {
+  if (event.target !== document.getElementById("homeMenu") && event.target !== document.getElementById("taskbarbtn.homemenu") && document.getElementById("homeMenu").style.display == "block") {
    LogWriteInfo("closing home menu")
    document.getElementById("homeMenu").style.display = "none";
   }
