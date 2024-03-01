@@ -1,4 +1,18 @@
 var log = ""
+let logFileHandle
+var writable
+async function chooseLogFile() {
+  try {
+    [logFileHandle] = await window.showOpenFilePicker();
+  } catch (err) {
+    console.error('Error:', err);
+    return;
+  }
+  writable = await fileHandle.createWritable();
+
+  LogWriteInfo("Sucesfully Updated The Log File to write")
+}
+
 function LogWriteWarn(text) {
  log = log + "[WARN] " + text + "\n"
 }
