@@ -1,6 +1,8 @@
+LogWriteInfo("Starting Task: system/process/update.js")
+LogWriteInfo("initalizing version and newestVersion")
 var version = 36
 var newestVersion = version
-var AutomaticUpdateCheckInterval = setInterval(AutomaticUpdateCheck, 1000)
+LogWriteInfo("Initalizing AutomaticUpdateCheck")
 function AutomaticUpdateCheck() {
  var checkerApi = document.createElement("script")
  checkerApi.src = "Super Diamond OS_files/updateCheckerApi.js"
@@ -14,3 +16,6 @@ function AutomaticUpdateCheck() {
   }
  }
 }
+LogWriteInfo("Initalizing Automatic Update Checker")
+var AutomaticUpdateCheckInterval = setInterval(AutomaticUpdateCheck, 1000)
+LogWriteInfo("Automatic Update Checker has been started. automatic warnings for updates will be sent")
