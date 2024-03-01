@@ -10,7 +10,7 @@ async function chooseLogFile() {
 
   LogWriteInfo("Sucesfully Updated The Log File to write")
 }
-function writeLogToFile() {
+async function writeLogToFile() {
  if(logFileHandle !== null) {
   const writable = await logFileHandle.createWritable()
   writable.write(log)
