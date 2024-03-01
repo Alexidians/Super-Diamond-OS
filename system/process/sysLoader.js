@@ -4,7 +4,7 @@ async function chooseLogFile() {
   try {
     [logFileHandle] = await window.showOpenFilePicker();
   } catch (err) {
-    console.error('Error:', err);
+    LogWriteERR(err);
     return;
   }
 
