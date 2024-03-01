@@ -1,6 +1,10 @@
+LogWriteInfo("Starting Task: system/process/SuperDApp-launcher.js")
+LogWriteInfo("initalizing SuperDApp executor")
 function execSuperDApp(content) {
+ LogWriteInfo("Starting SuperDApp " + content)
  var manifest = JSON.parse(atob(content))
  if(manifest.window.exsists == true) {
+  LogWriteInfo("Creating SuperDApp Window")
   var App = document.createElement("div")
   var AppTitle = document.createElement("h3")
   App.class = "window"
@@ -14,6 +18,7 @@ function execSuperDApp(content) {
   App.style.cursor = "move";
   AppTitle.innerHTML = manifest.name;
   App.id = manifest.name
+  LogWriteInfo("Initalizing SuperDApp Window Content")
   if(manifest.window.type == "iframe") {
    var AppFrame = document.createElement("iframe")
    AppTitle.InnerHTML = manifest.name
@@ -37,7 +42,9 @@ function execSuperDApp(content) {
    makeDraggable(App)
   }
  }
+ LogWriteInfo("Executing SuperDApp main code")
  eval(manifest.code)
 }
-
+LogWriteInfo("initalizing Mod SuperDApp executor and overwriting (if any)")
 Mod.loadAppExecutor()
+LogWriteInfo("Listening For SuperDApp opening calls")
