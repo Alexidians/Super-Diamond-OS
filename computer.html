@@ -190,12 +190,14 @@ function update() {
         clearInterval(UpdateInterval);
         i = 0;
         document.getElementById("updatePrecentegeDisplay").innerHTML = "100%"
+        LogWriteInfo("Updated Sucesfully")
         alert("Update Complete")
         location.replace(location.href)
       } else {
         width++;
         elem.style.width = width + "%";
         document.getElementById("updatePrecentegeDisplay").innerHTML = width + "%"
+        LogWriteInfo("Updating: " + width + "%")
       }
     }
   }
