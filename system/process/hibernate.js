@@ -1,4 +1,8 @@
+LogWriteInfo("Starting Task: system/process/hibernate.js")
+LogWriteInfo("initalizing hibernator")
 function hibernate() {
+    LogWriteInfo("hibernating")
+    LogWriteInfo("getting data")
     const appsDiv = document.getElementById('Apps');
     const TextRAMDiv = document.getElementById('TextRAM');
     const ScriptRAMDiv = document.getElementById('ScriptRAM');
@@ -25,24 +29,28 @@ function hibernate() {
             code: script.text,
         });
     });
-
+    LogWriteInfo("saving data")
     localStorage.setItem('AppRAM', JSON.stringify(AppRAMArray));
     localStorage.setItem('TextRAM', JSON.stringify(TextRAMArray));
     localStorage.setItem('ScriptRAM', JSON.stringify(ScriptRAMArray));
+    LogWriteInfo("setting hibernation status")
     localStorage.setItem('washibernated', 'true');
+    LogWriteInfo("shutting down")
     ShutDown()
 }
-
+LogWriteInfo("initalizing hibernate wake uper")
 function loadRAMFromHibernation() {
-
+    LogWriteInfo("waking up from hibernation...")
+    LogWriteInfo("checking if hibernation was done...")
     if (localStorage.getItem('washibernated') === 'true') {
+        LogWriteInfo("getting hibernation data")
         const AppRAMArray = JSON.parse(localStorage.getItem('AppRAM'));
         const TextRAMArray = JSON.parse(localStorage.getItem('TextRAM'));
         const ScriptRAMArray = JSON.parse(localStorage.getItem('ScriptRAM'));
         const appsDiv = document.getElementById('Apps');
         const TextRAMDiv = document.getElementById('TextRAM');
         const ScriptRAMDiv = document.getElementById('ScriptRAM');
-
+        LogWriteInfo("writing data to session")
         appsDiv.innerHTML = ""
         AppRAMArray.forEach(application => {
             const App = document.createElement('div');
@@ -82,9 +90,12 @@ function loadRAMFromHibernation() {
             Elem.innerHTML = script.code
             ScriptRAMDiv.appendChild(Elem)
         });
+        LogWriteInfo("waken up sucesfully")
     }
+    LogWriteInfo("setting hibernation status to not hibernated")
     localStorage.setItem('washibernated', 'false');
 }
 
-
+LogWriteInfo("setting auto wakeup on startup...")
 window.addEventListener('load', loadRAMFromHibernation);
+LogWriteInfo("auto wakeup enabled sucesfully")
