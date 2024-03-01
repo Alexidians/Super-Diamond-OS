@@ -106,7 +106,7 @@ function getCookie(cname) {
    }
 
 window.onclick = function(event) {
-  if (event.target !== document.getElementById("homeMenu")) {
+  if (event.target !== document.getElementById("homeMenu") && document.getElementById("homeMenu").style.display == "block") {
    LogWriteInfo("closing home menu")
    document.getElementById("homeMenu").style.display = "none";
   }
