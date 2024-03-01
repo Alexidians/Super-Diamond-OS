@@ -1,1 +1,1 @@
-newestVersion = 39
+newestVersion = 40
