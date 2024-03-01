@@ -12,7 +12,7 @@ async function chooseLogFile() {
 }
 function writeLogToFile() {
  if(logFileHandle !== null) {
-  const writable = logFileHandle.createWritable()
+  const writable = await logFileHandle.createWritable()
   writable.write(log)
   writable.close()
  }
