@@ -1,7 +1,12 @@
+LogWriteInfo("Starting Task: system/process/crash.js")
+LogWriteInfo("initalizing bluescreen error catcher")
 window.onerror = function (message, source, lineno, colno, error) {
+  LogWriteInfo("initalizing bluescreen")
+  LogWriteFatalERR("bluescreen detected: message: " + message + ", source: " + source + ", lineno: " + lineno + ", colno: " + colno + ", error: " + error.toString() + ", stack: " + error.stack)
   location.replace("bluescreen.html?message=" + encodeURI(message) + "&source=" + encodeURI(source) + "&lineno=" + encodeURI(lineno) + "&colno=" + encodeURI(colno) + "&error" + encodeURI(error.toString()) + "&stack=" + encodeURI(error.stack))
 };
-
+LogWriteInfo("now listening for bluescreens")
+LogWriteInfo("initalizing SuperDiamondOSErrors object")
 var SuperDiamondOSErrors = {
  graphicsError: function(msg) {
   var Err = new Error(msg)
@@ -14,3 +19,4 @@ var SuperDiamondOSErrors = {
   return Err;
  }
 }
+LogWriteInfo("SuperDiamondOSErrors object initalized sucesfully.")
