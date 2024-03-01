@@ -16,7 +16,7 @@ function AutomaticUpdateCheck() {
  checkerApi.remove()
  if(version < newestVersion) {
   clearInterval(AutomaticUpdateCheckInterval)
-  document.getElementById("updateButton").style.display = "block"
+  document.getElementById("updateButton").style.display = "inline"
   if(confirm("We Detected a newer Version of Super Diamond OS would you like to update")) {
    update()
   }
