@@ -1,6 +1,6 @@
 LogWriteInfo("Starting Task: system/process/update.js")
 LogWriteInfo("initalizing version and newestVersion")
-var version = 41
+var version = 42
 var newestVersion = version
 LogWriteInfo("initalizing AutomaticUpdateCheck")
 function AutomaticUpdateCheck() {
@@ -10,6 +10,7 @@ function AutomaticUpdateCheck() {
  checkerApi.remove()
  if(version < newestVersion) {
   clearInterval(AutomaticUpdateCheckInterval)
+  LogWriteInfo("~An Update Has Been Detected")
   document.getElementById("updateButton").style.display = "inline"
   if(confirm("We Detected a newer Version of Super Diamond OS would you like to update")) {
    update()
