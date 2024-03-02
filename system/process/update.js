@@ -1,6 +1,6 @@
 LogWriteInfo("Starting Task: system/process/update.js")
 LogWriteInfo("initalizing version and newestVersion")
-var version = 42
+var version = 43
 var newestVersion = version
 LogWriteInfo("initalizing AutomaticUpdateCheck")
 function AutomaticUpdateCheck() {
