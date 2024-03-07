@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JPG to JSON SuperDiamondImage Converter</title>
+</head>
+<body>
+  <input type="file" accept="image/jpg" id="fileInput">
+  <button onclick="convertToJSON()">Convert to JSON SuperDiamondImage</button>
+  <a id="downloadLink" style="display: none;" download="SuperDiamondImage.json">Download JSON SuperDiamondImage</a>
+
+  <script>
+    function convertToJSON() {
+      const fileInput = document.getElementById('fileInput');
+      
+      if (fileInput.files.length === 0) {
+        alert('Please select a JPG image file.');
+        return;
+      }
+
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function(event) {
+        const pngDataURL = event.target.result;
+        pngToJSON(pngDataURL)
+          .then(json => {
+            downloadJSON(json);
+          })
+          .catch(error => {
+            alert('Error converting JPG to JSON: ' + error.message);
+          });
+      };
+
+      reader.readAsDataURL(file);
+    }
+
+    function downloadJSON(json) {
+      const downloadLink = document.getElementById('downloadLink');
+      const jsonData = JSON.stringify(json, null, 2);
+      const blob = new Blob([jsonData], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+
+      downloadLink.href = url;
+      downloadLink.style.display = 'inline-block';
+    }
+
+    function pngToJSON(pngDataURL) {
+      return new Promise((resolve, reject) => {
+        let canvas = document.createElement('canvas');
+        let context = canvas.getContext('2d');
+        let img = new Image();
+
+        img.onload = function() {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          context.drawImage(img, 0, 0);
+          let imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+          let pixels = [];
+          for (let y = 0; y < imageData.height; y++) {
+            for (let x = 0; x < imageData.width; x++) {
+              let index = (y * imageData.width + x) * 4;
+              let color = '#' + ('000000' + ((imageData.data[index] << 16) | (imageData.data[index + 1] << 8) | imageData.data[index + 2]).toString(16)).slice(-6);
+              pixels.push({x, y, color});
+            }
+          }
+          let json = {
+            width: imageData.width,
+            height: imageData.height,
+            pixels: pixels
+          };
+          resolve(json);
+        };
+
+        img.onerror = function(error) {
+          reject(error);
+        };
+
+        img.src = pngDataURL;
+      });
+    }
+  </script>
+</body>
+</html>
