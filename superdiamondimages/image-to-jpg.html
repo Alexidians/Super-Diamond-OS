@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON SuperDiamondImage to JPG Converter</title>
+</head>
+<body>
+<h1>JSON SuperDiamondImage to JPG Converter</h1>
+<input type="file" id="fileInput" accept=".json">
+<button onclick="convertToJPG()">Convert to JPG</button>
+
+<script>
+function convertToJPG() {
+    const fileInput = document.getElementById('fileInput');
+    const file = fileInput.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const jsonData = JSON.parse(event.target.result);
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = jsonData.width;
+            canvas.height = jsonData.height;
+
+            jsonData.pixels.forEach(pixel => {
+                context.fillStyle = pixel.color;
+                context.fillRect(pixel.x, pixel.y, 1, 1);
+            });
+
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+
+                // Create download link
+                const downloadLink = document.createElement('a');
+                downloadLink.href = url;
+                downloadLink.download = 'SuperDiamondImage.jpg';
+                downloadLink.click();
+            }, 'image/jpeg');
+        };
+        reader.readAsText(file);
+    }
+}
+</script>
+</body>
+</html>
