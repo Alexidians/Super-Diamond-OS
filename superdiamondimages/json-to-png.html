@@ -1,0 +1,56 @@
+!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON SuperDiamondImage to PNG Converter</title>
+</head>
+<body>
+  <input type="file" accept=".json" id="fileInput">
+  <button onclick="convertToPNG()">Convert to PNG</button>
+  <canvas id="canvas" style="display: none;"></canvas>
+  <a id="downloadLink" style="display: none;" download="SuperDiamondImage.png">Download PNG</a>
+
+  <script>
+    function convertToPNG() {
+      const fileInput = document.getElementById('fileInput');
+      const canvas = document.getElementById('canvas');
+      const downloadLink = document.getElementById('downloadLink');
+      
+      if (fileInput.files.length === 0) {
+        alert('Please select a JSON image file.');
+        return;
+      }
+
+      const file = fileInput.files[0];
+      const reader = new FileReader();
+
+      reader.onload = function(event) {
+        const jsonData = JSON.parse(event.target.result);
+        renderImage(jsonData);
+      };
+
+      reader.readAsText(file);
+    }
+
+    function renderImage(jsonData) {
+      const canvas = document.getElementById('canvas');
+      const context = canvas.getContext('2d');
+
+      canvas.width = jsonData.width;
+      canvas.height = jsonData.height;
+
+      jsonData.pixels.forEach(pixel => {
+        context.fillStyle = pixel.color;
+        context.fillRect(pixel.x, pixel.y, 1, 1);
+      });
+
+      const imageURL = canvas.toDataURL('image/png');
+      const downloadLink = document.getElementById('downloadLink');
+
+      downloadLink.href = imageURL;
+      downloadLink.style.display = 'inline-block';
+    }
+  </script>
+</body>
+</html>
