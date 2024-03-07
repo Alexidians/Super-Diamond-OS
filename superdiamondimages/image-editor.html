@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON Image Creator & Viewer</title>
+<style>
+  canvas {
+    border: 1px solid #000;
+    cursor: crosshair;
+  }
+</style>
+</head>
+<body>
+  <h2>JSON Image Creator & Viewer</h2>
+  <label for="pixelColor">Pixel color:</label>
+  <input type="color" id="pixelColor" value="#000000"><br>
+  <label for="pixelSize">Pixel size:</label>
+  <input type="number" id="pixelSize" value="20" min="5" max="100"><br>
+  <label for="imageWidth">Image width:</label>
+  <input type="number" id="imageWidth" value="10" min="1" max="100"><br>
+  <label for="imageHeight">Image height:</label>
+  <input type="number" id="imageHeight" value="10" min="1" max="100"><br>
+  <button onclick="downloadImage()">Download Image</button>
+  <input type="file" id="imageInput" accept=".json"><br>
+  <canvas id="imageCanvas"></canvas>
+
+  <script>
+    var pixelColorInput = document.getElementById('pixelColor');
+    var pixelSizeInput = document.getElementById('pixelSize');
+    var imageWidthInput = document.getElementById('imageWidth');
+    var imageHeightInput = document.getElementById('imageHeight');
+    var canvas = document.getElementById('imageCanvas');
+    var ctx = canvas.getContext('2d');
+    var isDrawing = false; // Variable to track drawing state
+
+    var imageData = {
+      width: 10,
+      height: 10,
+      pixels: []
+    };
+
+    // Initialize empty image data
+    function initializeImageData() {
+      var width = parseInt(imageWidthInput.value, 10);
+      var height = parseInt(imageHeightInput.value, 10);
+      imageData.width = width;
+      imageData.height = height;
+      imageData.pixels = [];
+      for (var y = 0; y < imageData.height; y++) {
+        for (var x = 0; x < imageData.width; x++) {
+          imageData.pixels.push({ x: x, y: y, color: '#ffffff' });
+        }
+      }
+      drawPixels();
+    }
+    initializeImageData();
+
+    // Function to draw pixels on canvas
+    function drawPixels() {
+      var pixelSize = parseInt(pixelSizeInput.value, 10);
+      canvas.width = imageData.width * pixelSize;
+      canvas.height = imageData.height * pixelSize;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      imageData.pixels.forEach(function(pixel) {
+        ctx.fillStyle = pixel.color;
+        ctx.fillRect(pixel.x * pixelSize, pixel.y * pixelSize, pixelSize, pixelSize);
+      });
+    }
+
+    // Event listener for canvas click
+    canvas.addEventListener('mousedown', function(event) {
+      isDrawing = true;
+      drawPixel(event);
+    });
+
+    // Event listener for continuous drawing while mouse button is held down
+    canvas.addEventListener('mousemove', function(event) {
+      if (isDrawing) {
+        drawPixel(event);
+      }
+    });
+
+    // Event listener to stop drawing when mouse button is released
+    canvas.addEventListener('mouseup', function() {
+      isDrawing = false;
+    });
+
+    // Function to draw a single pixel
+    function drawPixel(event) {
+      var rect = canvas.getBoundingClientRect();
+      var pixelSize = parseInt(pixelSizeInput.value, 10);
+      var x = Math.floor((event.clientX - rect.left) / pixelSize);
+      var y = Math.floor((event.clientY - rect.top) / pixelSize);
+      var color = pixelColorInput.value;
+
+      imageData.pixels.forEach(function(pixel) {
+        if (pixel.x === x && pixel.y === y) {
+          pixel.color = color;
+        }
+      });
+
+      drawPixels();
+    }
+
+    // Event listeners for color and size inputs
+    pixelColorInput.addEventListener('change', drawPixels);
+    pixelSizeInput.addEventListener('input', drawPixels);
+    imageWidthInput.addEventListener('input', initializeImageData);
+    imageHeightInput.addEventListener('input', initializeImageData);
+
+    // Function to download image as JSON
+    function downloadImage() {
+      var jsonData = JSON.stringify(imageData);
+      var blob = new Blob([jsonData], { type: 'application/json' });
+      var url = URL.createObjectURL(blob);
+      var link = document.createElement('a');
+      link.href = url;
+      link.download = 'image.json';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
+    // Function to handle file upload
+    document.getElementById('imageInput').addEventListener('change', function(event) {
+      var file = event.target.files[0];
+      if (file && file.type === 'application/json') {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+          try {
+           imageData = JSON.parse(event.target.result);
+           drawPixels();
+          } catch(err) {
+           alert("Parsing Failed. Make Sure Thats a valid SuperDiamondImage JSON file. it may be corrupted.")
+          }
+        };
+        reader.readAsText(file);
+      } else {
+        console.error('Invalid file format. Please upload a SuperDiamondImage JSON file.');
+      }
+    });
+  </script>
+</body>
+</html>
