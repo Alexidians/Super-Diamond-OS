@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON SuperDiamondImage Corruption Checker</title>
+</head>
+<body>
+    <h1>JSON SuperDiamondImage Corruption Checker</h1>
+    <input type="file" id="fileInput" accept=".json">
+    <button onclick="handleFile()">Check Corruption</button>
+    <div id="corruptionResults"></div>
+
+    <script>
+        function checkPixelCorruption(data) {
+            let corruptionDetected = false;
+            let pixelMap = new Map();
+            let results = "";
+
+            if (!data.hasOwnProperty("height")) {
+                results += "Corruption Detected: Missing Height Boundary Specifier<br>";
+                corruptionDetected = true;
+            }
+            if (!data.hasOwnProperty("width")) {
+                results += "Corruption Detected: Missing Width Boundary Specifier<br>";
+                corruptionDetected = true;
+            }
+
+            try {
+                for (let x = 0; x < data.width; x++) {
+                    for (let y = 0; y < data.height; y++) {
+                        let key = `${x},${y}`;
+                        let pixelFound = false;
+
+                        for (let pixel of data.pixels) {
+                            if (pixel.x === x && pixel.y === y) {
+                                pixelFound = true;
+                                break;
+                            }
+                        }
+
+                        if (!pixelFound) {
+                            results += `Corruption detected: Missing pixel at (${x}, ${y}).<br>`;
+                            corruptionDetected = true;
+                        }
+                    }
+                }
+
+                for (let pixel of data.pixels) {
+                    let key = `${pixel.x},${pixel.y}`;
+
+                    if (pixel.x < 0 || pixel.x >= data.width || pixel.y < 0 || pixel.y >= data.height) {
+                        results += `Corruption detected: Pixel (${pixel.x}, ${pixel.y}) is out of boundaries.<br>`;
+                        corruptionDetected = true;
+                    }
+
+                    if (pixelMap.has(key)) {
+                        results += `Corruption detected: Duplicate Pixel At (${pixel.x}, ${pixel.y}).<br>`;
+                        corruptionDetected = true;
+                    } else {
+                        pixelMap.set(key, true);
+                    }
+                }
+            } catch(err) {
+                results += `Corruption Detected: Invalid File Format.`;
+                corruptionDetected = true;
+            }
+
+            if (!corruptionDetected) {
+                results = "No corruption detected.";
+            }
+
+            document.getElementById("corruptionResults").innerHTML = results;
+        }
+
+        function handleFile() {
+            let fileInput = document.getElementById('fileInput');
+            let file = fileInput.files[0];
+            let reader = new FileReader();
+
+            reader.onload = function(e) {
+                try {
+                    let jsonData = JSON.parse(e.target.result);
+                    checkPixelCorruption(jsonData);
+                } catch (error) {
+                    console.error("Error reading file:", error);
+                    alert("ERROR: failed to read file")
+                }
+            };
+
+            reader.readAsText(file);
+        }
+    </script>
+</body>
+</html>
