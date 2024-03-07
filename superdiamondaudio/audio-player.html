@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON SuperDiamondAudio Player</title>
+</head>
+<body>
+    <h1>JSON SuperDiamondAudio Player</h1>
+    <input type="file" id="fileInput" accept=".json">
+    <button onclick="playSound()">Play</button>
+
+    <script>
+        function playSound() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            if (!file) {
+                alert('Please select a JSON SuperDiamondAudio file.');
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = function(event) {
+                try {
+                    const json = JSON.parse(event.target.result);
+                    const text = json.text || '';
+                    const options = json.options || {};
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.lang = options.language 
+                    utterance.pitch = options.pitch || 1.0;
+                    utterance.rate = options.rate || 1.0;
+                    utterance.volume = options.volume || 1.0;
+                    utterance.voice = window.speechSynthesis.getVoices().find(voice => voice.lang === options.voice) || window.speechSynthesis.getVoices()[0];
+                    window.speechSynthesis.speak(utterance);
+                } catch (error) {
+                    console.error('Error playing audio:', error);
+                    alert('Error accoured while playing audio. make sure the file format is correct');
+                }
+            };
+            reader.readAsText(file);
+        }
+    </script>
+</body>
+</html>
+
