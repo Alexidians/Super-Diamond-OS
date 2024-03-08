@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Video to WebM Converter</title>
+</head>
+<body>
+    <h1>JSON SuperDiamondVideo to WebM Converter</h1>
+
+    <input type="file" id="convertFileInput" accept=".json">
+    <button id="convertToWebM">Convert to WebM</button>
+    <p>While we are converting your JSON SuperDiamondVideo to a webm. you can see where we have gotten while converting below:</p>
+    <canvas id="videoCanvas"></canvas>
+
+    <script>
+        // Function to draw a frame from JSON video data
+        function drawFrame(videoCtx, frameData, pixelSize) {
+            const imageData = videoCtx.createImageData(frameData.width * pixelSize, frameData.height * pixelSize);
+            for (let i = 0; i < frameData.pixels.length; i++) {
+                const pixel = frameData.pixels[i];
+                const x = pixel.x * pixelSize;
+                const y = pixel.y * pixelSize;
+                const color = pixel.color;
+                videoCtx.fillStyle = color;
+                videoCtx.fillRect(x, y, pixelSize, pixelSize);
+            }
+        }
+
+        // Event listener for JSON video to WebM converter button
+        document.getElementById('convertToWebM').addEventListener('click', function() {
+            const file = document.getElementById('convertFileInput').files[0];
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const jsonVideo = JSON.parse(e.target.result);
+                const pixelSize = 10; // You can change this value as needed
+                
+                // Create a temporary canvas for drawing frames
+                const videoCanvas = document.getElementById('videoCanvas');
+                const videoCtx = videoCanvas.getContext('2d');
+
+                // Create a MediaRecorder to record the canvas content
+                const stream = videoCanvas.captureStream();
+                const mediaRecorder = new MediaRecorder(stream);
+                const chunks = [];
+
+                mediaRecorder.ondataavailable = function(event) {
+                    if (event.data.size > 0) {
+                        chunks.push(event.data);
+                    }
+                };
+
+                mediaRecorder.onstop = function() {
+                    const blob = new Blob(chunks, { type: 'video/webm' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    document.body.appendChild(a);
+                    a.style = 'display: none';
+                    a.href = url;
+                    a.download = 'SuperDiamondVideo.webm';
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                };
+
+                // Start recording
+                mediaRecorder.start();
+
+                // Play and draw each frame from the JSON video
+                let currentFrame = 1;
+                const playFrame = function() {
+                    const frameData = jsonVideo.frames['f' + currentFrame];
+                    if (frameData) {
+                        drawFrame(videoCtx, frameData, pixelSize);
+                        currentFrame++;
+                        setTimeout(playFrame, jsonVideo.framestaytime || 1000);
+                    } else {
+                        // End recording when all frames have been played
+                        mediaRecorder.stop();
+                    }
+                };
+
+                playFrame();
+            };
+            reader.readAsText(file);
+        });
+    </script>
+</body>
+</html>
