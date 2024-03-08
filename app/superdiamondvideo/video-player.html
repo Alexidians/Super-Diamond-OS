@@ -1,0 +1,63 @@
+var resp = await fetch("http://localhost:4002/SuperDiamondOS/readimage.php",{method:"POST",body:JSON.stringify({name:filename})})
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON SuperDiamondVideo Player</title>
+</head>
+<body>
+    <h1>JSON SuperDiamondVideo Player</h1>
+    <button onclick="startVideo(prompt('Which Video would you like to play?'))">Select Video</button>
+    <label for="pixelSize">Pixel Size:</label>
+    <input type="number" id="pixelSize" value="10">
+    <canvas id="canvas" width="400" height="400"></canvas>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let animationTimeout;
+        let pixelSize = 10; // Default pixel size
+
+        function drawFrame(frameData) {
+            const imageData = ctx.createImageData(frameData.width * pixelSize, frameData.height * pixelSize);
+            for (let i = 0; i < frameData.pixels.length; i++) {
+                const pixel = frameData.pixels[i];
+                const x = pixel.x * pixelSize;
+                const y = pixel.y * pixelSize;
+                const color = pixel.color;
+                ctx.fillStyle = color;
+                ctx.fillRect(x, y, pixelSize, pixelSize);
+            }
+        }
+
+        function startVideo(filename) {
+            var resp = await fetch("http://localhost:4002/SuperDiamondOS/readvideo.php",{method:"POST",body:JSON.stringify({name:filename})})
+                try {
+                    const videoData = await resp.json();
+                    const frameAmount = videoData.frameamount || 1;
+                    let currentFrame = 1;
+                    const playVideo = function() {
+                        const frameData = videoData.frames['f' + currentFrame];
+                        if (frameData) {
+                            drawFrame(frameData);
+                            currentFrame++;
+                            if (currentFrame > frameAmount) {
+                                clearTimeout(animationTimeout);
+                                return;
+                            }
+                            animationTimeout = setTimeout(playVideo, videoData.framestaytime || 1000);
+                        }
+                    };
+                    playVideo();
+                } catch (error) {
+                    console.error("Error parsing JSON:", error);
+                }
+      };
+
+        document.getElementById('pixelSize').addEventListener('change', function(event) {
+            pixelSize = parseInt(event.target.value);
+        });
+    </script>
+</body>
+</html>
