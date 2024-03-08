@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON SuperDiamondImage Merger to JSON SuperDiamondVideo</title>
+    <style>
+        #imageList {
+            list-style-type: none;
+            padding: 0;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+        #imageList li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            cursor: pointer;
+        }
+        #imageList li:hover {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <h1>JSON SuperDiamondImage Merger to JSON SuperDiamondVideo</h1>
+    <p><button onclick="filesselect(prompt('Enter The Name of your images seperated by a , with a space like: img1, img2, img3. this will also affect how your images are positioned.'))">select files</button> <p id="filelist"></p></p>
+    <ul id="imageList"></ul>
+    <label for="frameStayTime">Frame Stay Time (ms): </label>
+    <input type="number" id="frameStayTime" value="1000">
+    <br>
+    <label for="videoWidth">Video Width: </label>
+    <input type="number" id="videoWidth" value="10">
+    <br>
+    <label for="videoHeight">Video Height: </label>
+    <input type="number" id="videoHeight" value="10">
+    <br>
+    <button onclick="mergeImages()">Merge Images</button>
+    <a id="downloadLink" style="display: none;" download="merged_SuperDiamondVideo.json">Download Merged Video</a>
+
+    <script>
+        let filenames = [];
+
+        function filesselect(files) {
+            filenames = files.split(", ")
+        }
+
+        function renderImageList() {
+            const imageList = document.getElementById('imageList');
+            imageList.innerHTML = '';
+            filenames.forEach(filename => {
+                const li = document.createElement('li');
+                li.textContent = filename;
+                li.draggable = true; // Enable dragging
+                li.addEventListener('dragstart', dragStart);
+                li.addEventListener('dragover', dragOver);
+                li.addEventListener('drop', drop);
+                imageList.appendChild(li);
+            });
+        }
+
+        function dragStart(event) {
+            event.dataTransfer.setData('text/plain', event.target.textContent);
+        }
+
+        function dragOver(event) {
+            event.preventDefault();
+        }
+
+        function drop(event) {
+            event.preventDefault();
+            const data = event.dataTransfer.getData('text/plain');
+            const sourceIndex = filenames.indexOf(data);
+            const targetIndex = filenames.indexOf(event.target.textContent);
+            if (sourceIndex > -1 && targetIndex > -1) {
+                const temp = filenames[sourceIndex];
+                filenames.splice(sourceIndex, 1);
+                filenames.splice(targetIndex, 0, temp);
+                renderImageList();
+            }
+        }
+
+        function mergeImages() {
+            console.log("Merging images...");
+            const videoname = prompt("How Would You Like to call this video?");
+            const frameStayTime = parseInt(document.getElementById('frameStayTime').value);
+            const videoWidth = parseInt(document.getElementById('videoWidth').value);
+            const videoHeight = parseInt(document.getElementById('videoHeight').value);
+            const frames = {};
+            console.log("Number of filenames:", filenames.length);
+            filenames.forEach((filename, index) => {
+                console.log("Reading file:", filename);
+                var resp = await fetch("http://localhost:4002/SuperDiamondOS/readimage.php",{method:"POST",body:JSON.stringify({name:filename})})
+                    console.log("File loaded:", filename);
+                    try {
+                        const imageData = await resp.json();
+                        frames['f' + (index + 1)] = imageData;
+                        if (Object.keys(frames).length === filenames.length) {
+                            const mergedVideo = {
+                                frameamount: filenames.length,
+                                framestaytime: frameStayTime,
+                                width: videoWidth,
+                                height: videoHeight,
+                                frames: frames
+                            };
+                            downloadMergedVideo(mergedVideo);
+                        }
+                    } catch (error) {
+                        console.error("Error parsing JSON:", error);
+                    }
+                };
+            });
+        }
+
+        function downloadMergedVideo(mergedVideo) {
+            const downloadLink = document.getElementById('downloadLink');
+            const blob = new Blob([JSON.stringify(mergedVideo)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            downloadLink.href = url;
+            downloadLink.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
