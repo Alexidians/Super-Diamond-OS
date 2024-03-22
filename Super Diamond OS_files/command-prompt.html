@@ -38,11 +38,18 @@ h6 {
 <div id="log">
 <p>Super Diamond OS Command Prompt Started. run anything and we will log the command and response</p>
 <p>Our Command Prompt runs js and error logs will have the same like text as js errors for html</p>
-<p>be aware of what you run importing stuff like lua and js with importLua("url") importJS("url") can be harmful none of our anti-virus will stop it</p>
+<p>be aware of what you run importing stuff like lua and js with importLua("url") importJS("url") and including with commandPrompt.include("url") can be harmful none of our anti-virus will stop it</p>
 <p>That stuff may steal data. find code to change your password and you be not get it back until we help. it can be anything bad or good only run anything if you know what ur doing</p>
 </div>
-<p class="cmd_input"><input id="commandInput"></input> <button onclick="run()">Run</button></p>
+<p class="cmd_input">&#62;<input id="commandInput"></input> <button onclick="run()">Run</button></p>
 <script>
+var commandPrompt = {
+ include: function(url) {
+  var elem = document.createElement("script")
+  elem.src = url
+  document.body.appendChild(elem)
+ }
+}
 function debugMode() {
  parent.location.replace("debug-mode.html")
 }
@@ -86,7 +93,7 @@ CMDsys.objectMaker = {
 
 function run() {
  var command = document.getElementById("commandInput").value
- if(!command.startsWith("run(")) {
+ if(!command.contains("run")) {
  try {
   var logtext = eval(command)
  }
@@ -99,7 +106,7 @@ function run() {
  }
  var logelem = document.createElement("p")
  var commandelem = document.createElement("p")
- commandelem.innerHTML = command
+ commandelem.innerHTML = ">" + command
  logelem.innerHTML = logtext
  document.getElementById("log").appendChild(commandelem)
  document.getElementById("log").appendChild(logelem)
