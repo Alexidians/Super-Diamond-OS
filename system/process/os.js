@@ -329,8 +329,16 @@ window.onclick = function(event) {
      document.getElementById('SuperDAppUpload').click();
     }
 
-    document.getElementById('SuperDAppUpload').addEventListener('change', handleSuperDAppUpload);
-
+    function loadSuperDAppUpload() {
+       try {
+          document.getElementById('SuperDAppUpload').addEventListener('change', handleSuperDAppUpload);
+       } catch(err) {
+          LogWriteWarn("Failed to add the Event Listener to SuperDAppUpload. Retrying in 3 seconds.")
+          setTimeout(3000, loadSuperDAppUpload)
+       }
+    }
+    loadSuperDAppUpload()
+       
     function handleSuperDAppUpload(event) {
         LogWriteInfo("Starting SuperDApp execution")
         const file = event.target.files[0];
