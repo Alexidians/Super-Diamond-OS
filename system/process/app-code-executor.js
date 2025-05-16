@@ -348,7 +348,7 @@ LogWriteInfo("Loading OpenApp Function")
       AppTitle.appendChild(AppTitleTextNode)
       App.appendChild(AppTitle)
       document.getElementById("Apps").appendChild(App)
-      Crash("An Unknown Error Accoured")
+      Crash("An Unknown Error Accoured", force=true)
       ShutDownApp("ERROR")
      }
      if(AppName == "Wix Owner PC") {
