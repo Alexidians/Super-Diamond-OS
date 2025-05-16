@@ -1,8 +1,14 @@
 LogWriteInfo("Starting Task: system/process/hibernate.js")
 LogWriteInfo("initalizing hibernator")
-function hibernate() {
+function hibernatefunc(type) {
     LogWriteInfo("hibernating")
     LogWriteInfo("getting data")
+    if(type == "full_page") {
+          const content = document.documentElement.outerHTML;
+          localStorage.setItem("HTMLContentHibernate", content);
+          LogWriteInfo("Page hibernated to localStorage!");
+    }
+    if(type == "App_Text_Script_RAM_Save") {
     const appsDiv = document.getElementById('Apps');
     const TextRAMDiv = document.getElementById('TextRAM');
     const ScriptRAMDiv = document.getElementById('ScriptRAM');
@@ -33,6 +39,9 @@ function hibernate() {
     localStorage.setItem('AppRAM', JSON.stringify(AppRAMArray));
     localStorage.setItem('TextRAM', JSON.stringify(TextRAMArray));
     localStorage.setItem('ScriptRAM', JSON.stringify(ScriptRAMArray));
+    } else {
+        LogWriteError("Unknown Hibernation Mode:", type)
+    }
     LogWriteInfo("setting hibernation status")
     localStorage.setItem('washibernated', 'true');
     LogWriteInfo("shutting down")
@@ -43,6 +52,15 @@ function loadRAMFromHibernation() {
     LogWriteInfo("waking up from hibernation...")
     LogWriteInfo("checking if hibernation was done...")
     if (localStorage.getItem('washibernated') === 'true') {
+        if (localStorage.HTMLContentHibernate !== null) {
+              const savedContent = localStorage.getItem("HTMLContentHibernate");
+              if (savedContent) {
+                document.open();
+                document.write(savedContent);
+                document.close();
+              }
+              localStorage.removeItem("HTMLContentHibernate")
+        } else {
         LogWriteInfo("getting hibernation data")
         const AppRAMArray = JSON.parse(localStorage.getItem('AppRAM'));
         const TextRAMArray = JSON.parse(localStorage.getItem('TextRAM'));
@@ -91,6 +109,7 @@ function loadRAMFromHibernation() {
             ScriptRAMDiv.appendChild(Elem)
         });
         LogWriteInfo("waken up sucesfully")
+        }
     }
     LogWriteInfo("setting hibernation status to not hibernated")
     localStorage.setItem('washibernated', 'false');
