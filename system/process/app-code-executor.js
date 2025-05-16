@@ -575,7 +575,7 @@ LogWriteInfo("Loading OpenApp Function")
       App.appendChild(AppInput)
       App.appendChild(AppShutDownButton)
       document.getElementById("Apps").appendChild(App)
-      MakeDraggable(App)
+      makeDraggable(App)
      }
      if(AppName == "Drag Tools") {
       App.id = "Drag Tools"
@@ -588,7 +588,7 @@ LogWriteInfo("Loading OpenApp Function")
       App.appendChild(ElemInput)
       document.getElementById("Apps").appendChild(App)
       DragToolInterval = setInterval(DragToolsAction, 0)
-      MakeDraggable(App)
+      makeDraggable(App)
      }
      if(AppName == "Super Diamond Virus") {
       App.id = "Super Diamond Virus"
@@ -608,7 +608,7 @@ LogWriteInfo("Loading OpenApp Function")
       SuperDiamondVirusInterval = setInterval(VirusInterval, 0, "Super Diamond Virus")
       App.appendChild(AppTitle)
       document.getElementById("Apps").appendChild(App)
-      MakeDraggable(App)
+      makeDraggable(App)
       ShutDownApp("Super Diamond Virus")
       WarningMessage("(Super Diamond Anti-Virus) We Detected a Virus On Your Device [Super Diamond Virus]")
       var RemoveVirus = confirm("(Super Diamond Anti-Virus) Stop Super Diamond Virus?")
