@@ -560,7 +560,17 @@ LogWriteInfo("Loading OpenApp Function")
       AppShutDownButton.onclick="ShutDownApp('AppInput')"
       AppShutDownButton.innerHTML="Shut Down"
       AppShutDownButton.onclick = function() {
-           ShutDownApp(document.getElementById("TaskManagerShutdownInput").value)
+           try {
+               if(document.getElementById("TaskManagerShutDownInput")) {
+               ShutDownApp(document.getElementById("TaskManagerShutDownInput").value)
+               } else {
+                    WriteLogERR("Could not Locate Input for application name")
+               }
+           } catch(err) {
+                WriteLogERR("Failed to Terminate Specified Application")
+                WriteLogERR(err.toString())
+                console.error(err)
+           }
       }
       App.appendChild(AppInput)
       App.appendChild(AppShutDownButton)
