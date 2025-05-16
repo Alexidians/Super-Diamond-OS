@@ -16,6 +16,7 @@ async function writeLogToFile() {
   writable.write(log)
   writable.close()
  }
+ localStorage.setItem("lastlog", log)
 }
 function LogWriteWarn(text) {
  log = log + "[WARN] " + text + "\n"
