@@ -130,6 +130,10 @@ function getCookie(cname) {
    function openHomeMenu() {
     LogWriteInfo("opening home menu")
     var homeMenu = document.getElementById("homeMenu")
+    if(homeMenu == null) {
+       LogWriteInfo("Failed to open home menu as home menu could not be found")
+       return;
+    }
     homeMenu.style.display = "block"
     homeMenu.src = "Super Diamond OS_files/updateCheckerApi.js"
     homeMenu.src = "Super Diamond OS_files/home.html"
