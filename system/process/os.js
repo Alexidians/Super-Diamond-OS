@@ -48,9 +48,9 @@
     } else {
      location.replace("computer-setup.html")
     }
-
+    refreshDesktopBG()
     LogWriteInfo("doing some startup actions")
-    AntiVirusPermissionRequest()
+    //AntiVirusPermissionRequest()
     //openFullscreen(document.body)
     openHomeMenu()
 
