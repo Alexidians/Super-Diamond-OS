@@ -6,9 +6,10 @@ window.onerror = function (message, source, lineno, colno, error) {
   if(localStorage.getItem("disable_bluescreen") == "true") {
     LogWriteWarn("Bluescreen Is Disabled. Not showing bluescreen.");
     return;
-  }
+  } else {
   location.replace("bluescreen.html?message=" + encodeURI(message) + "&source=" + encodeURI(source) + "&lineno=" + encodeURI(lineno) + "&colno=" + encodeURI(colno) + "&error" + encodeURI(error.toString()) + "&stack=" + encodeURI(error.stack));
-};
+  }
+  };
 LogWriteInfo("now listening for bluescreens")
 LogWriteInfo("initalizing SuperDiamondOSErrors object")
 var SuperDiamondOSErrors = {
