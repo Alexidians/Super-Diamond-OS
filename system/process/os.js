@@ -140,9 +140,14 @@ function getCookie(cname) {
    }
 
 window.onclick = function(event) {
-  if (event.target !== document.getElementById("homeMenu") && event.target !== document.getElementById("taskbarbtn.homemenu") && document.getElementById("homeMenu").style.display == "block") {
-   LogWriteInfo("closing home menu")
-   document.getElementById("homeMenu").style.display = "none";
+  try {
+   if (event.target !== document.getElementById("homeMenu") && event.target !== document.getElementById("taskbarbtn.homemenu") && document.getElementById("homeMenu").style.display == "block") {
+    LogWriteInfo("closing home menu")
+    document.getElementById("homeMenu").style.display = "none";
+   }
+  } catch(err) {
+     LogWriteWarn("Failed to handle onclick event for homemenu")
+     LogWriteWarn(err)
   }
 }
     // Function to make windows draggable
