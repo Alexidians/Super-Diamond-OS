@@ -1487,7 +1487,10 @@ function startTime() {
   let s = today.getSeconds();
   m = checkTime(m);
   s = checkTime(s);
-  document.getElementById('timeText').innerHTML =  h + ":" + m + ":" + s;
+  var clockelem = document.getElementById("timeText")
+  if (clockelem) {
+      document.getElementById('timeText').innerHTML =  h + ":" + m + ":" + s;
+  }
   setTimeout(startTime, parseInt(localStorage.getItem("clockSpeed")));
 }
            
