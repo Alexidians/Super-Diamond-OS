@@ -1,5 +1,8 @@
 LogWriteInfo("Starting Task: system/process/hibernate.js")
 LogWriteInfo("initalizing hibernator")
+function hibernate() {
+    OpenApp("HibernateMenu")
+}
 function hibernatefunc(type) {
     LogWriteInfo("hibernating")
     LogWriteInfo("getting data")
