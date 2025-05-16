@@ -564,11 +564,11 @@ LogWriteInfo("Loading OpenApp Function")
                if(document.getElementById("TaskManagerShutDownInput")) {
                ShutDownApp(document.getElementById("TaskManagerShutDownInput").value)
                } else {
-                    WriteLogERR("Could not Locate Input for application name")
+                    LogWriteERR("Could not Locate Input for application name")
                }
            } catch(err) {
-                WriteLogERR("Failed to Terminate Specified Application")
-                WriteLogERR(err.toString())
+                LogWriteERR("Failed to Terminate Specified Application")
+                LogWriteERR(err.toString())
                 console.error(err)
            }
       }
