@@ -619,8 +619,7 @@ LogWriteInfo("Loading OpenApp Function")
        WarningMessage("(Super Diamond Anti-Virus) The Virus Might of already Done Something to your device")
        OSMessage("(Super Diamond Virus) HAHAHA! You didnt beat me. I Will Start Destroying your system now!")
       } else {
-       WarningMessage("Recreating Super Diamond Virus...")
-       OpenApp("Super Diamond Virus")
+       WarningMessage("Oh no you sd virus anti-viurs didnt touch me oh no oh no i will destroy your system now.")
       }
      }
      if(AppName == "Notepad") {
