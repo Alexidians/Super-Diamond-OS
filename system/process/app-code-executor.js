@@ -575,7 +575,6 @@ LogWriteInfo("Loading OpenApp Function")
       App.appendChild(AppInput)
       App.appendChild(AppShutDownButton)
       document.getElementById("Apps").appendChild(App)
-      makeDraggable(App)
      }
      if(AppName == "Drag Tools") {
       App.id = "Drag Tools"
