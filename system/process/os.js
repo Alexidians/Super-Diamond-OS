@@ -40,23 +40,6 @@
     var menu = document.getElementById("menu");
     var background = localStorage.getItem("background")
     var backgroundIsImage = localStorage.getItem("backgroundIsImage")
-    LogWriteInfo("setting desktop background")
-    if(backgroundIsImage == "true") {
-     document.getElementById("desktop").style.backgroundImage = "url('" + background + "')";
-    }
-    if(backgroundIsImage == "true") {
-     document.getElementById("desktop").style.backgroundColor = background
-    }
-    if(background == null) {
-     document.getElementById("desktop").style.backgroundImage = "url('SuperDiamond.png')";
-     background = "SuperDiamond.png"
-     backgroundIsImage = "true"
-    }
-    if(backgroundIsImage == null) {
-     document.getElementById("desktop").style.backgroundImage = "url('SuperDiamond.png')";
-     background = "SuperDiamond.png"
-     backgroundIsImage = "true"
-    }
     LogWriteInfo("checking logged in")
     if(localStorage.getItem("Password") !== null) {
      if(getCookie("loggedIn") !== "itis") {
@@ -80,6 +63,53 @@ function setCookie(cname,cvalue,exdays) {
   document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
 }
 
+function refreshDesktopBG() {
+    LogWriteInfo("setting desktop background")
+    if(backgroundIsImage == "true") {
+     try {
+         document.getElementById("desktop").style.backgroundImage = "url('" + background + "')";
+     } catch(err) {
+        LogWriteWarn("Failed to set background image to selected image url. retrying in 3 seconds");
+        LogWriteWarn(err.toString());
+        setTimeout(3000, refreshDesktopBG);
+        return;
+     }
+    }
+    if(backgroundIsImage == "false") {
+     try {
+         document.getElementById("desktop").style.backgroundColor = background
+     } catch(err) {
+        LogWriteWarn("Failed to set background color to selected color. retrying in 3 seconds");
+        LogWriteWarn(err.toString());
+        setTimeout(3000, refreshDesktopBG);
+        return;
+     }
+    }
+    if(background == null) {
+     try {
+        document.getElementById("desktop").style.backgroundImage = "url('SuperDiamond.png')";
+     } catch(err) {
+        LogWriteWarn("Failed to set background image to default. retrying in 3 seconds");
+        LogWriteWarn(err.toString());
+        setTimeout(3000, refreshDesktopBG);
+        return;
+     }
+     background = "SuperDiamond.png"
+     backgroundIsImage = "true"
+    }
+    if(backgroundIsImage == null) {
+     try {
+        document.getElementById("desktop").style.backgroundImage = "url('SuperDiamond.png')";
+     } catch(err) {
+        LogWriteWarn("Failed to set background image to default. retrying in 3 seconds");
+        LogWriteWarn(err.toString());
+        setTimeout(3000, refreshDesktopBG);
+        return;
+     }
+     background = "SuperDiamond.png"
+     backgroundIsImage = "true"
+    }
+}
 function getCookie(cname) {
  LogWriteInfo("getting temporary data. name: " + cname)
   let name = cname + "=";
