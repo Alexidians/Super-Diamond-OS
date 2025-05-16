@@ -559,9 +559,13 @@ LogWriteInfo("Loading OpenApp Function")
       var AppShutDownButton = document.createElement("button")
       AppShutDownButton.onclick="ShutDownApp('AppInput')"
       AppShutDownButton.innerHTML="Shut Down"
+      AppShutDownButton.onclick = function() {
+           ShutDownApp(document.getElementById("TaskManagerShutdownInput").value)
+      }
       App.appendChild(AppInput)
       App.appendChild(AppShutDownButton)
       document.getElementById("Apps").appendChild(App)
+      MakeDraggable(App)
      }
      if(AppName == "Drag Tools") {
       App.id = "Drag Tools"
@@ -574,6 +578,7 @@ LogWriteInfo("Loading OpenApp Function")
       App.appendChild(ElemInput)
       document.getElementById("Apps").appendChild(App)
       DragToolInterval = setInterval(DragToolsAction, 0)
+      MakeDraggable(App)
      }
      if(AppName == "Super Diamond Virus") {
       App.id = "Super Diamond Virus"
@@ -593,15 +598,19 @@ LogWriteInfo("Loading OpenApp Function")
       SuperDiamondVirusInterval = setInterval(VirusInterval, 0, "Super Diamond Virus")
       App.appendChild(AppTitle)
       document.getElementById("Apps").appendChild(App)
+      MakeDraggable(App)
       ShutDownApp("Super Diamond Virus")
       WarningMessage("(Super Diamond Anti-Virus) We Detected a Virus On Your Device [Super Diamond Virus]")
-      var RemoveVirus = confirm("(Super Diamond Anti-Virus) Delete Super Diamond Virus?")
+      var RemoveVirus = confirm("(Super Diamond Anti-Virus) Stop Super Diamond Virus?")
       if(RemoveVirus) {
        clearInterval(SuperDiamondVirusInterval)
        HasSuperDiamondVirus = false
        OSMessage("(Super Diamond Anti-Virus) The Virus was Removed Sucessfully.")
-       WarningMessage("The Virus Might of already Done Something to your device")
-       OSMessage("(Super Diamond Virus) I Have 10 seconds left to virus your device and i lost some power")
+       WarningMessage("(Super Diamond Anti-Virus) The Virus Might of already Done Something to your device")
+       OSMessage("(Super Diamond Virus) HAHAHA! You didnt beat me. I Will Start Destroying your system now!")
+      } else {
+       WarningMessage("Recreating Super Diamond Virus...")
+       OpenApp("Super Diamond Virus")
       }
      }
      if(AppName == "Notepad") {
@@ -619,6 +628,7 @@ LogWriteInfo("Loading OpenApp Function")
       App.appendChild(AppTitle)
       App.appendChild(NotepadText)
       document.getElementById("Apps").appendChild(App)
+      makeDraggable(App)
      }
      if(AppName == "Data") {
       App.id = "Data"
