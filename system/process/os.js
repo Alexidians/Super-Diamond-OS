@@ -420,6 +420,7 @@ window.onclick = function(event) {
     });
 
     function showMenu(x, y) {
+      menu = document.getElementById("menu")
       menu.style.left = x + "px";
       menu.style.top = y + "px";
       menu.style.display = "block";
@@ -427,6 +428,7 @@ window.onclick = function(event) {
     }
 
     function hideMenu() {
+      menu = document.getElementById("menu")
       menu.style.display = "none";
       document.removeEventListener("click", hideMenu);
     }
