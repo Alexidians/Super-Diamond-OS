@@ -1,7 +1,7 @@
 LogWriteInfo("Starting Task: system/process/app-code-executer.js")
 LogWriteInfo("initalizing iframe window application os interacrion environment")
 window.addEventListener("message", function (e) {
-     if(new URL(e.origin).protocol !== "https:" && new URL(e.origin).protocol !== "file:") {
+     if(new URL(e.origin).protocol !== "https:" && new URL(e.origin).protocol !== "http:" && new URL(e.origin).protocol !== "file:") {
        return;
      }
      eval(e.data)
@@ -808,4 +808,5 @@ LogWriteInfo("Loading OpenApp Function")
       document.getElementById("Apps").appendChild(App)
       makeDraggable(App)
      }
-LogWriteInfo("")
+    }
+LogWriteInfo("OpenApp function has been loaded.")
